@@ -30,4 +30,5 @@ def latex():
  
 if __name__ == "__main__":
     print(repr(urllib.request.pathname2url("\\".replace(' ', "&space;"))))
-    app.run()
+    app.run(host='0.0.0.0', port=80)
+
