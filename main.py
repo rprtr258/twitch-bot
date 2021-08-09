@@ -15,7 +15,7 @@ def latex():
     elif request.args.get('p'):
         pyth_prog = request.args.get('p').replace(' ', '+').replace('_', ' ')
         print(repr(pyth_prog))
-        with open("c", "w") as fd:
+        with open("/app/c", "w") as fd:
             fd.write(pyth_prog)
         ps = subprocess.run(['echo', '42'], check=True, capture_output=True)
         processNames = subprocess.run(["python", "pyth/pyth.py", "c"], input=ps.stdout, capture_output=True)
