@@ -122,7 +122,10 @@ class Procedure(object):
 def eval(x, env=global_env):
     "Evaluate an expression in an environment."
     if isinstance(x, Symbol):      # variable reference
-        return env.find(x)[x]
+        v = env.find(x)
+        if v is None:
+            return None
+        return v[x]
     elif not isinstance(x, List):  # constant literal
         return x                
     elif x[0] == 'quote':          # (quote exp)
@@ -140,7 +143,7 @@ def eval(x, env=global_env):
         v = env.find(var)
         if v is None:
             v = env
-        v = eval(exp, env)
+        v[var] = eval(exp, env)
     elif x[0] == 'lambda':         # (lambda (var...) body)
         (_, parms, body) = x
         return Procedure(parms, body, env)
