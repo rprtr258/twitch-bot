@@ -2,6 +2,10 @@ import urllib
 import subprocess
 
 from flask import Flask, request
+
+import lis
+
+
 app = Flask(__name__)
  
 @app.route("/")
@@ -27,6 +31,12 @@ def latex():
             return "охуел?"
         print(repr(out))
         return out
+    elif request.args.get('c'):
+        lisp_prog = request.args.get('c').replace(' ', '+').replace('_', ' ')
+        print(repr(lisp_prog))
+        res = lis.eval(lis.parse(lisp_prog))
+        print(repr(res))
+        return lis.lispstr(res)
  
 if __name__ == "__main__":
     print(repr(urllib.request.pathname2url("\\".replace(' ', "&space;"))))

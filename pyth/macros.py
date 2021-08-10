@@ -376,6 +376,8 @@ def read_file(a):
 
         if a.startswith("http"):
             b = list(map(str, urllib.request.urlopen(a)))
+            #import requests
+            #b = [requests.get(a).content.decode("utf-8")]
         else:
             b = open(a)
 
