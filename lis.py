@@ -137,7 +137,10 @@ def eval(x, env=global_env):
         env[var] = eval(exp, env)
     elif x[0] == 'set!':           # (set! var exp)
         (_, var, exp) = x
-        env.find(var)[var] = eval(exp, env)
+        v = env.find(var)[var]
+        if v is None:
+            continue
+        v = eval(exp, env)
     elif x[0] == 'lambda':         # (lambda (var...) body)
         (_, parms, body) = x
         return Procedure(parms, body, env)
