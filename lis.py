@@ -144,6 +144,7 @@ def eval(x, env=global_env):
         if v is None:
             v = env
         v[var] = eval(exp, env)
+        return v[var]
     elif x[0] == 'lambda':         # (lambda (var...) body)
         (_, parms, body) = x
         return Procedure(parms, body, env)
