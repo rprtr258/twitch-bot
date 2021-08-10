@@ -139,7 +139,7 @@ def eval(x, env=global_env):
         (_, var, exp) = x
         v = env.find(var)
         if v is None:
-            return
+            v = env
         v = eval(exp, env)
     elif x[0] == 'lambda':         # (lambda (var...) body)
         (_, parms, body) = x
