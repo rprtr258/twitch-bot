@@ -120,6 +120,7 @@ class Procedure(object):
 ################ eval
 
 def eval(x, env=global_env):
+    print(env)
     "Evaluate an expression in an environment."
     if isinstance(x, Symbol):      # variable reference
         v = env.find(x)
