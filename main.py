@@ -1,5 +1,6 @@
 import urllib
 import subprocess
+import os
 
 from flask import Flask, request
 
@@ -38,7 +39,10 @@ def latex():
         print(repr(res))
         return lis.lispstr(res)
  
+@app.route("/g")
+def genn():
+    return subprocess.check_output(["python", "main.py", "generate"], cwd=os.getcwd() + "/" + "quotes-generator")
+
 if __name__ == "__main__":
-    print(repr(urllib.request.pathname2url("\\".replace(' ', "&space;"))))
     app.run(host='0.0.0.0', port=5000)
 
