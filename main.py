@@ -50,13 +50,14 @@ def latex():
 def genn():
     if request.args.get('w'):
         word = request.args.get('w')
+        from quotes_generator.ngram import NGram
+        model = NGram(3)
+        model.load("quotes_generator/model.json")
+        sims = [(res, tree.dist(word, res)) for res in tree.findSimilar(word)]
+        begin=choices([w for w, _ in sims], weights=[1 / (2 ** p) for _, p in sims])
     else:
-        word = None
-    from quotes_generator.ngram import NGram
-    model = NGram(3)
-    model.load("quotes_generator/model.json")
-    sims = [(res, tree.dist(word, res)) for res in tree.findSimilar(word)]
-    return model.generate(begin=choices([w for w, _ in sims], weights=[1 / (2 ** p) for _, p in sims]))
+        begin = None
+    return model.generate(begin)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
