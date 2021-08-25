@@ -6,15 +6,9 @@ from random import choices
 from flask import Flask, request
 
 import lis
-from vptree import VPTree, editIgnoreCaseDistance
 
 
 app = Flask(__name__)
-with open("quotes_generator/dict2", "r", encoding="utf-8") as fin:
-    words = sorted(set(fin.read().split()))
-print("building tree...")
-tree = VPTree(words, editIgnoreCaseDistance)
-print("tree built!")
 
 @app.route("/")
 def latex():
