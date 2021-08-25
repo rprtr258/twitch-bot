@@ -51,8 +51,8 @@ def genn():
     from quotes_generator.ngram import NGram
     model = NGram(3)
     model.load("quotes_generator/model.json")
-    if request.args.get('w'):
-        word = request.args.get('w')
+    word = request.args.get('w')
+    if word != "":
         sims = [(res, tree.dist(word, res)) for res in tree.findSimilar(word)]
         begin=choices([w for w, _ in sims], weights=[1 / (2 ** p) for _, p in sims])
     else:
