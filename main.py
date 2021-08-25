@@ -1,14 +1,21 @@
 import urllib
 import subprocess
 import os
+from random import choices
 
 from flask import Flask, request
 
 import lis
+from vptree import VPTree, editIgnoreCaseDistance
 
 
 app = Flask(__name__)
- 
+with open("quotes_generator/dict2", "r", encoding="utf-8") as fin:
+    words = sorted(set(fin.read().split()))
+print("building tree...")
+tree = VPTree(words, editIgnoreCaseDistance)
+print("tree built!")
+
 @app.route("/")
 def latex():
     if request.args.get('f'):
@@ -41,8 +48,15 @@ def latex():
  
 @app.route("/g")
 def genn():
-    return subprocess.check_output(["python", "main.py", "generate"], cwd=os.getcwd() + "/" + "quotes-generator")
+    if request.args.get('w'):
+        word = request.args.get('w')
+    else:
+        word = None
+    from quotes_generator.ngram import NGram
+    model = NGram(3)
+    model.load("quotes_generator/model.json")
+    sims = [(res, tree.dist(word, res)) for res in tree.findSimilar(word)]
+    return model.generate(begin=choices([w for w, _ in sims], weights=[1 / (2 ** p) for _, p in sims]))
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
-
