@@ -3,18 +3,20 @@ version: '3'
 tasks:
   train:
     dir: quotes_generator
+    sources: [quotes_generator/dataset]
+    generates: [quotes_generator/model.json]
     cmds:
       - python3 main.py train
 
   commit:
-    depends: [train]
+    deps: [train]
     cmds:
       - git add *
       - git status
       - git commit -m "Autocommit"
 
   deploy:
-    depends: [commit]
+    deps: [commit]
     cmds:
       - git push heroku master
 
