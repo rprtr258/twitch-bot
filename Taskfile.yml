@@ -1,7 +1,17 @@
 version: '3'
 
 tasks:
+  get_chat_logs:
+    generates: [quotes_generator/dataset]
+    cmds:
+      - tcd -q --channel screamlark --first 20
+      - cat *.txt | cut -d' ' -f3- | grep -v '!g' > logs
+      - mv quotes_generator/dataset dataset
+      - cat dataset logs | sort -u > quotes_generator/dataset
+      - rm *.txt logs dataset
+
   train:
+    deps: [get_chat_logs]
     dir: quotes_generator
     sources: [quotes_generator/dataset]
     generates: [quotes_generator/model.json]
