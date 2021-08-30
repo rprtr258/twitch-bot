@@ -5,9 +5,9 @@ tasks:
     generates: [quotes_generator/dataset]
     cmds:
       - tcd -q --channel screamlark --first 20
-      - cat *.txt | cut -d' ' -f3- | grep -v '!g' > logs
+      - cat *.txt | grep -v 'StreamElements' | cut -d' ' -f3- | grep -v '!g' > logs
       - mv quotes_generator/dataset dataset
-      - cat dataset logs | sort -u > quotes_generator/dataset
+      - cat dataset logs | grep -v 'ставки' | sort -u > quotes_generator/dataset
       - rm *.txt logs dataset
 
   train:
