@@ -2,9 +2,9 @@ version: '3'
 
 tasks:
   train:
+    dir: quotes_generator
     sources: [dataset]
     generates: [model.json]
-    dir: quotes_generator
     cmds:
       - python3 main.py train
 
