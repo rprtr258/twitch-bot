@@ -1,0 +1,21 @@
+version: '3'
+
+tasks:
+  train:
+    sources: [dataset]
+    generates: [model.json]
+    dir: quotes_generator
+    cmds:
+      - python3 main.py train
+
+  commit:
+    depends: [train]
+    cmds:
+      - git add *
+      - git status
+      - git commit -m "Autocommit"
+      - git push
+
+  deploy:
+    depends: [commit]
+
