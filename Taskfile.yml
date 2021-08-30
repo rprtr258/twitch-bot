@@ -13,7 +13,8 @@ tasks:
     cmds:
       - git add *
       - git status
-      - git commit -m "Autocommit"
+      - cmd: git commit -m "Autocommit"
+        ignore_error: true
 
   deploy:
     deps: [commit]
