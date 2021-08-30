@@ -14,8 +14,9 @@ tasks:
       - git add *
       - git status
       - git commit -m "Autocommit"
-      - git push heroku master
 
   deploy:
     depends: [commit]
+    cmds:
+      - git push heroku master
 
