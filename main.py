@@ -44,6 +44,7 @@ flag = True
  
 @app.route("/g")
 def genn():
+    global flag
     if flag:
         flag = False
         return "хахахаха попалась дура"
