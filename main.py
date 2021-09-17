@@ -39,9 +39,14 @@ def latex():
         res = lis.eval(lis.parse(lisp_prog))
         print(repr(res))
         return lis.lispstr(res)
+
+flag = True
  
 @app.route("/g")
 def genn():
+    if flag:
+        flag = False
+        return "хахахаха попалась дура"
     from quotes_generator.ngram import NGram
     model = NGram(3)
     model.load("quotes_generator/model.json")
