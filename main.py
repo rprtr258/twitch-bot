@@ -27,9 +27,9 @@ def latex():
         processNames = subprocess.run(["python", "pyth/pyth.py", "c"], input=ps.stdout, capture_output=True)
         out = processNames.stdout.decode('utf-8')
         out = out.replace('\r', '').replace('\n', ' ')
-        if "/timeout" in out:
+        if "/timeout" in out or ".timeout" in out:
             return "пососи"
-        if "/ban" in out:
+        if "/ban" in out or ".ban" in out:
             return "охуел?"
         print(repr(out))
         return out
