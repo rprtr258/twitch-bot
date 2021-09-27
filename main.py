@@ -27,10 +27,9 @@ def latex():
         processNames = subprocess.run(["python", "pyth/pyth.py", "c"], input=ps.stdout, capture_output=True)
         out = processNames.stdout.decode('utf-8')
         out = out.replace('\r', '').replace('\n', ' ')
-        if "/timeout" in out or ".timeout" in out:
-            return "пососи"
-        if "/ban" in out or ".ban" in out:
-            return "охуел?"
+        for w in ["ban", "disconnect", "timeout", "unban", "slow", "slowoff", "followers", "followersoff", "subscribers", "subscribersoff", "clear", "uniquechat", "uniquechatoff", "emoteonly", "emoteonlyoff", "commercial", "host", "unhost", "raid", "unraid", "marker"]:
+            if f"/{w}" in out or f".{w}" in out:
+                return "пососи"
         print(repr(out))
         return out
     elif request.args.get('c'):
