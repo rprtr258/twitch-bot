@@ -42,10 +42,10 @@ def latex():
         return lis.lispstr(res)
 
 def levenshteinDistance(s1, s2):
-    if len(s1) > len(s2):
-        s1, s2 = s2, s1
     if abs(len(s1) - len(s2)) > 20:
         return 9999999999
+    if len(s1) > len(s2):
+        s1, s2 = s2, s1
     distances = range(len(s1) + 1)
     for i2, c2 in enumerate(s2):
         distances_ = [i2+1]
@@ -61,9 +61,9 @@ def get_begins(message_word, vocabulary):
     words = {}
     for prior_ngram in vocabulary:
         dist = levenshteinDistance(prior_ngram, message_word)
-        if dist < len(message_word) * 1.4:
+        if dist < len(message_word) * 1.2:
             words[prior_ngram] = dist
-    return list(sorted(words.items(), key=lambda kv:kv[1]))[:30]
+    return list(sorted(words.items(), key=lambda kv:kv[1]))[:10]
 
 @app.route("/g")
 def genn():
@@ -78,6 +78,7 @@ def genn():
         with open("quotes_generator/model.json", "r") as fd:
             vocabulary = json.load(fd)["prior"].keys()
         begins = sum([get_begins(w, vocabulary) for w in message], [])
+        print(begins, flush=True)
         begin = random.choices([w for w, _ in begins], [math.pow(2, -p) for _, p in begins])
         return model.generate(begin)
     return model.generate()
