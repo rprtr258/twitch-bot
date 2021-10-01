@@ -59,8 +59,7 @@ class NGram():
         if begin is None:
             begin = random.choices(list(self.prior.keys()), weights=self.prior.values())
             begin = begin[0].split()
-        else:
-            begin = begin.split()
+        print(begin, flush=True)
         res = begin
         for _ in range(length):
             B = " ".join(res[-self.n + 1:])
