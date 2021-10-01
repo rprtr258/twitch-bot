@@ -2,12 +2,14 @@ import urllib
 import subprocess
 import os
 from random import choices
+import sys
 
 from flask import Flask, request
 
 import lis
 
 
+sys.stdout.reconfigure(encoding="utf-8")
 app = Flask(__name__)
 
 @app.route("/")
@@ -39,11 +41,45 @@ def latex():
         print(repr(res))
         return lis.lispstr(res)
 
+def levenshteinDistance(s1, s2):
+    if len(s1) > len(s2):
+        s1, s2 = s2, s1
+    if abs(len(s1) - len(s2)) > 20:
+        return 9999999999
+    distances = range(len(s1) + 1)
+    for i2, c2 in enumerate(s2):
+        distances_ = [i2+1]
+        for i1, c1 in enumerate(s1):
+            if c1 == c2:
+                distances_.append(distances[i1])
+            else:
+                distances_.append(1 + min((distances[i1], distances[i1 + 1], distances_[-1])))
+        distances = distances_
+    return distances[-1]
+
+def get_begins(message_word, vocabulary):
+    words = {}
+    for prior_ngram in vocabulary:
+        dist = levenshteinDistance(prior_ngram, message_word)
+        if dist < len(message_word) * 1.4:
+            words[prior_ngram] = dist
+    return list(sorted(words.items(), key=lambda kv:kv[1]))[:30]
+
 @app.route("/g")
 def genn():
+    import json
+    import random
+    import math
     from quotes_generator.ngram import NGram
     model = NGram(3)
     model.load("quotes_generator/model.json")
+    if request.args.get('m'):
+        message = request.args.get('m').replace(' ', '+').replace('_', ' ').split()
+        with open("quotes_generator/model.json", "r") as fd:
+            vocabulary = json.load(fd)["prior"].keys()
+        begins = sum([get_begins(w, vocabulary) for w in message], [])
+        begin = random.choices([w for w, _ in begins], [math.pow(2, -p) for _, p in begins])
+        return model.generate(begin)
     return model.generate()
 
 if __name__ == "__main__":
