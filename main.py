@@ -75,6 +75,7 @@ def genn():
     model.load("quotes_generator/model.json")
     if request.args.get('m'):
         message = request.args.get('m').replace(' ', '+').replace('_', ' ').split()
+        message = sorted(message, key=len)[-5:]
         with open("quotes_generator/model.json", "r") as fd:
             vocabulary = json.load(fd)["prior"].keys()
         begins = sum([get_begins(w, vocabulary) for w in message], [])
