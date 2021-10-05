@@ -165,7 +165,7 @@ def chess():
     for _depth, move, score in searcher.search(hist[-1], hist):
         if time.time() - start > 1:
             break
-    the_move = render_move((119-move[0],119-move[0]))
+    the_move = render_move((119-move[0],119-move[1]))
     if score == MATE_UPPER:
         reset_chess_save()
         return "Checkmate! " + the_move
