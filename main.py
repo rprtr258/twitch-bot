@@ -156,9 +156,6 @@ def chess():
     hist.append(hist[-1].move(move))
     if hist[-1].score <= -MATE_LOWER:
         reset_chess_save()
-        return "You lost"
-    if hist[-1].score <= -MATE_LOWER:
-        reset_chess_save()
         return "You won"
 
     start = time.time()
@@ -166,11 +163,16 @@ def chess():
         if time.time() - start > 1:
             break
     the_move = render_move((119-move[0],119-move[1]))
+    hist.append(hist[-1].move(move))
     if score == MATE_UPPER:
         reset_chess_save()
         return "Checkmate! " + the_move
-    with open("history", "a") as fd:
-        fd.write(the_move + "\n")
+    else:
+        with open("history", "a") as fd:
+            fd.write(the_move + "\n")
+    if hist[-1].score <= -MATE_LOWER:
+        reset_chess_save()
+        return "You lost"
     return "My move:" + the_move
 
 if __name__ == "__main__":
