@@ -133,9 +133,6 @@ def chess():
         fd.write(_input + "\n")
     hist.append(hist[-1].move(move))
 
-    # After our move we rotate the board and print it again.
-    # This allows us to see the effect of our move.
-    hist[-1].rotate()
     if hist[-1].score <= -MATE_LOWER:
         reset_chess_save()
         return "You lost"
