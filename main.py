@@ -86,6 +86,15 @@ def genn():
         return model.generate(begin)
     return model.generate()
 
+def reset_chess_save():
+    with open("history", "w") as fd:
+        fd.write("")
+
+@app.route("/h/reset")
+def chess_reset():
+    reset_chess_save()
+    return "Chess were reset"
+
 @app.route("/h")
 def chess():
     from sunfish.sunfish import Position, Searcher, initial, print_pos, MATE_LOWER, parse, MATE_UPPER, render
@@ -123,13 +132,11 @@ def chess():
     # This allows us to see the effect of our move.
     hist[-1].rotate()
     if hist[-1].score <= -MATE_LOWER:
-        with open("history", "w") as fd:
-            fd.write("")
+        reset_chess_save()
         return "You lost"
 
     if hist[-1].score <= -MATE_LOWER:
-        with open("history", "w") as fd:
-            fd.write("")
+        reset_chess_save()
         return "You won"
 
     # Fire up the engine to look for a move.
@@ -139,8 +146,7 @@ def chess():
             break
 
     if score == MATE_UPPER:
-        with open("history", "w") as fd:
-            fd.write("")
+        reset_chess_save()
         return "Checkmate!"
 
     # The black player moves from a rotated position, so we have to
