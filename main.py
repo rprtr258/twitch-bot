@@ -105,23 +105,31 @@ def chess_position():
     from sunfish.sunfish import Position, initial, print_pos, MATE_LOWER, parse, MATE_UPPER, render, print_pos
     import re
     hist = [Position(initial, 0, (True,True), (True,True), 0, 0)]
-    res = [hist[-1]]
     raw_hist = []
     with open("history", "r") as fd:
         for line in fd:
             if line.strip() != "":
-                raw_hist.append(line.strip())
-    for turn in raw_hist:
-        match = re.match('([a-h][1-8])'*2, turn)
-        old_move = parse(match.group(1)), parse(match.group(2))
+                match = re.match('([a-h][1-8])'*2, line.strip())
+                old_move = parse(match.group(1)), parse(match.group(2))
+                raw_hist.append(old_move)
+    print(raw_hist)
+    res = []
+    for i, old_move in enumerate(raw_hist):
+        if i % 2 == 1:
+            old_move = (119-old_move[0], 119-old_move[1])
         hist.append(hist[-1].move(old_move))
-        res.append(hist[-1])
-    return ";".join(map(print_pos, res))
+        res.append(print_pos(hist[-1]))
+    return "<br>".join(res)
+    # return ";".join(map(print_pos, res))
     # return print_pos(hist[-1])
+
+def render_move(move):
+    from sunfish.sunfish import render
+    return render(119-move[0]) + render(119-move[1])
 
 @app.route("/h")
 def chess():
-    from sunfish.sunfish import Position, Searcher, initial, print_pos, MATE_LOWER, parse, MATE_UPPER, render
+    from sunfish.sunfish import Position, Searcher, initial, print_pos, MATE_LOWER, parse, MATE_UPPER
     import re
     import time
     _input = request.args.get('m')
@@ -137,13 +145,14 @@ def chess():
     with open("history", "r") as fd:
         for line in fd:
             if line.strip() != "":
-                raw_hist.append(line.strip())
-    for turn in raw_hist:
-        match = re.match('([a-h][1-8])'*2, turn)
-        old_move = parse(match.group(1)), parse(match.group(2))
+                match = re.match('([a-h][1-8])'*2, line.strip())
+                old_move = parse(match.group(1)), parse(match.group(2))
+                raw_hist.append(old_move)
+    for i, old_move in enumerate(raw_hist):
+        if i % 2 == 1:
+            old_move = (119-old_move[0], 119-old_move[1])
         hist.append(hist[-1].move(old_move))
     if move not in hist[-1].gen_moves():
-        render_move = lambda move: render(119-move[0]) + render(119-move[1])
         moves = ", ".join(map(render_move, hist[-1].gen_moves()))
         return "Correct moves are: " + moves
     with open("history", "a") as fd:
@@ -163,7 +172,7 @@ def chess():
     for _depth, move, score in searcher.search(hist[-1], hist):
         if time.time() - start > 1:
             break
-    the_move = render(119-move[0]) + render(119-move[1])
+    the_move = render_move(move)
 
     if score == MATE_UPPER:
         reset_chess_save()
