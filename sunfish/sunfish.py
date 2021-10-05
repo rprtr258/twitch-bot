@@ -398,8 +398,8 @@ def render(i):
 def print_pos(pos):
     res = ""
     for i, row in enumerate(pos.board.split()):
-        res += f" {8-i}" + ' '.join(row) + "\n"
-    res += '    a b c d e f g h \n\n'
+        res += f"{8-i}" + "".join(row) + "\n"
+    res += '  abcdefgh \n\n'
     return res
 
 
