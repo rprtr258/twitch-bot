@@ -100,6 +100,21 @@ def chess_history():
     with open("history", "r") as fd:
         return "History: " + ", ".join(map(lambda s: s.strip(), fd))
 
+@app.route("/h/position")
+def chess_history():
+    from sunfish.sunfish import Position, Searcher, initial, print_pos, MATE_LOWER, parse, MATE_UPPER, render, print_pos
+    hist = [Position(initial, 0, (True,True), (True,True), 0, 0)]
+    raw_hist = []
+    with open("history", "r") as fd:
+        for line in fd:
+            if line.strip() != "":
+                raw_hist.append(line.strip())
+    for turn in raw_hist:
+        match = re.match('([a-h][1-8])'*2, turn)
+        old_move = parse(match.group(1)), parse(match.group(2))
+        hist.append(hist[-1].move(old_move))
+    return print_pos(hist[-1])
+
 @app.route("/h")
 def chess():
     from sunfish.sunfish import Position, Searcher, initial, print_pos, MATE_LOWER, parse, MATE_UPPER, render
@@ -123,7 +138,6 @@ def chess():
     for turn in raw_hist:
         match = re.match('([a-h][1-8])'*2, turn)
         old_move = parse(match.group(1)), parse(match.group(2))
-        print(old_move, flush=True)
         hist.append(hist[-1].move(old_move))
     if move not in hist[-1].gen_moves():
         render_move = lambda move: render(119-move[0]) + render(119-move[1])
