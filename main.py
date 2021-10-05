@@ -113,15 +113,11 @@ def chess_position():
                 old_move = parse(match.group(1)), parse(match.group(2))
                 raw_hist.append(old_move)
     print(raw_hist)
-    res = []
     for i, old_move in enumerate(raw_hist):
         if i % 2 == 1:
             old_move = (119-old_move[0], 119-old_move[1])
         hist.append(hist[-1].move(old_move))
-        res.append(print_pos(hist[-1]))
-    return "<br>".join(res)
-    # return ";".join(map(print_pos, res))
-    # return print_pos(hist[-1])
+    return print_pos(hist[-1])
 
 def render_move(move):
     from sunfish.sunfish import render
