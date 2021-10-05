@@ -171,7 +171,6 @@ class Position(namedtuple('Position', 'board score wc bc ep kp')):
     def move(self, move):
         i, j = move
         p, q = self.board[i], self.board[j]
-        print(p, q, flush=True)
         put = lambda board, i, p: board[:i] + p + board[i+1:]
         # Copy variables and reset ep and kp
         board = self.board

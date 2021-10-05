@@ -165,13 +165,13 @@ def chess():
     for _depth, move, score in searcher.search(hist[-1], hist):
         if time.time() - start > 1:
             break
-    the_move = render_move(move)
+    the_move = render_move((119-move[0],119-move[0]))
     if score == MATE_UPPER:
         reset_chess_save()
         return "Checkmate! " + the_move
     with open("history", "a") as fd:
         fd.write(the_move + "\n")
-    return "My move:" + (119-the_move[0],119-the_move[0])
+    return "My move:" + the_move
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
