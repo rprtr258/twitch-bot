@@ -25,6 +25,11 @@ tasks:
       - git status
       - cmd: git commit -m "Autocommit"
         ignore_error: true
+  
+  deploy-fix:
+    - git commit -am "Autocommit"
+    - git status
+    - git push heroku master
 
   deploy:
     deps: [commit]

@@ -103,6 +103,7 @@ def chess_history():
 @app.route("/h/position")
 def chess_position():
     from sunfish.sunfish import Position, initial, print_pos, MATE_LOWER, parse, MATE_UPPER, render, print_pos
+    import re
     hist = [Position(initial, 0, (True,True), (True,True), 0, 0)]
     raw_hist = []
     with open("history", "r") as fd:
