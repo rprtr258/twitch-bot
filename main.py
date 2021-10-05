@@ -105,6 +105,7 @@ def chess_position():
     from sunfish.sunfish import Position, initial, print_pos, MATE_LOWER, parse, MATE_UPPER, render, print_pos
     import re
     hist = [Position(initial, 0, (True,True), (True,True), 0, 0)]
+    res = [hist[-1]]
     raw_hist = []
     with open("history", "r") as fd:
         for line in fd:
@@ -114,7 +115,9 @@ def chess_position():
         match = re.match('([a-h][1-8])'*2, turn)
         old_move = parse(match.group(1)), parse(match.group(2))
         hist.append(hist[-1].move(old_move))
-    return print_pos(hist[-1])
+        res.append(hist[-1])
+    return ";".join(map(print_pos, res))
+    # return print_pos(hist[-1])
 
 @app.route("/h")
 def chess():
@@ -129,7 +132,6 @@ def chess():
         return "Please enter a move like g8f6"
     hist = [Position(initial, 0, (True,True), (True,True), 0, 0)]
     searcher = Searcher()
-    # print_pos(hist[-1])
 
     raw_hist = []
     with open("history", "r") as fd:
@@ -147,7 +149,6 @@ def chess():
     with open("history", "a") as fd:
         fd.write(_input + "\n")
     hist.append(hist[-1].move(move))
-    hist[-1].rotate()
 
     if hist[-1].score <= -MATE_LOWER:
         reset_chess_save()

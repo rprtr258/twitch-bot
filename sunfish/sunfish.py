@@ -397,10 +397,8 @@ def render(i):
 
 def print_pos(pos):
     res = ""
-    uni_pieces = {'R':'♜', 'N':'♞', 'B':'♝', 'Q':'♛', 'K':'♚', 'P':'♟',
-                  'r':'♖', 'n':'♘', 'b':'♗', 'q':'♕', 'k':'♔', 'p':'♙', '.':'·'}
     for i, row in enumerate(pos.board.split()):
-        res += f" {8-i}" + ' '.join(uni_pieces.get(p, p) for p in row) + "\n"
+        res += f" {8-i}" + ' '.join(row) + "\n"
     res += '    a b c d e f g h \n\n'
     return res
 
