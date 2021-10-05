@@ -147,6 +147,7 @@ def chess():
     with open("history", "a") as fd:
         fd.write(_input + "\n")
     hist.append(hist[-1].move(move))
+    hist[-1].rotate()
 
     if hist[-1].score <= -MATE_LOWER:
         reset_chess_save()
@@ -161,17 +162,18 @@ def chess():
     for _depth, move, score in searcher.search(hist[-1], hist):
         if time.time() - start > 1:
             break
+    the_move = render(119-move[0]) + render(119-move[1])
 
     if score == MATE_UPPER:
         reset_chess_save()
-        return "Checkmate!"
+        return "Checkmate! " + the_move
 
     # The black player moves from a rotated position, so we have to
     # 'back rotate' the move before printing it.
     hist.append(hist[-1].move(move))
     with open("history", "a") as fd:
-        fd.write(render(119-move[0]) + render(119-move[1]) + "\n")
-    return "My move:" + render(119-move[0]) + render(119-move[1])
+        fd.write(the_move + "\n")
+    return "My move:" + the_move
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
