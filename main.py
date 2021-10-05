@@ -95,6 +95,11 @@ def chess_reset():
     reset_chess_save()
     return "Chess were reset"
 
+@app.route("/h/history")
+def chess_history():
+    with open("history", "r") as fd:
+        return "History: " + ", ".join(map(lambda s: s.strip(), fd))
+
 @app.route("/h")
 def chess():
     from sunfish.sunfish import Position, Searcher, initial, print_pos, MATE_LOWER, parse, MATE_UPPER, render
