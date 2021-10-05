@@ -86,5 +86,69 @@ def genn():
         return model.generate(begin)
     return model.generate()
 
+@app.route("/h")
+def chess():
+    from sunfish.sunfish import Position, Searcher, initial, print_pos, MATE_LOWER, parse, MATE_UPPER, render
+    import re
+    import time
+    _input = request.args.get('m')
+    match = re.match('([a-h][1-8])'*2, _input)
+    if match:
+        move = parse(match.group(1)), parse(match.group(2))
+    else:
+        return "Please enter a move like g8f6"
+    hist = [Position(initial, 0, (True,True), (True,True), 0, 0)]
+    searcher = Searcher()
+    # print_pos(hist[-1])
+
+    raw_hist = []
+    with open("history", "r") as fd:
+        for line in fd:
+            if line.strip() != "":
+                raw_hist.append(line.strip())
+    for turn in raw_hist:
+        match = re.match('([a-h][1-8])'*2, turn)
+        old_move = parse(match.group(1)), parse(match.group(2))
+        print(old_move, flush=True)
+        hist.append(hist[-1].move(old_move))
+    if move not in hist[-1].gen_moves():
+        render_move = lambda move: render(119-move[0]) + render(119-move[1])
+        moves = ", ".join(map(render_move, hist[-1].gen_moves()))
+        return "Correct moves are: " + moves
+    with open("history", "a") as fd:
+        fd.write(_input + "\n")
+    hist.append(hist[-1].move(move))
+
+    # After our move we rotate the board and print it again.
+    # This allows us to see the effect of our move.
+    hist[-1].rotate()
+    if hist[-1].score <= -MATE_LOWER:
+        with open("history", "w") as fd:
+            fd.write("")
+        return "You lost"
+
+    if hist[-1].score <= -MATE_LOWER:
+        with open("history", "w") as fd:
+            fd.write("")
+        return "You won"
+
+    # Fire up the engine to look for a move.
+    start = time.time()
+    for _depth, move, score in searcher.search(hist[-1], hist):
+        if time.time() - start > 1:
+            break
+
+    if score == MATE_UPPER:
+        with open("history", "w") as fd:
+            fd.write("")
+        return "Checkmate!"
+
+    # The black player moves from a rotated position, so we have to
+    # 'back rotate' the move before printing it.
+    hist.append(hist[-1].move(move))
+    with open("history", "a") as fd:
+        fd.write(render(119-move[0]) + render(119-move[1]) + "\n")
+    return "My move:" + render(119-move[0]) + render(119-move[1])
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
