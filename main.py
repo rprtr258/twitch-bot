@@ -3,6 +3,7 @@ import subprocess
 import os
 from random import choices
 import sys
+import json
 
 from flask import Flask, request
 
@@ -11,6 +12,8 @@ import lis
 
 sys.stdout.reconfigure(encoding="utf-8")
 app = Flask(__name__)
+with open("quotes_generator/model.json", "r") as fd:
+    vocabulary = json.load(fd)["prior"].keys()
 
 @app.route("/")
 def latex():
@@ -41,21 +44,13 @@ def latex():
         print(repr(res))
         return lis.lispstr(res)
 
+cache = {}
 def levenshteinDistance(s1, s2):
-    if abs(len(s1) - len(s2)) > 20:
-        return 9999999999
-    if len(s1) > len(s2):
-        s1, s2 = s2, s1
-    distances = range(len(s1) + 1)
-    for i2, c2 in enumerate(s2):
-        distances_ = [i2+1]
-        for i1, c1 in enumerate(s1):
-            if c1 == c2:
-                distances_.append(distances[i1])
-            else:
-                distances_.append(1 + min((distances[i1], distances[i1 + 1], distances_[-1])))
-        distances = distances_
-    return distances[-1]
+    import edlib
+    if (s1, s2) in cache:
+        return cache[(s1, s2)]
+    cache[(s1, s2)] = edlib.align(s1, s2)["editDistance"]
+    return cache[(s1, s2)]
 
 def get_begins(message_word, vocabulary):
     words = {}
@@ -78,8 +73,6 @@ def genn():
         if len(message) > 1:
             message = list(zip(message, message[1:]))
         message = sorted(message, key=len)[-5:]
-        with open("quotes_generator/model.json", "r") as fd:
-            vocabulary = json.load(fd)["prior"].keys()
         begins = sum([get_begins(w, vocabulary) for w in message], [])
         print(begins, flush=True)
         begin = random.choices([w for w, _ in begins], [math.pow(2, -p) for _, p in begins])

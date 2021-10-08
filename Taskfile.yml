@@ -21,7 +21,9 @@ tasks:
   commit:
     deps: [train]
     cmds:
-      - git add *
+      - pip freeze > requirements.txt
+      - cmd: git add *
+        ignore_error: true
       - git status
       - cmd: git commit -m "Autocommit"
         ignore_error: true
@@ -34,5 +36,6 @@ tasks:
   deploy:
     deps: [commit]
     cmds:
+      - pip freeze > requirements.txt
       - git push heroku master
 
