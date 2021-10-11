@@ -21,8 +21,7 @@ tasks:
   commit:
     deps: [train]
     cmds:
-      - source venv/Scripts/activate
-      - pip freeze > requirements.txt
+      - venv/Scripts/pip freeze > requirements.txt
       - cmd: git add *
         ignore_error: true
       - git status
