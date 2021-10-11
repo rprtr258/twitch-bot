@@ -29,13 +29,11 @@ tasks:
         ignore_error: true
   
   deploy-fix:
-    - git commit -am "Autocommit"
-    - git status
+    - task: commit
     - git push heroku master
 
   deploy:
-    deps: [commit]
     cmds:
-      - pip freeze > requirements.txt
-      - git push heroku master
+      - task: train
+      - task: deploy-fix
 

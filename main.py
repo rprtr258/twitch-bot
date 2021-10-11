@@ -47,6 +47,7 @@ def latex():
 cache = {}
 def levenshteinDistance(s1, s2):
     import edlib
+    s1, s2 = s1.lower(), s2.lower()
     if (s1, s2) in cache:
         return cache[(s1, s2)]
     cache[(s1, s2)] = edlib.align(s1, s2)["editDistance"]
