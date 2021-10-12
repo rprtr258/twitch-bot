@@ -15,24 +15,21 @@ tasks:
     sources: [dataset]
     generates: [model.json]
     cmds:
-      - ./quotes_generator/main.py train --dataset dataset --model model.json
+      - python quotes_generator/main.py train --dataset dataset --model model.json
 
   commit:
-    deps: [train]
-    cmds:
-      - venv/Scripts/pip freeze > requirements.txt
-      - cmd: git add *
-        ignore_error: true
-      - git status
-      - cmd: git commit -m "Autocommit"
-        ignore_error: true
-  
+    - venv/Scripts/pip freeze > requirements.txt
+    - cmd: git add *
+      ignore_error: true
+    - git status
+    - cmd: git commit -m "Autocommit"
+      ignore_error: true
+
   deploy-fix:
     - task: commit
     - git push heroku master
 
   deploy:
-    cmds:
-      - task: train
-      - task: deploy-fix
+    - task: train
+    - task: deploy-fix
 
