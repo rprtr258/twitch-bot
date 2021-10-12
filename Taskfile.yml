@@ -19,7 +19,7 @@ tasks:
 
   commit:
     - venv/Scripts/pip freeze > requirements.txt
-    - cmd: git add *
+    - cmd: git add .
       ignore_error: true
     - git status
     - cmd: git commit -m "Autocommit"
