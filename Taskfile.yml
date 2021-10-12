@@ -25,10 +25,20 @@ tasks:
     - cmd: git commit -m "Autocommit"
       ignore_error: true
 
+  push_heroku:
+    - git push heroku master
+
+  push_github:
+    - git push github master
+
+  push:
+    deps:
+      - push_heroku
+      - push_github
+
   deploy-fix:
     - task: commit
-    - git push heroku master
-    - git push github master
+    - task: push
 
   deploy:
     - task: train
