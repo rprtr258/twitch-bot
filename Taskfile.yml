@@ -15,7 +15,7 @@ tasks:
     sources: [dataset]
     generates: [model.json]
     cmds:
-      - python3 main.py train
+      - ./quotes_generator/main.py train --dataset dataset --model model.json
 
   commit:
     deps: [train]
