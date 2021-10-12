@@ -1,0 +1,3 @@
+[submodule "quotes_generator"]
+	path = quotes_generator
+	url = https://github.com/rprtr258/quotes-generator
