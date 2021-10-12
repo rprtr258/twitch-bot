@@ -8,7 +8,7 @@ tasks:
       - cat *.txt | grep -v 'StreamElements' | cut -d' ' -f3- | grep -v '!g' > logs
       - cat dataset logs | grep -v 'ставки' | sort -u > tmp_dataset
       - mv tmp_dataset dataset
-      - rm *.txt logs
+      - rm logs
 
   train:
     deps: [get_chat_logs]
