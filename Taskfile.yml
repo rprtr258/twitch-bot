@@ -2,19 +2,18 @@ version: '3'
 
 tasks:
   get_chat_logs:
-    generates: [quotes_generator/dataset]
+    generates: [dataset]
     cmds:
       - tcd -q --channel screamlark --first 10
       - cat *.txt | grep -v 'StreamElements' | cut -d' ' -f3- | grep -v '!g' > logs
-      - mv quotes_generator/dataset dataset
-      - cat dataset logs | grep -v 'ставки' | sort -u > quotes_generator/dataset
-      - rm *.txt logs dataset
+      - cat dataset logs | grep -v 'ставки' | sort -u > tmp_dataset
+      - mv tmp_dataset dataset
+      - rm *.txt logs
 
   train:
     deps: [get_chat_logs]
-    dir: quotes_generator
-    sources: [quotes_generator/dataset]
-    generates: [quotes_generator/model.json]
+    sources: [dataset]
+    generates: [model.json]
     cmds:
       - python3 main.py train
 
