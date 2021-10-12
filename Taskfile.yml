@@ -28,6 +28,7 @@ tasks:
   deploy-fix:
     - task: commit
     - git push heroku master
+    - git push github master
 
   deploy:
     - task: train
