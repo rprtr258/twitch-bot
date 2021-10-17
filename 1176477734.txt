@@ -1,0 +1,1152 @@
+[0:00:36] <StreamElements> Screamlark is now live! Streaming Software and Game Development: рисуем вайфу !кодбатл
+[0:02:41] <Yoklis> привет художникам
+[0:03:29] <Yoklis> стример, я наверное задолбаб уже тебя, но ты послушал то, что я в прошлый раз скидывал?
+[0:06:22] <sonar200> я понял) пиксель арт - это японский кроссворд) ну или схема для вышивания крестиком)
+[0:22:33] <impnumb> !кодбатл
+[0:22:33] <StreamElements> На выходных (16-17 октября) планируется кодбатл! Там ты сможешь доказать свои прогерские скилы и выиграть денежный приз! Пиши в чат, чтобы зарегистрироваться и время, когда можешь участвовать. Доступные языки: https://i.imgur.com/o38JrU2.png Площадка: codewars.com Формат: решение на скорость задач с трансляцией экрана в дискорде.
+[0:29:31] <Cardinal_Love> оооо пиксели
+[0:29:59] <Cardinal_Love> !jump
+[0:30:00] <Cardinal_Love> !right
+[0:30:02] <Cardinal_Love> !jump
+[0:30:13] <Cardinal_Love> лети звёздочка лети))
+[0:30:25] <Cardinal_Love> !jump
+[0:30:26] <Cardinal_Love> !right
+[0:30:28] <Cardinal_Love> !jump
+[0:30:30] <Screamlark> cardinal_love has won 5 from the jump catch game!
+[0:30:39] <Cardinal_Love> yea!
+[0:30:42] <Cardinal_Love> ))
+[0:31:21] <ddr3_master> это как?
+[0:33:03] <StreamElements> The remote server returned status code 408 Request Timeout
+[0:36:24] <rprtr258> !g
+[0:36:26] <StreamElements> что за PoE
+[1:19:36] <AliceContainerized> скримлааааарк
+[1:20:36] <AliceContainerized> сегодня отпуск взяла, а тоболею
+[1:20:42] <AliceContainerized> вместо этого свой тетрис допиливаю =)
+[1:20:54] <AliceContainerized> тетрис оказывается намного интереснее чем я о нём думала
+[1:20:59] <CMRDTEN_3000> @AliceContainerized, маску тогда надень, а то ещё заразишь кого в чатике monkaS cvHazmat
+[1:21:00] <AliceContainerized> запиливаю щас super rotation system
+[1:21:38] <AliceContainerized> это дополнительные кики, которые тетромины могут получать об стены и других тетроминов
+[1:21:47] <AliceContainerized> после поворота блоки могут наложиться друг на друга
+[1:21:57] <OvercomeEvil> братюни, предлагаю подвести окончательный итог: арчик мир спасет, или нет?
+[1:22:01] <AliceContainerized> и там есть ряд состояний, в которые они могут переходить в зависимости от ситуации
+[1:22:06] <CMRDTEN_3000> @OvercomeEvil, нет.
+[1:22:11] <AliceContainerized> это очень прикольно, матрицы умножаю
+[1:22:28] <OvercomeEvil> @CMRDTEN_3000 это точная инфа?
+[1:22:35] <CMRDTEN_3000> @OvercomeEvil, да.
+[1:23:00] <StreamElements> не я не нравлюсь сане.
+[1:23:04] <AliceContainerized> базовую ротацию я уже запилила, вот теперь запиливаю дополнительные состояния
+[1:23:10] <CMRDTEN_3000> Сане уже никто не нравится FeelsBadMan
+[1:23:46] <AliceContainerized> арчик уже спас мир
+[1:23:49] <CMRDTEN_3000> изначально Саня меня не буллил
+[1:23:49] <AliceContainerized> просто вы не знаете об этом
+[1:23:53] <AliceContainerized> он же спасён
+[1:24:48] <CMRDTEN_3000> что не сходится-то?
+[1:25:08] <OvercomeEvil> @AliceContainerized это точная инфа?
+[1:25:14] <AliceContainerized> nu
+[1:25:15] <AliceContainerized> да
+[1:25:25] <AliceContainerized> кто не перешёл на арч тот лох
+[1:25:44] <CMRDTEN_3000> ты хочешь один в один как там что ли?
+[1:25:47] <CMRDTEN_3000> @AliceContainerized FeelsWeirdMan
+[1:25:47] <OvercomeEvil> @AliceContainerized это тоже точная инфа?
+[1:25:56] <AliceContainerized> очень точная
+[1:26:04] <AliceContainerized> пишу с арча
+[1:27:54] <StreamElements> Я отходил бля
+[1:28:06] <CMRDTEN_3000> Куда бля
+[1:28:09] <CMRDTEN_3000> !say куда
+[1:28:11] <StreamElements> @CMRDTEN_3000 куда?
+[1:28:15] <CMRDTEN_3000> @StreamElements FeelsWeirdMan
+[1:29:01] <nitakusik> @Screamlark привет, будущий пиксель-арт мастер
+[1:29:11] <OvercomeEvil> итого, результаты опроса: 1 человек против, 1 за, значит вероятность того что арчик спасет мир - 50/50
+[1:29:40] <CMRDTEN_3000> @OvercomeEvil, ты стримера не считал?
+[1:29:52] <OvercomeEvil> @CMRDTEN_3000 он же промолчал
+[1:30:06] <CMRDTEN_3000> scream29Warrior_SQ
+[1:30:18] <OvercomeEvil> вроде промолчал
+[1:30:20] <AliceContainerized> какие нафиг опросы
+[1:30:33] <CMRDTEN_3000> ты его перерисовываешь что ли?
+[1:30:45] <AliceContainerized> я не высказала мнение, я обрисовала фактические данные
+[1:30:46] <OvercomeEvil> ну да, перевес значит получается
+[1:31:04] <kolumbet> scream29Warrior_HF scream29Warrior
+[1:31:21] <CMRDTEN_3000> @OvercomeEvil, ты своё мнение внеси, будет снова 50 на 50 VeryPog
+[1:32:15] <OvercomeEvil> @AliceContainerized ну они у тебя ничем не подтверждены, только тем что ты сама с арчика пишешь
+[1:32:37] <CMRDTEN_3000> а заскейлить его нельзя было, чтобы меньше пустого места было на смайлике?
+[1:32:44] <OvercomeEvil> @CMRDTEN_3000 точно, считаю тоже что не, не спасет, 50/50 значит
+[1:32:54] <StreamElements> так
+[1:32:59] <CMRDTEN_3000> так
+[1:33:28] <CMRDTEN_3000> один полезнее другого
+[1:33:29] <AliceContainerized> @OvercomeEvil они подтверждены моим авторитетом и экспириенсом
+[1:33:33] <Screamlark> scream29WarriorStand
+[1:33:34] <CMRDTEN_3000> клёвые смайлики
+[1:33:45] <Screamlark> scream29Kona
+[1:34:19] <CMRDTEN_3000> FeelsBadMan
+[1:34:23] <MitiSit> Добрый вечер
+[1:34:24] <kolumbet> jblowTim
+[1:34:27] <Gekmi> peepoRpg
+[1:34:33] <MitiSit> чет смайлы мелкие
+[1:34:55] <kolumbet> Hello! \ tsodinWeeb /
+[1:35:27] <MitiSit> alias PixelBob
+[1:35:55] <CMRDTEN_3000> мы тоже ничего не понимаем
+[1:35:55] <kolumbet> scream29Warrior_HF scream29WarriorStand scream29Warrior
+[1:36:17] <CMRDTEN_3000> в Стеке есть дерьмо PepeHands
+[1:36:36] <CMRDTEN_3000> !jump
+[1:36:38] <OvercomeEvil> @AliceContainerized т.е. ты настаиваешь чтобы твой голос был х2?
+[1:36:48] <AliceContainerized> x3 минимум
+[1:36:56] <kolumbet> !jump
+[1:36:58] <AliceContainerized> а лучше x4
+[1:36:59] <Gekmi> Дерьмо в Стэке не смогло подружиться с дерьмом в чатике peepoDown
+[1:37:00] <OvercomeEvil> слишком большой перевес получается тогда
+[1:37:17] <AliceContainerized> ну да, я говна не посоветую
+[1:37:33] <CMRDTEN_3000> @OvercomeEvil, по-моему тут вмешательство в честные выборы, предлагаю аннулировать её голос VeryPog
+[1:37:42] <AliceContainerized> ну это бан
+[1:37:47] <kolumbet> !jump
+[1:37:49] <Screamlark> kolumbet has won 5 from the jump catch game!
+[1:37:51] <CMRDTEN_3000> бан за правое дело!
+[1:37:54] <StreamElements> mkdir -p /mnt/boot/efi
+[1:38:01] <OvercomeEvil> @CMRDTEN_3000 да, она угрожает нашей демократии
+[1:38:14] <CMRDTEN_3000> да я уже привык
+[1:38:23] <CMRDTEN_3000> по количеству банов оно видно FeelsBadMan
+[1:39:10] <AliceContainerized> надо вам на двоих отдельный чатик сделать, с отдельной демократией
+[1:39:22] <AliceContainerized> и няштесь там на здоровье
+[1:39:41] <AliceContainerized> да
+[1:39:44] <AliceContainerized> я болею прост
+[1:39:46] <AliceContainerized> недомогаю
+[1:40:00] <CMRDTEN_3000> так нас больше, это ты пришла и разрушила наши выборы, почему мы должны уходить?
+[1:40:04] <AliceContainerized> неее, болезнью :(
+[1:40:07] <CMRDTEN_3000> (модерка - не аргумент)
+[1:40:14] <AliceContainerized> потому что у меня модерка
+[1:40:26] <CMRDTEN_3000> стример, дай модерку VeryPog
+[1:40:34] <CMRDTEN_3000> я её уберу завтра
+[1:40:58] <CMRDTEN_3000> давай тогда Оверкаму её
+[1:41:04] <CMRDTEN_3000> он не откажется
+[1:41:06] <CMRDTEN_3000> я ему доверяю
+[1:41:22] <AliceContainerized> всё стример ушол можно банить
+[1:41:27] <AliceContainerized> пока не видит
+[1:41:27] <CMRDTEN_3000> D:
+[1:41:38] <CMRDTEN_3000> папе привет не передал FeelsBadMan
+[1:41:45] <OvercomeEvil> первым делом я димку забаню тогда, который называет меня попрошайкой, за то что я попрошайничую балы на похвалу шиндуса
+[1:42:21] <CMRDTEN_3000> @OvercomeEvil, а как тебе баллы передают, если не секрет VeryPog
+[1:42:39] <OvercomeEvil> ну мне не передают так-то, просто добрые люди за меня похвалу покупают
+[1:42:44] <OvercomeEvil> пока я коплю
+[1:42:54] <StreamElements> а почему оно windth называется?
+[1:43:07] <CMRDTEN_3000> похвально тогда
+[1:43:14] <OvercomeEvil> ага
+[1:43:46] <OvercomeEvil> @CMRDTEN_3000 ой спасибо добрый человек PogChamp
+[1:44:05] <CMRDTEN_3000> @OvercomeEvil, шиндусоид шиндусоида в беде не бросит VeryPog
+[1:44:13] <OvercomeEvil> да
+[1:44:33] <OvercomeEvil> за нами микрософт и армия индусов-разработчиков
+[1:44:50] <CMRDTEN_3000> да поможет нам Win api
+[1:45:07] <CMRDTEN_3000> !basketball
+[1:45:08] <Screamlark> Avatar Basketball is starting! Type: !join {red/blue} to play!
+[1:45:11] <CMRDTEN_3000> !join red
+[1:45:20] <kolumbet> !join red
+[1:45:29] <CMRDTEN_3000> @kolumbet, правила знаешь?
+[1:45:34] <kolumbet> lf
+[1:45:37] <kolumbet> да
+[1:45:39] <Screamlark> Enter the angle and the power to shoot your avatar at the basket! {1-180} {1-100}
+[1:45:41] <kolumbet> !join blue
+[1:45:46] <CMRDTEN_3000> 80 60
+[1:45:55] <kolumbet> 40 30
+[1:46:05] <CMRDTEN_3000> 120 77
+[1:46:10] <kolumbet> 45 60
+[1:46:16] <CMRDTEN_3000> 120 88
+[1:46:23] <kolumbet> 45 61
+[1:46:27] <CMRDTEN_3000> 120 90
+[1:46:35] <kolumbet> 50 62
+[1:46:44] <CMRDTEN_3000> @kolumbet, почти!
+[1:46:49] <CMRDTEN_3000> 120 60
+[1:46:58] <kolumbet> 100 80
+[1:47:01] <CMRDTEN_3000> 120 62
+[1:47:14] <kolumbet> PogChamp
+[1:47:16] <CMRDTEN_3000> молодчик, @kolumbet VeryPog
+[1:47:25] <kolumbet> 80 40
+[1:47:27] <CMRDTEN_3000> 84 84
+[1:47:37] <kolumbet> 80 100
+[1:47:41] <CMRDTEN_3000> 83 83
+[1:47:54] <StreamElements> У тебя же не может быть интом
+[1:47:56] <CMRDTEN_3000> 82 82
+[1:47:58] <kolumbet> 84 84
+[1:48:05] <CMRDTEN_3000> @StreamElements, ну мы же интами кидаемся
+[1:48:19] <CMRDTEN_3000> 120 40
+[1:48:28] <CMRDTEN_3000> 120 42
+[1:48:31] <kolumbet> 120 43
+[1:48:51] <CMRDTEN_3000> 95 100
+[1:48:59] <kolumbet> 75 30
+[1:49:05] <kolumbet> 75 60
+[1:49:10] <CMRDTEN_3000> 100 100
+[1:49:16] <kolumbet> 75 65
+[1:49:38] <kolumbet> 115 50
+[1:49:50] <kolumbet> 110 45
+[1:50:04] <kolumbet> 109 44
+[1:50:18] <kolumbet> Pog
+[1:50:31] <kolumbet> 120 48
+[1:50:39] <kolumbet> 120 52
+[1:50:54] <kolumbet> LUL
+[1:51:04] <kolumbet> 100 60
+[1:51:21] <kolumbet> 110 80
+[1:51:33] <kolumbet> 100 71
+[1:51:50] <devildemonfox1> devildemonfox1 subscribed at Tier 1. They've subscribed for 6 months! 
+[1:51:51] <Screamlark> devildemonfox1 has subscribed for 6 month(s)
+[1:51:56] <kolumbet> PogChamp
+[1:52:09] <devildemonfox1> @CMRDTEN_3000 Тебе бан нужен?
+[1:52:10] <kolumbet> 50 90
+[1:52:21] <kolumbet> 55 80
+[1:52:40] <kolumbet> 55 81
+[1:52:41] <devildemonfox1> @CMRDTEN_3000 а где стример?
+[1:52:54] <StreamElements> да я вообще выпал с этого охренел но как сайдноут скорее
+[1:53:08] <kolumbet> 60 45
+[1:53:20] <kolumbet> 70 50
+[1:53:27] <Sudalin> а что интерактив?
+[1:53:36] <kolumbet> 70 53
+[1:53:43] <AliceContainerized> этот стрим и так прекрасен
+[1:53:47] <AliceContainerized> стример не нуежн
+[1:53:47] <Screamlark> BLUE Victory +300 ... MVP: CMRDTEN_3000 +100
+[1:54:33] <kolumbet> @Sudalin Пишеш !basketball и начинается игра. Можно было присоединиться командой !join
+[1:54:37] <AliceContainerized> h'
+[1:54:38] <AliceContainerized> ой
+[1:54:43] <AliceContainerized> я случайно
+[1:54:59] <MitiSit> DarkMode
+[1:55:23] <AliceContainerized> не знаю как это вышло
+[1:56:16] <AliceContainerized> да что ж такое
+[1:56:33] <devildemonfox1> @CMRDTEN_3000 А матч то закончился!
+[1:56:47] <devildemonfox1> Pog
+[1:56:51] <rprtr258> быдло получило по заслугам AAUGH
+[1:56:53] <kelvium_> @rprtr258, ты покормил рыбку!
+[1:57:04] <CMRDTEN_3000> @devildemonfox1, моя последняя просьба - не дай Вайви победить в выборах!
+[1:57:27] <devildemonfox1> @CMRDTEN_3000 Давай ее рикроллами заспамим!
+[1:57:35] <OvercomeEvil> началась пресуха значит
+[1:57:41] <CMRDTEN_3000> @devildemonfox1, и в ЛС тоже? Pog
+[1:57:54] <StreamElements> Дух Бурбаки живет хорошо
+[1:58:07] <CMRDTEN_3000> Оверкам, слышь каждый голос, даже если он будет в бане!
+[1:58:09] <devildemonfox1> @CMRDTEN_3000 Да хоть куда, можно хоть почтой к ней домой отправить Pog
+[1:58:12] <kolumbet> Never gonna give you up
+[1:58:22] <CMRDTEN_3000> @devildemonfox1, а ты её адрес знаешь? Pog
+[1:58:40] <devildemonfox1> @CMRDTEN_3000 А мы по всему континенту разошлем Pog
+[1:58:44] <AliceContainerized> пишите адрес
+[1:58:50] <CMRDTEN_3000> пишем
+[1:58:51] <OvercomeEvil> @CMRDTEN_3000 рано или поздно мы победим, с нами правда, за нашу и вашу свободу, друзья
+[1:58:53] <AliceContainerized> Москва. ул. Большая Лубянка, д. 2
+[1:58:56] <AliceContainerized> 107031
+[1:59:18] <flttl> Сижу сейчас, попиваю мультиягодный смузи за 700 EUR , на улице стоит моя Bugatti Veyron Grand Sport за 1.7 млн $, ах забыл, нахожусь я в городе Палермо , Италия в вилле за 30 000 000 евро, Скоро мой шеф повар приготовит Florentiniс pizza c золотой стружкой за 1400 EUR и порцию элитных мандаришек с финиками за 300 EUR, но на сабку не хватило, подарите....
+[1:59:21] <AliceContainerized> спросите алису
+[1:59:22] <CMRDTEN_3000> всё, рикроллы высланы VeryPog
+[1:59:39] <AliceContainerized> хорошо
+[1:59:45] <CMRDTEN_3000> @flttl, мульти я годный FeelsBadMan
+[1:59:45] <AliceContainerized> буду ждать
+[2:00:32] <devildemonfox1> @CMRDTEN_3000  Давай стримера заспамим рикроллами? Pog
+[2:00:34] <CMRDTEN_3000> Флт, твоё участие в кодбаттле ещё актуально? Ты же не зассал? VeryPog
+[2:00:39] <CMRDTEN_3000> @devildemonfox1, а давай Pog
+[2:00:39] <AliceContainerized> чтото смузи захотелось
+[2:00:40] <devildemonfox1> Может прибежит Pog
+[2:00:54] <CMRDTEN_3000> можно ему на рабочую почту их выслать Pog
+[2:00:58] <flttl> @CMRDTEN_3000 На кодварс ?
+[2:01:08] <devildemonfox1> Пацаны не рикроллы атвичаю https://www.youtube.com/watch?v=dQw4w9WgXcQ
+[2:01:10] <devildemonfox1> Pog
+[2:01:15] <CMRDTEN_3000> @flttl, наверное. Я не в курсе всех правил
+[2:01:23] <CMRDTEN_3000> Пацаны не рикроллы атвичаю https://www.youtube.com/watch?v=dQw4w9WgXcQ
+[2:01:34] <flttl> @CMRDTEN_3000 Ну тогда не очень :/
+[2:01:42] <CMRDTEN_3000> @flttl FeelsWeirdMan
+[2:01:51] <CMRDTEN_3000> за кого болеть тогда предлагаешь?
+[2:01:56] <CMRDTEN_3000> помимо Бороды ясное дело
+[2:01:57] <devildemonfox1> !кодбатл
+[2:01:57] <StreamElements> На выходных (16-17 октября) планируется кодбатл! Там ты сможешь доказать свои прогерские скилы и выиграть денежный приз! Пиши в чат, чтобы зарегистрироваться и время, когда можешь участвовать. Доступные языки: https://i.imgur.com/o38JrU2.png Площадка: codewars.com Формат: решение на скорость задач с трансляцией экрана в дискорде.
+[2:02:09] <devildemonfox1> @CMRDTEN_3000 За меня болей VeryLark
+[2:02:25] <CMRDTEN_3000> @devildemonfox1, про тебя я даже и не спрашиваю, ты для меня как цнз
+[2:02:35] <devildemonfox1> @CMRDTEN_3000 Pog
+[2:02:35] <CMRDTEN_3000> @devildemonfox1, я за тебя и в огонь и в воду VeryPog
+[2:02:45] <CMRDTEN_3000> @devildemonfox1, и в кодбаттл
+[2:02:49] <flttl> А стример давно ушёл ?
+[2:02:54] <StreamElements> магия перестаёт работать когда узнаешь что стример начал писать свой вектор получается VeryLark
+[2:02:55] <CMRDTEN_3000> @flttl, минут 20 как
+[2:02:59] <devildemonfox1> @CMRDTEN_3000 Ору, только я то участвовать не буду peepoDown
+[2:03:16] <flttl> @CMRDTEN_3000 Ну ладно, тогда я пошёл, не хочу без сабки в чате сидеть
+[2:03:20] <devildemonfox1> @CMRDTEN_3000  Смертень! https://www.youtube.com/watch?v=rTgj1HxmUbg
+[2:03:20] <CMRDTEN_3000> @devildemonfox1, да ладно, покажешь людям своего Питона VeryPog
+[2:03:38] <CMRDTEN_3000> @flttl, а кого ты байтишь на подарочную подписку?
+[2:03:46] <CMRDTEN_3000> @flttl, ни Михея ни Сидора тут нема же
+[2:03:59] <flttl> @CMRDTEN_3000 Тебя получается
+[2:03:59] <CMRDTEN_3000> @devildemonfox1 Pog
+[2:04:06] <CMRDTEN_3000> @flttl, справедливо
+[2:04:09] <CMRDTEN_3000> @flttl, сейчас тогда
+[2:06:20] <CMRDTEN_3000> @flttl, вот у них система геморройная, ещё секунду
+[2:06:26] <CMRDTEN_3000> @flttl, ты же не ушёл? VeryPog
+[2:07:04] <flttl> @CMRDTEN_3000 Нет, но близок к этому....
+[2:07:17] <flttl> Я столько времени эту пасту искал.....
+[2:07:54] <StreamElements> т.е если тебе что-то не понимаю простого. Раз уже несколько лет назад ушёл за сигами на 19 лет парнишке ) https://youtu.be/MXxhIlpsXzI?t=274
+[2:08:17] <kelvium_> @dima2dvydenko, ты покормил рыбку!
+[2:09:41] <CMRDTEN_3000> @flttl, пытался с левой карты заплатить, а там обязательно нужен номер телефона FeelsBadMan https://ibb.co/WkX3FLj
+[2:09:49] <CMRDTEN_3000> @flttl, в другой раз так что
+[2:11:01] <flttl> @CMRDTEN_3000  VeryLark
+[2:12:54] <StreamElements> У меня буханка иногда говорят. Чтобы разграничить, а то что она ласковая бывает
+[2:13:31] <compile_and_run> !say где стримлер
+[2:13:33] <StreamElements> @compile_and_run да стример сам прошикать может lizardPls
+[2:14:10] <compile_and_run> !say верни стримлера
+[2:14:12] <StreamElements> @compile_and_run кормил стримера VeryLark кормил стрим стримлер кормить VeryLark покормил стримлера VeryLark
+[2:14:20] <MIIIIIIIIIIIIIG> https://www.twitch.tv/welovegames
+[2:14:48] <MIIIIIIIIIIIIIG> играет в пиксел гейм
+[2:15:30] <CMRDTEN_3000> @MIIIIIIIIIIIIIG, бан за рекламу VeryPog
+[2:16:47] <compile_and_run> FrogWave
+[2:16:51] <compile_and_run> FrogWave  󠀀
+[2:16:55] <compile_and_run> FrogWave
+[2:17:05] <compile_and_run> как дела?
+[2:17:09] <kelvium_> FrogWave
+[2:17:48] <AliceContainerized> оо я видела эту игру смешная
+[2:17:55] <StreamElements> curl https://wttr.in/voronezh
+[2:17:55] <kelvium_> despotism 3k что-ли?
+[2:17:58] <CMRDTEN_3000> стример, там некий CMRDTEN_3000 заказал похвалу Шиндоус, а его товарищ, devildemonfox1, подарил подписку VeryPog
+[2:18:04] <AliceContainerized> а почему у стримера такой голос странный
+[2:18:06] <CMRDTEN_3000> вернее он сам подписался
+[2:18:23] <kelvium_> игра
+[2:18:38] <AliceContainerized> да у другого
+[2:18:40] <AliceContainerized> не этого
+[2:18:40] <devildemonfox1> @Screamlark  Стример здарова!
+[2:18:44] <flttl> Стример, прикинь, закинул в чат пасту которую искал 3 минуты чтобы мне подарили сабку, а сабку так никто и не подраил, не ожидал такого от чата........
+[2:18:45] <AliceContainerized> мы нормального смотрим
+[2:19:00] <devildemonfox1> Я ничего не дарил Pog
+[2:19:07] <CMRDTEN_3000> @flttl, да подарю я потом!
+[2:19:13] <devildemonfox1> Я только поделился что 6 месяцев подписан Pog
+[2:19:15] <kelvium_> :)
+[2:19:23] <CMRDTEN_3000> @flttl, выиграешь в кодбаттле - подарю точно!
+[2:19:32] <AliceContainerized> да у другого блин
+[2:19:42] <devildemonfox1> @Screamlark  Макс я победил!
+[2:19:43] <CMRDTEN_3000> папе так и не передал привет от чатика FeelsBadMan
+[2:19:50] <compile_and_run> стримлер, поменяй голос, нам этот надоел VeryLark
+[2:19:51] <kelvium_> scream29Witch scream29Kona scream29Warrior scream29WarriorStand это, что новые эмоуты?
+[2:20:01] <devildemonfox1> @Screamlark  Я металлику победил!
+[2:20:04] <devildemonfox1> peepoClap
+[2:20:09] <CMRDTEN_3000> Pog
+[2:20:26] <devildemonfox1> Да
+[2:20:37] <devildemonfox1> Она начинает привыкать! peepoClap
+[2:20:57] <flttl> стримлер, поменяй компайла, нам этот надоел VeryLark
+[2:21:06] <MIIIIIIIIIIIIIG> стрим с песнями будет?
+[2:21:29] <MIIIIIIIIIIIIIG> ага твоими
+[2:21:34] <CMRDTEN_3000> с песнями Пистолетова
+[2:21:41] <flttl> Кавер на Пистолетова
+[2:21:48] <compile_and_run> метал кавер на пистолетова OOOO
+[2:21:52] <MIIIIIIIIIIIIIG> ну надеюсь не про Сашу
+[2:21:56] <devildemonfox1> Кавер на рикрола Pog
+[2:22:17] <flttl> СХС
+[2:22:18] <compile_and_run> СУ
+[2:22:19] <compile_and_run> ПЕР
+[2:22:19] <compile_and_run> МЕН
+[2:22:25] <compile_and_run> lizardPls
+[2:22:28] <flttl> БЕЗ МОТОРА САМ ЛЕТИТ ПО НЕБУ
+[2:22:34] <CMRDTEN_3000> lizardPls
+[2:22:47] <devildemonfox1> @Screamlark  Стример а давай? https://monkeytype.com/
+[2:22:49] <CMRDTEN_3000> такая кринжовня эти ваши Емаксы
+[2:22:51] <devildemonfox1> Pog
+[2:22:54] <StreamElements> функции в матеше барбариской coMMMMfy
+[2:23:10] <devildemonfox1> эх peepoDown
+[2:23:25] <CMRDTEN_3000> D:
+[2:23:32] <devildemonfox1> Я кст хз когда отдам долг, но мы почти заканчиваем с объектом D:
+[2:23:53] <MitiSit> @devildemonfox1 дьявол искуситель !
+[2:24:10] <devildemonfox1> @Screamlark  У меня не здоровая любов к паукам
+[2:24:22] <devildemonfox1> @Screamlark  Я еще и думаю взять айфон 11 Pog
+[2:24:35] <AliceContainerized> https://tetris.wiki/Super_Rotation_System#How_Guideline_SRS_Really_Works
+[2:24:43] <AliceContainerized> заз
+[2:24:44] <AliceContainerized> lul
+[2:24:46] <AliceContainerized> LUL
+[2:25:01] <devildemonfox1> @Screamlark  Пусть будет, а после января пк за 170к Pog https://www.youtube.com/watch?v=xaazUgEKuVA
+[2:25:02] <compile_and_run> да ну ентот ифон VeryLark
+[2:25:20] <devildemonfox1> @Screamlark  11 айфон 47к
+[2:25:41] <devildemonfox1> Попався!
+[2:25:42] <AliceContainerized> главное рикролы открывает а мои ссылки не открывает
+[2:25:44] <AliceContainerized> ну и ладно
+[2:25:59] <flttl> @AliceContainerized А вдруг там бэкдоры ? D:
+[2:26:05] <devildemonfox1> Смертень он попався
+[2:26:08] <devildemonfox1> Pog
+[2:26:32] <flttl> Так это не мешает мне жить :)
+[2:26:41] <flttl> Всё, стример попвася на бэкдор
+[2:27:12] <flttl> Так вот я получается и поговорил )
+[2:27:15] <AliceContainerized> это как тетромины вращаются :D
+[2:27:19] <AliceContainerized> это очень смешно
+[2:27:22] <devildemonfox1> @Screamlark  Не знаю нравится мне айфон, я держал 12 Pro в руках так это лопата, я а я чисто хочу 11 но не про, 11 кст компактный Pog
+[2:27:26] <AliceContainerized> там целая математика в тетрисе как оказалась
+[2:27:53] <flttl> Стример хочет заставить закрыть глаза на бэкдоры D: D: D:
+[2:27:54] <StreamElements> scream29Vim & scream29Emacs Segz Visual Studio & Visual Studio & Visual Studio Code
+[2:28:04] <AliceContainerized> да, и потом офсеты
+[2:28:07] <AliceContainerized> промотай чуть выше
+[2:28:13] <AliceContainerized> там примеры киков
+[2:28:24] <CMRDTEN_3000> CMRDTEN_3000 gifted a Tier 1 sub to flttl! This is their first Gift Sub in the channel! 
+[2:28:25] <Screamlark> flttl has subscribed for 0 month(s)
+[2:28:37] <devildemonfox1> @Screamlark  А в чем прикол лопаты, он занимает половину кармана
+[2:28:41] <flttl> @CMRDTEN_3000, Я уже заждался
+[2:28:41] <CMRDTEN_3000> @flttl, всё, доволен?
+[2:28:49] <devildemonfox1> Смертень
+[2:28:50] <flttl> @CMRDTEN_3000 Ну типа да
+[2:28:50] <devildemonfox1> !!
+[2:28:59] <compile_and_run> ну все, через бэкдор к стримлеру проникли хацкеры D: вон в человечках бегают D:
+[2:29:05] <CMRDTEN_3000> Флт просто пасту хорошую скинул VeryPog
+[2:29:08] <devildemonfox1> Стример попался на рикролла ты самое интересное пропустил Pog
+[2:29:19] <flttl> Хоть один нашёлся ценитель в чате....
+[2:29:52] <flttl> Согласен
+[2:30:36] <AliceContainerized> короче если тетромин повернулся, и попал в существующие блоки, он должен офсетиться по правилам
+[2:30:48] <AliceContainerized> и там сложные правила офсетов
+[2:30:55] <AliceContainerized> да
+[2:31:08] <AliceContainerized> да. и там правила смещений есть
+[2:31:15] <AliceContainerized> там оказалась очень интересная тема
+[2:31:18] <AliceContainerized> я рада что решила закодить
+[2:31:47] <flttl> flttl is paying forward the Gift they got from CMRDTEN_3000 to the community! 
+[2:31:47] <flttl> flttl is gifting 1 Tier 1 Subs to Screamlark's community! They've gifted a total of 2 in the channel! 
+[2:31:48] <flttl> flttl gifted a Tier 1 sub to OvercomeEvil! 
+[2:31:49] <Screamlark> OvercomeEvil has subscribed for 0 month(s)
+[2:31:59] <flttl> Бля
+[2:32:06] <flttl> Я хотел смертню кинуть
+[2:32:09] <flttl> Но думаю он не против
+[2:32:16] <flttl> Так смертень тоже фан винды )
+[2:32:54] <StreamElements> вот имено
+[2:33:18] <AliceContainerized> AliceContainerized gifted a Tier 1 sub to CMRDTEN_3000! They have given 15 Gift Subs in the channel! 
+[2:33:18] <Screamlark> CMRDTEN_3000 has subscribed for 0 month(s)
+[2:33:38] <flttl> Бля, не успел )
+[2:33:59] <compile_and_run> OOOO
+[2:34:36] <AliceContainerized> все с подписками дарить некому
+[2:34:56] <compile_and_run> !say ты с подпиской?
+[2:34:58] <StreamElements> @compile_and_run бот подписался VeryPog
+[2:35:04] <compile_and_run> бот без подписки
+[2:35:18] <CMRDTEN_3000> от любви до ненависти 1 предложение FeelsBadMan
+[2:35:23] <lain9293> Привет, посмотрел запись предыдущего стрима и чёт не совсем понял тип ты искал баг в коде по видосам своим ?)
+[2:35:41] <AliceContainerized> AliceContainerized gifted a Tier 1 sub to lain9293! They have given 16 Gift Subs in the channel! 
+[2:35:41] <Screamlark> lain9293 has subscribed for 0 month(s)
+[2:35:45] <CMRDTEN_3000> нет, мне просто не нравится людей банить VeryPog
+[2:35:46] <compile_and_run> о, психолог на стримлере VeryLark
+[2:36:03] <dosomethingidiot> халоу, коммунити TPFufun
+[2:37:00] <CMRDTEN_3000> ну и иногда разбанивать
+[2:37:00] <flttl> Да ????
+[2:37:27] <CMRDTEN_3000> купил стример шляпу, а она психологическая
+[2:37:40] <compile_and_run> надо было задачу про шляпы решить VeryLark
+[2:37:43] <CMRDTEN_3000> а ты не смотри в телефон
+[2:37:46] <CMRDTEN_3000> у тебя там шпаргалка
+[2:37:52] <CMRDTEN_3000> отвернись и озвучивай
+[2:37:54] <StreamElements> О дарк мессая в стиме. "Никс секс и кисонька великолепная" coMMMMfy
+[2:38:07] <lain9293> Надел шляпу странных дебагов))
+[2:40:33] <CMRDTEN_3000> FeelsWeirdMan
+[2:40:50] <flttl> Ту-туууу HypeYum
+[2:40:55] <CMRDTEN_3000> Choo Chooo HypeYum
+[2:41:05] <ArcherGodson> Kreygasm
+[2:41:08] <AliceContainerized> Choo Chooo HypeYum
+[2:41:21] <ArcherGodson> да я давно тут молчу )
+[2:41:24] <oldnewplay> VeryPog
+[2:41:28] <AliceContainerized> хехе
+[2:41:30] <CMRDTEN_3000> HypeYum
+[2:41:34] <AliceContainerized> я кондуктор
+[2:41:34] <compile_and_run> HypeYum
+[2:41:36] <CMRDTEN_3000> только один
+[2:41:40] <compile_and_run> PepeHands
+[2:41:42] <compile_and_run> HypeYum  HypeYum  HypeYum
+[2:41:43] <CMRDTEN_3000> @compile_and_run FeelsWeirdMan
+[2:41:44] <compile_and_run> PepeHands
+[2:41:57] <flttl> HypeYum
+[2:42:09] <CMRDTEN_3000> HypeYum
+[2:42:44] <compile_and_run> а что делаем
+[2:42:45] <CMRDTEN_3000> Флт, это я сейчас так облизываюсь по всей той еде, которую мог на 130 рублей купить HypeYum
+[2:42:54] <StreamElements> отдельный раздел делашь
+[2:43:14] <flttl> @CMRDTEN_3000 Я тоже, по еде которую мог бы купить за 35 гривен HypeYum
+[2:44:02] <flttl> Мог бы купить себе целую булочку с корицей
+[2:44:05] <compile_and_run> а что за рендерер у тебя? VeryLark
+[2:44:40] <Gekmi> А от stb ты избавился? AAUGH
+[2:44:42] <kelvium_> @gekmi, ты покормил рыбку!
+[2:44:42] <CMRDTEN_3000> Флт, ты себя виноватым чувствуешь? VeryPog
+[2:44:50] <flttl> Чувствовать себя виноватым перед сметрнем  LOLOLOL
+[2:45:17] <compile_and_run> ну ты его не оптимизировал? на каждый спрайт один дроу колл? VeryLark
+[2:45:31] <flttl> bmp-шки само изи грузить
+[2:45:35] <flttl> Можно начать )
+[2:45:59] <flttl> Ну так сохрани как bmp )
+[2:46:05] <Gekmi> xxd -i
+[2:46:20] <CMRDTEN_3000> Флт, bmp - это не формат Пейнта? VeryPog
+[2:46:32] <flttl> @CMRDTEN_3000 Ну не только пейнта )
+[2:47:02] <flttl> Так а толку, тебе всё равно придётся декодить получившийся файл, в bmp вообще же без сжатия, само изи будет для начала
+[2:47:54] <Gekmi> @flttl он может заранее декодировать его AAUGH
+[2:47:54] <StreamElements> Так что тут ещё говорили что две недели или больше месяца?
+[2:47:55] <kelvium_> @gekmi, рыбка может лопнуть, если ты продолжишь ее кормить так часто! Покорми ее через 104 секунд.
+[2:48:44] <flttl> @Gekmi xxd может разжать png ?
+[2:48:54] <flttl> Точнее жипег
+[2:49:00] <ArcherGodson> не буду подсказывать про wc -l
+[2:49:03] <flttl> У стримера же жипег ?
+[2:49:15] <CMRDTEN_3000> у стримера пнг
+[2:49:27] <Gekmi> @flttl он разожмёт картинку другой утилитой, а xxd просто заголовочный файл сгенерит
+[2:49:55] <flttl> @Gekmi А, ты хочешь чтобы у стримера был просто экзешник ?)))
+[2:50:15] <Gekmi> @flttl да. Но у него ещё есть время отказаться AAUGH
+[2:50:17] <kelvium_> @gekmi, ты покормил рыбку!
+[2:50:51] <flttl> Гекми хочет чтобы у тебя в игре был просто экзешник в который все необходимые файлы закодены, но я не вижу в этом особо смысла )
+[2:51:38] <flttl> Ну в общем, тебе эта этилита никак не поможет разжать пнг
+[2:51:49] <AliceContainerized> ааа у меня получилось!! я заимлементила SRS!!
+[2:51:50] <flttl> *утилита
+[2:51:51] <AliceContainerized> вуухуу
+[2:51:56] <AliceContainerized> мой тетрис супер современный
+[2:51:57] <Gekmi> Так в хедере будет массив пикселей лежать, который попадёт в исполняемый файл AAUGH
+[2:51:59] <kelvium_> @gekmi, рыбка может лопнуть, если ты продолжишь ее кормить так часто! Покорми ее через 195 секунд.
+[2:52:08] <AliceContainerized> SUPER ROTATION SYSTEM
+[2:52:18] <flttl> @Screamlark Тебе надо png в bmp преобразовать чтобы не было сжатия
+[2:52:44] <Gekmi> У тебя установлен пакет imagemagick? В нём есть программа stream, что бы достать пиксели из картинки.
+[2:52:50] <flttl> Если ты сейчас хочешь писать аналог stb
+[2:52:54] <ArcherGodson> bitmap image
+[2:52:54] <StreamElements> Холодненькой обливаешься?
+[2:53:12] <flttl> Формат в котором данные картинки хранятся без сжатия чтобы было легко загрузить в опенгл
+[2:53:17] <flttl> Ну тогда тебе это не надо вообще
+[2:54:04] <flttl> Ну бмп захавает, пнг не захавает
+[2:54:14] <Gekmi> То, что ты получаешь после запуска компоновщика - исполняемый файл AAUGH
+[2:54:16] <kelvium_> @gekmi, рыбка может лопнуть, если ты продолжишь ее кормить так часто! Покорми ее через 58 секунд.
+[2:54:37] <flttl> Самый простой формат - bmp
+[2:55:01] <AliceContainerized> чо вы там делаете
+[2:55:11] <Gekmi> Открой хедер, где у тебя массивы с вершинными данными лежат
+[2:55:39] <AliceContainerized> вшить всё в бинарь ты имеешь ввиду
+[2:55:44] <AliceContainerized> ну можно
+[2:55:53] <flttl> Да, можешь, я так понял гекми ещё хочет чтобы ты все кратинки в экзешник закинул
+[2:55:53] <ArcherGodson> преждевременная оптимизация подъехала
+[2:55:59] <Gekmi> Вот эти массивы тоже попадают в итоговый бинарный файл. Ты можешь сделать objdump -D для него и попробовать найти их AAUGH
+[2:56:00] <compile_and_run> да давай текстуры в двумерном массиве с пикселями хранить прямо в коде VeryLark
+[2:56:01] <kelvium_> @gekmi, ты покормил рыбку!
+[2:56:58] <flttl> Ну вот как раз у тебя будет один exe файл
+[2:57:23] <flttl> Способ гекми это и есть бмп, только в бмп ещё хэдер небольшой для определения размеров картинки
+[2:57:35] <Gekmi> @flttl мой способ это не бмп AAUGH
+[2:57:36] <kelvium_> @gekmi, рыбка может лопнуть, если ты продолжишь ее кормить так часто! Покорми ее через 202 секунд.
+[2:57:37] <Screamlark> Grinued has followed! :)
+[2:57:54] <StreamElements> ну так иди, не позорься VeryPog
+[2:58:17] <flttl> Ты не получишь пикесли из png при помощи этой утилиты
+[2:58:37] <Gekmi> @flttl он получит пиксели из пнг командой stream AAUGH
+[2:58:38] <flttl> А из bmp получишь при помощи этой же утилиты :)
+[2:58:39] <kelvium_> @gekmi, рыбка может лопнуть, если ты продолжишь ее кормить так часто! Покорми ее через 139 секунд.
+[2:58:50] <flttl> @Gekmi Они сжаты, он не загрузит их в опенгл, надо будет разжать
+[2:59:00] <AliceContainerized> ну текстуры маленькие, они и без сжатия много места не займут
+[2:59:03] <flttl> @Gekmi Или эта прога ещё и по умолчания png разжимает ?
+[2:59:08] <Gekmi> @flttl да
+[2:59:14] <flttl> @Gekmi Окей, не знал
+[2:59:21] <flttl> Тогда делай то что пишет гекми
+[2:59:52] <Gekmi> stream отдельная команда
+[3:00:21] <Gekmi> sudo pacman -S imagemagick
+[3:02:54] <StreamElements> ну открой вк и т.д на мой вопрос про Юлины глаза
+[3:03:30] <Gekmi> stream ChelickAnim2.png ChelickAnim.bin должна дать разжатую картинку, а xxd -i  ChelickAnim.bin ChelickAnim.h должна дать хедер
+[3:03:49] <CMRDTEN_3000> забыл, что не заказывал оценку нового ника VeryPog
+[3:05:10] <CMRDTEN_3000> причём в своё время ты меня подтолкнул ник поменять со Смертня на cnz_x_naruto
+[3:05:20] <CMRDTEN_3000> нравится ему ник, ага VeryPog
+[3:06:17] <CMRDTEN_3000> ...
+[3:06:32] <AliceContainerized> я считаю наруто лучше
+[3:06:34] <AliceContainerized> как ник
+[3:06:58] <flttl> LOLOLOL
+[3:07:03] <CMRDTEN_3000> вынужден согласиться с голосом Вайви
+[3:07:06] <AliceContainerized> меняй обратно
+[3:07:09] <CMRDTEN_3000> Наруто правда лучше VeryPog
+[3:07:24] <CMRDTEN_3000> @AliceContainerized, только через 2 месяца FeelsBadMan
+[3:07:25] <Gekmi> Посмотри на код с вызовом glTexImage2D. Ты туда передаёшь массив с пикселями. Вот он AAUGH
+[3:07:27] <kelvium_> @gekmi, ты покормил рыбку!
+[3:07:30] <CMRDTEN_3000> (а по факту через год)
+[3:07:54] <StreamElements> @Screamlark я себе поставить Ubuntu Touch но на какой режим
+[3:07:55] <AliceContainerized> @CMRDTEN_3000 офсет кстати тебя бросил и предал
+[3:08:06] <AliceContainerized> или как звали твоего друга реформатора?
+[3:08:19] <CMRDTEN_3000> @AliceContainerized, Оверкам ушёл вершить великие дела в других чатах!
+[3:08:24] <AliceContainerized> оверкам да
+[3:08:30] <CMRDTEN_3000> @AliceContainerized, не нужно списывать его со счетов
+[3:08:34] <AliceContainerized> он заоверкамил и оставил тебя одного
+[3:08:47] <CMRDTEN_3000> он понял, что мне можно доверять
+[3:08:57] <CMRDTEN_3000> и потому оставил одного
+[3:09:14] <CMRDTEN_3000> (хотя я бы не стал семилетнего ребёнка в чате одного оставлять)
+[3:09:39] <AliceContainerized> ты поаккуратнее щас репортну
+[3:09:40] <Gekmi> Там ещё нужны ширина/высота, но это ручками можно дописать AAUGH
+[3:09:41] <kelvium_> @gekmi, рыбка может лопнуть, если ты продолжишь ее кормить так часто! Покорми ее через 163 секунд.
+[3:09:45] <CMRDTEN_3000> D:
+[3:09:46] <AliceContainerized> тут не фемили френдли контенть
+[3:10:08] <flttl> @AliceContainerized Почему ???
+[3:10:10] <CMRDTEN_3000> на Твиче в принципе нельзя до 13 лет регистрироваться, так что у меня шансов вообще нет
+[3:10:18] <AliceContainerized> да
+[3:10:24] <AliceContainerized> а ты ещё и в чате написал ух
+[3:10:37] <AliceContainerized> зато новый ник сразу поменяешь
+[3:10:59] <CMRDTEN_3000> давай зарепортишь через месяц, чтобы я хоть с сабкой проходил гордый FeelsBadMan
+[3:11:09] <AliceContainerized> ладно
+[3:11:34] <AliceContainerized> я за месяц еще подобрею и всё тебе прощу
+[3:11:36] <AliceContainerized> счастливчик
+[3:12:05] <CMRDTEN_3000> на меня эти чары не сработают, ценность голоса не меняется!
+[3:12:31] <CMRDTEN_3000> ну давай, нападай!
+[3:12:40] <AliceContainerized> хммм
+[3:12:54] <StreamElements> Скажите кукухе стримлеру FrogWave
+[3:13:03] <CMRDTEN_3000> @Screamlark кукухе
+[3:15:32] <Roman_Che> Добрый вечерочек
+[3:16:05] <CMRDTEN_3000> Добрый
+[3:16:16] <Roman_Che> Че, надоела monokai?
+[3:16:37] <Roman_Che> @CMRDTEN_3000 HeyGuys HeyGuys
+[3:17:02] <CMRDTEN_3000> HypeYum
+[3:17:03] <Gekmi> Почему 12, если 32?
+[3:17:22] <Gekmi> Картинка же 32 на 32 AAUGH
+[3:17:24] <kelvium_> @gekmi, ты покормил рыбку!
+[3:17:35] <Gekmi> Пикселя AAUGH
+[3:17:37] <kelvium_> @gekmi, рыбка может лопнуть, если ты продолжишь ее кормить так часто! Покорми ее через 284 секунд.
+[3:17:48] <Gekmi> Ну это же картинка AAUGH
+[3:17:50] <kelvium_> @gekmi, рыбка может лопнуть, если ты продолжишь ее кормить так часто! Покорми ее через 271 секунд.
+[3:17:55] <StreamElements> белый апишка Kappa
+[3:18:16] <Gekmi> Это пиксели
+[3:18:17] <AliceContainerized> три байта?
+[3:18:22] <AliceContainerized> R,G,B?
+[3:18:41] <AliceContainerized> RGBA даже 4
+[3:19:09] <CMRDTEN_3000> Pog
+[3:19:14] <AliceContainerized> хаха
+[3:19:15] <AliceContainerized> класс
+[3:19:20] <Roman_Che> Воу
+[3:19:22] <AliceContainerized> очень концептуальная игра
+[3:19:22] <MitiSit> червячки
+[3:19:23] <Roman_Che> Круто!
+[3:19:25] <CMRDTEN_3000> оставляй, необычный стиль хорошо продаётся VeryPog
+[3:19:25] <ArcherGodson> f[etyyj
+[3:19:29] <ArcherGodson> ахуенно
+[3:19:31] <AliceContainerized> на стиме за 60 долларов уйдет
+[3:19:50] <Roman_Che> Не, я без рофлов. Рил прикольно
+[3:19:56] <AliceContainerized> это может инопланетная форма жизни
+[3:20:14] <Gekmi> А ты точно картинку 32 на 32 скопировал? Я посчитал и количество байт там чот слишком большое указано в размере массива AAUGH
+[3:20:15] <kelvium_> @gekmi, рыбка может лопнуть, если ты продолжишь ее кормить так часто! Покорми ее через 126 секунд.
+[3:20:34] <Gekmi> Сделай file ChelikAnim2.png
+[3:20:49] <AliceContainerized> ну да, 4 килобайта должно быть
+[3:21:51] <undeadman_> !кодбатл
+[3:21:51] <StreamElements> На выходных (16-17 октября) планируется кодбатл! Там ты сможешь доказать свои прогерские скилы и выиграть денежный приз! Пиши в чат, чтобы зарегистрироваться и время, когда можешь участвовать. Доступные языки: https://i.imgur.com/o38JrU2.png Площадка: codewars.com Формат: решение на скорость задач с трансляцией экрана в дискорде.
+[3:22:07] <AliceContainerized> хммм
+[3:22:16] <flttl> хммм
+[3:22:24] <Gekmi> А, у тебя же несколько спрайтов на одной картинке AAUGH
+[3:22:26] <kelvium_> @gekmi, ты покормил рыбку!
+[3:22:51] <AliceContainerized> аа точно
+[3:22:53] <Roman_Che> Че вы решили на codewars все же проводить?
+[3:22:54] <StreamElements> eto kinesis - no denotable type
+[3:23:00] <flttl> @CMRDTEN_3000 ?
+[3:23:17] <Roman_Che> Ну хорошо, что определились) Много участников?
+[3:23:37] <Screamlark> hohlov_rot_ibal has followed! :)
+[3:23:57] <sa6le> Турнир будет среди сабов типа?
+[3:24:14] <AliceContainerized> да только сабы
+[3:24:17] <Yo_Stick> какой размер массива байтового?
+[3:24:19] <AliceContainerized> но тут все сабы
+[3:24:20] <saulog123> привет
+[3:24:32] <saulog123> батл уже все ?
+[3:24:46] <Yo_Stick> байтового, не в пикселях
+[3:24:57] <CMRDTEN_3000> за уважение даже мутят FeelsBadMan
+[3:25:14] <AliceContainerized> я болею а ты мне больно делаеш
+[3:25:18] <AliceContainerized> что ты за человек
+[3:25:20] <CMRDTEN_3000> так я же хвалю!
+[3:25:26] <CMRDTEN_3000> я-то сам только рад
+[3:26:05] <CMRDTEN_3000> PepeHands
+[3:26:12] <CMRDTEN_3000> стример, не плачь, всё будет хорошо
+[3:26:14] <Gekmi> Я не писал, что в этом проблема. Проблема сейчас, что сегментейшон фолт AAUGH
+[3:26:15] <kelvium_> @gekmi, рыбка может лопнуть, если ты продолжишь ее кормить так часто! Покорми ее через 68 секунд.
+[3:26:35] <Gekmi> Отладочка lizardPls
+[3:27:00] <Yo_Stick> если там 36864 байт в массиве, то он по 3 байта RGB взял на пиксель, а не 4
+[3:27:47] <saulog123> кто нибудь парсингом в чатике увлекается ?
+[3:27:54] <StreamElements> 4 итерация седа?
+[3:27:57] <AliceContainerized> парсингом чего
+[3:28:07] <AliceContainerized> тут один ддосингом увлекался
+[3:28:08] <CMRDTEN_3000> кто-нибудь несправедливыми банами в чатике увлекается?
+[3:28:09] <saulog123> сайтов ,
+[3:28:17] <Screamlark> go_codewars_ibanarium has followed! :)
+[3:28:34] <compile_and_run> о, привет саулог  BUSSERS
+[3:29:02] <saulog123> про тверк только не спрашивайте , новых движений не изучал
+[3:29:12] <CMRDTEN_3000> Компайл, а со мной ты не здоровался. Мне что, нужно начать тверкать, чтобы ты начал меня замечать и принимать пулл реквесты? FeelsBadMan
+[3:29:21] <compile_and_run> а там есть еще какие-то движения? Pog
+[3:30:12] <saulog123> двигать асинхронно левым и правым полушарием слабо ?
+[3:30:50] <compile_and_run> о, я гляжу там человечик новый пулл реквест в тру рпгшечку зафигачил, кайф VeryLark
+[3:31:22] <CMRDTEN_3000> Компайл, я сейчас свой закину VeryPog
+[3:31:29] <Yo_Stick> ради эксперимента сделай GL_RGB у текстуры
+[3:31:33] <compile_and_run> там нет пулл реквестов от смертня FeelsWeirdMan
+[3:32:01] <compile_and_run> @CMRDTEN_3000 только давай нормальный. с кодом хотя бы VeryLark
+[3:32:07] <throughthem1st> бать, что прогаешь?
+[3:32:12] <saulog123> я тут на днях новый гейм энжин открыл . лучше чем юнити , пойду там эрпегешку пробовать делать
+[3:32:24] <throughthem1st> принял
+[3:32:38] <compile_and_run> GLVM?
+[3:32:40] <compile_and_run> VeryLark
+[3:32:54] <StreamElements> Владимир, лучше бы с этим начинаются проблемы
+[3:33:09] <compile_and_run> емакс живи  PepeHands
+[3:34:03] <saulog123> Stride , написана на чистом NET , среда разработки приятнее выглядит , интеграция со студией намного лучше , ну и на выходе получаются чистые проеты , которые запускаются самостоятельно без редактора.
+[3:35:00] <AliceContainerized> о, это ближе
+[3:35:00] <Yo_Stick> Я посмотрел в записи стрима, у тебя там длина массива 36864, это 96 * 128 * 3 байта на пиксель, а ты говоришь GL, что у тебя там массив RGBA, т.е. по 4 байта, вот он и не может прочитать больше чем есть.
+[3:36:17] <AliceContainerized> переворот смертня
+[3:36:43] <CMRDTEN_3000> LilZ
+[3:36:45] <CMRDTEN_3000> ZliL
+[3:37:34] <sa6le> Что за ImageMagick?) Ты текстуры через Gl кидаешь?
+[3:37:54] <StreamElements> как же круто сидеть и говорить что у людей перестали грузиться
+[3:38:05] <CMRDTEN_3000> Компайл, сори, я твоё сообщение про код не увидел. В следующий раз во все файлы накидаю комментариев, чтобы ты не заметил замену ридми VeryPog
+[3:39:07] <sa6le> А другой способ в чем заключается?
+[3:40:15] <sa6le> А как решают проблему с фоном, те кто это использует )
+[3:40:23] <sa6le> Ну или кто посоветовал)
+[3:40:46] <saulog123> розовый фон обычно делают
+[3:40:54] <ArcherGodson> там надо либу покруче, наверное ) я не шарю совсем,если что
+[3:40:54] <saulog123> альфа канал
+[3:41:56] <sa6le> @saulog123 и будет розовый цвет вместо черного ?)
+[3:42:23] <AliceContainerized> кстати да, часто в текстурах вырвиглазный розовый используют
+[3:42:54] <StreamElements> https://www.youtube.com/watch?v=6acl_idkILM
+[3:43:28] <rprtr258> о стул
+[3:43:33] <rprtr258> здарова FrogWave
+[3:45:36] <sa6le> ЩАс VP vs LGD норм посмотреть)
+[3:46:46] <flttl> Никого из тех кого ты назвал там не играют
+[3:46:53] <sa6le> хахаха, там нет никого их
+[3:47:06] <sa6le> Можешь не болеть уже за них
+[3:47:09] <sa6le> хаха
+[3:47:46] <MIIIIIIIIIIIIIG> я чипсы захоотел )
+[3:47:54] <StreamElements> Позвони им и являешься @rprtr256
+[3:47:56] <flttl> У вп бристл кор
+[3:48:16] <flttl> Они так играют )
+[3:48:47] <flttl> Нет, это не полу-финал
+[3:49:12] <flttl> Это 1/8, да
+[3:49:41] <compile_and_run> !say стримлер программирует
+[3:49:44] <StreamElements> @compile_and_run !стримлер программирует
+[3:49:46] <compile_and_run> !say стримлер программирует 󠀀
+[3:49:50] <StreamElements> @compile_and_run !стримлер программирует
+[3:49:52] <compile_and_run> !say стримлер программирует
+[3:49:56] <StreamElements> @compile_and_run стример программирует на 1С перреписывать coMMMMfy
+[3:50:00] <flttl> Лично для меня это самый худший инт, буквально в каждой комманде по челу которым как-будто вообще абсолютно поебать на игру :/
+[3:50:22] <compile_and_run> пошел писать всем друзьям VeryLark
+[3:50:50] <Sudalin> Это тебе показывают как скилы работают)
+[3:51:06] <AliceContainerized> а что, разработка всё?
+[3:51:08] <AliceContainerized> кончилась?
+[3:51:47] <flttl> Ну и бесконечный кринж что вставляют ор и аплодисменты, это просто пиздец
+[3:51:53] <Sudalin> Я помню когда мы с друзьями ездили в Yota арену смотреть инт
+[3:52:37] <compile_and_run> дота снова отнимает у стримлера драгоценное время  peepoDown
+[3:52:54] <StreamElements> вс код нормально все... Один и тот же Богдан, как солнце, сияет невыразимо ярче, потому что таки да, на заказ вернешь?
+[3:53:20] <Sudalin> Уже нихера  не понимаю...
+[3:53:29] <rprtr258> дота снова отнимает у стримлера драгоценное время peepoDown
+[3:53:34] <flttl> Кажется тебе
+[3:53:43] <compile_and_run> часики-то тикают, рпгшечка не молодеет VeryLark
+[3:53:52] <Sudalin> Я знаю что у каждого свой курьер
+[3:53:59] <Sudalin> И варды бесплатные вроде как
+[3:55:04] <flttl> Не прошла
+[3:55:10] <Sudalin> Которая с цифрой 8?
+[3:55:29] <flttl> Ну на инте их нет
+[3:55:40] <compile_and_run> peepoDown  peepoDown  peepoDown
+[3:55:50] <Sudalin> Я ж раньше отпуск под эти даты брал...
+[3:57:54] <StreamElements> @Magistr_Y0d0 я не злой я просто не пропустить когда она наступит то?
+[3:57:59] <Yo_Stick> Попробуй сгенерировать новый файл, но с альфа каналом, через stream с флагами -channel RGBA,sync -depth 8
+[3:58:54] <flttl> Приветствовать. Я простой рабочий Иван город Тверь. Смотреть на интернационале и болеть за медведь. Нечего смотреть, плохой игра, слабый стержень. Увидеть игра LDG Gaming и начать славить великий сила Китай и лично нефритовый стержень Xi.
+[3:59:02] <Yo_Stick> RGBA,sync это значение параметра для аргумента -channel
+[3:59:33] <Yo_Stick> -depth 8 это 8 бит на канал (1 байт)
+[4:00:50] <compile_and_run> что за чипсы, стримлер? VeryLark
+[4:01:40] <compile_and_run> стримлер уже пародирует наш любимый смайлик VeryLark
+[4:02:54] <StreamElements> вот там, где у меня сейчас есть IBM T23 играю иногда на нем пишет
+[4:04:19] <MIIIIIIIIIIIIIG> успел за чипсами - магаз до 2300
+[4:04:31] <Gekmi> Попробуй так: convert ChelikAnim2.png ChelikAnim2.rgba
+[4:04:50] <Yo_Stick> у convert есть аргумент -flip вроде для переворота
+[4:06:36] <Yo_Stick> попробуй без depth
+[4:06:53] <Gekmi> @Yo_Stick а у тебя эта команда работает? У меня с ней альфа канала тоже нет.
+[4:06:55] <Yo_Stick> главное чтобы массив был 49152 байт
+[4:07:18] <Yo_Stick> @Gekmi я документацию только читал, но не проверял лично
+[4:07:54] <StreamElements> @Gekmi щас на час включил и всё VeryPog
+[4:09:32] <Gekmi> А ещё можно сделать так: convert ChelikAnim2.png rgba:ChelikAnim2.bin
+[4:11:59] <a2p1k04> драсте-драсте
+[4:12:05] <Gekmi> Что ищешь? AAUGH
+[4:12:06] <kelvium_> @gekmi, ты покормил рыбку!
+[4:12:20] <a2p1k04> как ваше программерское?
+[4:12:46] <Gekmi> Ты не указал выходной файл
+[4:12:52] <a2p1k04> ооо, кайфово
+[4:12:53] <sa6le> stream это команда из  ImageMagick?
+[4:12:55] <StreamElements> !алье
+[4:13:18] <Gekmi> И "равно" там не нужно
+[4:16:08] <flttl> Проебали походу вп )
+[4:16:30] <arth_yag> блять хахаха искал вкладку где у меня дота открыта
+[4:17:17] <Gekmi> Расширение выходного файла любое может быть
+[4:17:54] <StreamElements> хмм VeryPog
+[4:18:46] <compile_and_run> !алье
+[4:18:47] <StreamElements> СТРИМЕР ПРОСНИССЬ!!
+[4:19:24] <Gekmi> Так он тебе создаёт файл. Посмотри ему внутрь через xxd AAUGH
+[4:19:25] <kelvium_> @gekmi, ты покормил рыбку!
+[4:20:03] <flttl> Ору с паст в чате ti xD
+[4:20:04] <flttl> Ame молодец! Ame знать: 1 пропущенный крип = 1 год плантация рис. Партия гордится Аме. Большой нетворс, густой волоc
+[4:20:17] <AliceContainerized> https://wyvie.org/tetetris.tar.gz
+[4:20:24] <AliceContainerized> держи сборку по дружбе для любимого стримера
+[4:20:30] <Gekmi> А png нормальный? Может он побился. Скопируй заново.
+[4:20:40] <flttl> Не открывай D: D: D: D: D: D: D:
+[4:20:41] <AliceContainerized> ну базовое готово
+[4:21:10] <AliceContainerized> стрелочки двигать, пробел ротация, q выход
+[4:21:19] <AliceContainerized> xvzf
+[4:21:24] <flttl> @AliceContainerized Дай сборку под винду по дружбе для любимого участника чата
+[4:21:31] <Gekmi> tldr tar AAUGH
+[4:21:33] <kelvium_> @gekmi, рыбка может лопнуть, если ты продолжишь ее кормить так часто! Покорми ее через 170 секунд.
+[4:21:40] <AliceContainerized> под винду не соберу
+[4:21:48] <flttl> @AliceContainerized Поч ?(
+[4:22:12] <AliceContainerized> xzf нет лол
+[4:22:31] <AliceContainerized> это бинарь просто
+[4:22:54] <flttl> @AliceContainerized Так а чего сборки под винды не будет ? Это всё из-за раста ?)))
+[4:22:55] <StreamElements> какой у стримера просто брат-близнец есть и медленные. кто-то питон возьмет, а кто-то говорил что их не люблю такое, мне нравится логотип Debian https://imgur.com/a/6eKMOOl
+[4:23:00] <compile_and_run> хацкеры набежали через бэкдор D:
+[4:23:18] <AliceContainerized> йееей стример играет в мою игру
+[4:23:22] <AliceContainerized> моя жизнь состоялась
+[4:23:25] <sa6le> А кто сделал?) На равесли есть тоже тетрис)
+[4:24:02] <sa6le> Ты собрал его? А этой чей?
+[4:24:04] <flttl> Так и нет ответа почему не будет сборки под винду.......
+[4:24:06] <AliceContainerized> я потом счёт запилю
+[4:24:20] <flttl> Спишем на то что раст на это не способен
+[4:24:35] <AliceContainerized> я бекенд брала для юниксового терминала
+[4:24:41] <compile_and_run> надо категорию на стриме сменить VeryLark
+[4:24:46] <AliceContainerized> для винды надо с кросстермом работать, а он в кое что не умеет
+[4:24:51] <AliceContainerized> я последним в него посмотрю
+[4:25:12] <flttl> А, это в терминале запущено :D
+[4:25:16] <AliceContainerized> да
+[4:25:30] <flttl> (((Алиса ищет аналогичные бэкдоры для винды)))
+[4:26:15] <sa6le> @AliceContainerized а это на РАсте?
+[4:26:18] <AliceContainerized> да
+[4:27:11] <compile_and_run> у стримлера новая зависимость, похлеще манкитайпа VeryLark
+[4:27:15] <OvercomeEvil> друзья, спасибо за подписку, теперь я так понимаю у меня быстрее копиться балы на шиндус будут
+[4:27:16] <AliceContainerized> хаха
+[4:27:17] <sa6le> @AliceContainerized круто, а есть ссылка на гитхаб?
+[4:27:22] <saulog123> а исходники где лежат ?
+[4:27:29] <AliceContainerized> на гитхабе =)
+[4:27:54] <AliceContainerized> https://github.com/alicerum/tetetris
+[4:27:54] <StreamElements> сейф бет на куче создавала, а как атаку
+[4:28:11] <AliceContainerized> точно на куче
+[4:28:33] <Gekmi> А где показаны очки? AAUGH
+[4:28:35] <kelvium_> @gekmi, ты покормил рыбку!
+[4:28:48] <flttl> @Gekmi Самому считать надо
+[4:28:53] <AliceContainerized> очки не считала ещё
+[4:29:01] <AliceContainerized> на выходных сделаю
+[4:29:36] <compile_and_run> а стримлер в курсе, что он не узнает свой счет? VeryLark
+[4:29:43] <AliceContainerized> 10004238743
+[4:29:45] <AliceContainerized> я посчитала
+[4:31:54] <AliceContainerized> q
+[4:31:55] <AliceContainerized> выход
+[4:32:18] <SunraYLmtd> @AliceContainerized ti bot?
+[4:32:27] <AliceContainerized> net ti
+[4:32:52] <Gekmi> А что ты ищешь? AAUGH
+[4:32:54] <kelvium_> @gekmi, рыбка может лопнуть, если ты продолжишь ее кормить так часто! Покорми ее через 39 секунд.
+[4:32:55] <StreamElements> https://github.com/gorauskas/darkburn-theme
+[4:33:16] <AliceContainerized> блин едро обновилось
+[4:33:39] <SunraYLmtd> U P-na aegis?
+[4:34:37] <SunraYLmtd> Mulya, ne nervirui menya
+[4:37:55] <StreamElements> острые как и "крикуны"
+[4:39:20] <AliceContainerized> команды которые мудрят
+[4:39:21] <Gekmi> GL_RGBA вернул?
+[4:39:23] <AliceContainerized> и выпендриваются
+[4:40:10] <SunraYLmtd> Mudya
+[4:40:37] <AliceContainerized> сунра ты в порядке?
+[4:41:14] <sa6le> @AliceContainerized а какой у тебя если не crossterm в игре?
+[4:41:32] <AliceContainerized> termion
+[4:41:41] <AliceContainerized> и над ним tui-rs
+[4:41:46] <SunraYLmtd> В бошке вся бпробема
+[4:42:20] <SunraYLmtd> Сказали по радио только что
+[4:42:27] <AliceContainerized> в винде кстати наверное можно в всле включить
+[4:42:35] <Gekmi> А ты в -map указал rgb или rgba?
+[4:42:40] <sa6le> @AliceContainerized ага, скорее всего
+[4:42:55] <StreamElements> paint?
+[4:43:17] <SunraYLmtd> Отжать у коллектива, китайского чтото хотят
+[4:43:25] <sa6le> https://github.com/gorauskas/darkburn-theme что это за тема, у тебя вроде черная, в сообщении увидел)
+[4:43:27] <SunraYLmtd> Чена?
+[4:43:56] <Yo_Stick> glEnable(GL_BLEND); не убирал?
+[4:44:52] <Gekmi> convert -flip
+[4:45:13] <SunraYLmtd> Визажа
+[4:45:16] <AliceContainerized> оставь так
+[4:45:22] <Gekmi> Да
+[4:45:25] <SunraYLmtd> в конветр
+[4:45:26] <Gekmi> Но можно просто convert
+[4:45:31] <SunraYLmtd> кентавр
+[4:45:42] <Yo_Stick> это как в rimworld, челик отдыхает смотря в небо
+[4:45:48] <SunraYLmtd> magic
+[4:46:05] <Gekmi> Перед именем выходного файла укажи rgba:
+[4:46:16] <Gekmi> По вертикали
+[4:46:26] <Yo_Stick> upside down написано было
+[4:46:30] <SunraYLmtd> по миду
+[4:46:48] <flttl> Открывай сундук, вдруг сет выпадет за миллион долларов
+[4:47:06] <Gekmi> Можешь, но зачем? Это будет происходить во время исполнения.
+[4:47:16] <Gekmi> А так у тебя будут уже готовые данные AAUGH
+[4:47:18] <kelvium_> @gekmi, ты покормил рыбку!
+[4:47:44] <Gekmi> Ты можешь сделать это сразу через convert, не через stream
+[4:47:46] <sa6le> Да давай
+[4:47:55] <StreamElements> но упоминал?)
+[4:48:44] <sa6le> Блин из-за анимации и не видно терминала внизу)
+[4:49:22] <SunraYLmtd> Но по осанке, не видко кто с Лубянки, а я с тобой по сне летала - дура
+[4:53:04] <Gekmi> magick convert -flip ChelikAnim2.png rgba:chelik.dat
+[4:55:13] <SunraYLmtd> Дота до того
+[4:56:44] <AliceContainerized> ты можешь команду генерации этих хедеров в мейк положить
+[4:57:40] <sa6le> Получилось все?
+[4:57:42] <AliceContainerized> норм ваще
+[4:57:47] <AliceContainerized> хорошо гекми насоветовал
+[4:57:49] <AliceContainerized> гекми молодец
+[4:57:53] <sa6le> +
+[4:58:03] <sa6le> @AliceContainerized лучше CMake , попроще)
+[4:58:38] <AliceContainerized> ну у стримера мейкфайл
+[4:58:42] <sa6le> а
+[4:59:10] <flttl> Щас там будет висп тини )
+[5:00:59] <AliceContainerized> у линукса бывает наркомашка с буфером тоже
+[5:02:53] <Gekmi> Не надо так. Зачем новые магические числа? AAUGH
+[5:02:55] <StreamElements> а ты сейчас показал
+[5:02:55] <kelvium_> @gekmi, ты покормил рыбку!
+[5:03:20] <Gekmi> Сделай новый конструктор, который принимает ширину, высоту, может ещё что-нибудь и адрес массива с пикселями
+[5:06:20] <SunraYLmtd> headress есть?
+[5:06:52] <SunraYLmtd> на кресте возвращают
+[5:07:54] <StreamElements> это сложность бпротивников
+[5:08:07] <SunraYLmtd> Борт проводник
+[5:10:00] <SunraYLmtd> Ане ане
+[5:11:53] <SunraYLmtd> Нет ворс
+[5:14:44] <Gekmi> Ты поставил const там где не надо, а там где надо не поставил AAUGH
+[5:14:46] <kelvium_> @gekmi, ты покормил рыбку!
+[5:14:58] <flttl> Кстати не рекомендуется называть переменные начиная с нижнего подчёркивания, может быть конфликт имён со встроенными переменными компилятора
+[5:15:23] <Gekmi> @flttl это не распространяется на локальные переменные
+[5:16:03] <flttl> @Gekmi Ну ладно )
+[5:17:54] <StreamElements> @devildemonfox1 а что я слышал на собесах отрывают пальцы за каждый неправильный ответ
+[5:19:32] <Gekmi> Массивы эти можно поместить в статическую библиотеку
+[5:22:54] <Gekmi> Рпгшечка про четырёх васянов в кигуруми. Осталось сделать, что бы они друг за другом ходили peepoClap
+[5:28:06] <AliceContainerized> ооо я сделала чтобы изначальное состояние терминала восстанавливалось :D
+[5:28:12] <AliceContainerized> нашла как йей
+[5:29:04] <AliceContainerized> ну да, после моей программы юзеру чтобы терминал отдавался который был до =)
+[5:29:36] <AliceContainerized> даа
+[5:32:21] <AliceContainerized> чето у меня от этих комментаторов башка разболелась. пойду отдохну
+[5:32:25] <AliceContainerized> удачи с текстурками
+[5:32:55] <StreamElements> Генту поставил? Какой кат использовал для сборки, красавчик?
+[5:33:46] <Gekmi> Он тебе пытается весь массив показать AAUGH
+[5:33:48] <kelvium_> @gekmi, ты покормил рыбку!
+[5:35:48] <smb_once> О, здарова, интик смотришь?
+[5:35:54] <smb_once> тоже смотрел ща))
+[5:36:01] <smb_once> жалко вп
+[5:36:30] <smb_once> дота конечно невероятно изменилась
+[5:37:55] <StreamElements> в брейв кстати встроенный адд блок
+[5:44:03] <dima2dvydenko> хацкеры
+[5:44:21] <dima2dvydenko> AAUGH
+[5:44:22] <kelvium_> @dima2dvydenko, ты покормил рыбку!
+[5:44:30] <dima2dvydenko> o/
+[5:46:40] <Gekmi> Что за проблема? AAUGH
+[5:46:42] <kelvium_> @gekmi, ты покормил рыбку!
+[5:47:55] <StreamElements> И будет то же самое что и глобальные переменные coMMMMfy
+[5:47:55] <flttl> Кста, зацени уровень игры на инте https://youtu.be/WPGqy3bKo9E?t=497
+[5:48:38] <flttl> Там дальше ещё рофлы
+[5:48:38] <dima2dvydenko> а если пойдет дождь дорога должна быть с лужами?
+[5:48:40] <flttl> Зря офнул
+[5:49:41] <Gekmi> Если ты захочешь задать анимацию с большим количеством кадров, то столкнёшься с этой проблемой с другой стороны AAUGH
+[5:49:43] <kelvium_> @gekmi, рыбка может лопнуть, если ты продолжишь ее кормить так часто! Покорми ее через 117 секунд.
+[5:50:29] <dima2dvydenko> а если снег AAUGH
+[5:50:31] <kelvium_> @dima2dvydenko, ты покормил рыбку!
+[5:51:07] <Gekmi> А есть класс для анимаций?
+[5:51:36] <Gekmi> Можно там задавать количество кадров
+[5:52:28] <OvercomeEvil> ох, как же хорошо после грустного, озлобленно-депрессивного рабочего дня на линухе загрузиться в шиндус и поиграть в диаботикал Kreygasm
+[5:52:43] <dima2dvydenko> есть цикл дневной светло темно годовой
+[5:52:55] <StreamElements> Chelovchik: kirkezz_: compile_and_run: Chelovchik: compile_and_run: summon_Destructor3000: Chelovchik: compile_and_run: summon_Destructor3000: Chelovchik: @Chelovchik yacc возьми или другой какой-то парсер и лексер и всё это время вода уже успела пожелтеть. Ну и клавиатуры тоже люблю рошпит
+[5:53:16] <OvercomeEvil> ну это когда работаешь на линухе а поиграть загружаешься на шиндус
+[5:53:53] <dima2dvydenko> годовая анимация сезонов года
+[5:55:52] <dima2dvydenko> анимация бега быстрее чем смены суток
+[6:02:42] <PLEAKLEEEEY> Ещё играешь в доту?
+[6:03:01] <PLEAKLEEEEY> я как не зайду. Всегда часов 6-7
+[6:03:11] <PLEAKLEEEEY> у меня так не получается
+[6:03:16] <PLEAKLEEEEY> заниматься долго
+[6:03:25] <PLEAKLEEEEY> а чего забросил?
+[6:04:16] <antirtfm> о макс доту слушает
+[6:04:27] <antirtfm> с++ на екране дота в душе
+[6:04:49] <antirtfm> я тоже смотрел
+[6:04:58] <antirtfm> но чет не так радует как раньше
+[6:05:04] <antirtfm> никого не знаю уже и как то все равно
+[6:05:06] <antirtfm> чет
+[6:05:59] <antirtfm> ну да типа прикольно но хз даже
+[6:06:12] <antirtfm> мне нравится красная бестия
+[6:06:15] <antirtfm> комментаторша
+[6:06:17] <antirtfm> сасная
+[6:06:31] <antirtfm> раньше была
+[6:06:36] <antirtfm> ну она часто мелькает
+[6:07:01] <antirtfm> глаза у нее ух
+[6:07:55] <StreamElements> @flttl еще ктрл вин d потом стрл win стрелка влево win стрелка лево/право
+[6:07:59] <antirtfm> https://img.championat.com/i/40/83/1519384083892757210.jpg
+[6:08:26] <antirtfm> «В университете меня называли „Самый быстрый рот на Диком Западе“»  Подробнее на «Чемпионате»: https://www.championat.com/cybersport/article-3354635-v-universitete-menja-nazyvali-samyj-bystryj-rot-na-dikom-zapade.html?utm_source=copypaste
+[6:09:43] <antirtfm> @Screamlark а ты в доту еще играешь когда нибдуь?
+[6:09:53] <antirtfm> эх ты!
+[6:10:02] <antirtfm> ну будешь катать позови)
+[6:10:04] <antirtfm> ахах
+[6:10:20] <antirtfm> ну раньше дота была интересней
+[6:10:27] <antirtfm> когда фармить можно было в лесах типа
+[6:10:31] <antirtfm> ну
+[6:10:33] <antirtfm> мб
+[6:10:42] <antirtfm> ну когда можно было в 1 лицо тащить
+[6:10:53] <antirtfm> а ща она более командная и в 1 лицо тяжело
+[6:11:21] <antirtfm> в этот как его
+[6:11:25] <antirtfm> карты хардстоун
+[6:11:27] <antirtfm> )))
+[6:11:49] <antirtfm> я в него не играл)
+[6:12:55] <StreamElements> минут через 15 моя учётка будет забанена судя по всему массиву
+[6:13:18] <antirtfm> да ввсе рутина забирает и интересы меняются
+[6:13:24] <antirtfm> я раньше много играл, после работы
+[6:13:38] <antirtfm> а потом руки стали болеть пришлось выбирать либо боль в руках либо не играть
+[6:13:49] <antirtfm> я выбрал не играть
+[6:13:51] <antirtfm> )
+[6:14:02] <antirtfm> если играю то редко
+[6:14:08] <antirtfm> ну да
+[6:14:08] <flttl> @antirtfm Я думаю к таким стоило к врачу обратиться, это не нормально
+[6:14:34] <antirtfm> @flttl некоторые про хуоджники забиывают на пару месяцев на рисование
+[6:14:38] <antirtfm> потому что кисти рук болят
+[6:14:42] <antirtfm> и ничего руками не делают
+[6:14:45] <antirtfm> пару месяцев
+[6:15:30] <antirtfm> ну я 24\7 за компом
+[6:15:32] <flttl> @antirtfm Никогда не слышал о таком ну и как я писал выше это не есть нормально
+[6:15:36] <antirtfm> мб
+[6:16:09] <antirtfm> я и гитару в руки не беру лишний раз потому что руки устанут быстро, мб в качалочку пойти
+[6:16:12] <antirtfm> мб просто руки слабые
+[6:16:13] <flttl> Это скорее всего туннельный синдром
+[6:17:19] <antirtfm> ахаха
+[6:17:24] <Perfect_September_2022> You cut your hair! You look better
+[6:17:27] <antirtfm> это к кс го когда приседаешь
+[6:17:29] <antirtfm> )))
+[6:17:55] <StreamElements> по факту VeryPog
+[6:18:03] <flttl> LOLOLOL  LOLOLOL  LOLOLOL
+[6:18:10] <antirtfm> у меня есть перчатки с подогревом )
+[6:18:30] <antirtfm> да я понимаю
+[6:18:38] <antirtfm> ну скажу так если я не играю то все ок не болит
+[6:18:48] <antirtfm> а если пару каток поиграю то потом не очень
+[6:18:51] <antirtfm> ахахах
+[6:18:55] <antirtfm> раскусил меня
+[6:19:22] <antirtfm> LUL LUL LUL
+[6:19:45] <antirtfm> у меня и простата болела) скулил как пес)
+[6:19:54] <antirtfm> не я пальцы так не держу
+[6:20:19] <antirtfm> что когда не играю руки не болят потому что напряжения на руки нет
+[6:20:34] <antirtfm> а
+[6:22:55] <StreamElements> LUL
+[6:23:14] <flttl> LOLOLOL
+[6:23:32] <antirtfm> кек
+[6:23:55] <flttl> Я согласен что в пабе микроконтроль это самое важное, я особо это замечал когда в доту играл каждый день по 6-7 игр, только в такие моменты и апал ммр
+[6:24:55] <flttl> Ну иногда они весьма хуёво килкают
+[6:25:03] <flttl> Но большинство конечно норм с этим
+[6:25:50] <ChairGaminGnC> здраствуй
+[6:25:57] <flttl> А что такое ?
+[6:27:55] <StreamElements> @ASPARTAME21 это собеседование? VeryPog
+[6:28:49] <ChairGaminGnC> VeryPog
+[6:29:25] <flttl> Что ?
+[6:29:39] <flttl> Это текстура
+[6:29:55] <flttl> Там и коментарий выше )
+[6:31:29] <flttl> glBindTexture и glActivateTexture
+[6:31:31] <flttl> Если ты про текстуру
+[6:32:38] <flttl> Ещё раз, про что ты спрашваешь ?
+[6:32:55] <StreamElements> @vladimirmskz такую сотню
+[6:32:56] <flttl> glBindTexture и glActivateTexture
+[6:34:16] <flttl> А 10 это мы что-то проверяли
+[6:34:20] <flttl> Толлко не помню уже что
+[6:35:34] <flttl> Аааа
+[6:35:36] <flttl> Понятно )
+[6:35:42] <flttl> Точно точно
+[6:35:45] <flttl> Я уже и сам об этом забыл )
+[6:36:13] <flttl> В пукане ещё покруче с этим
+[6:36:28] <flttl> Ну да
+[6:36:37] <flttl> Я конечно ору с тех челов которые говорят сразу вулкан учить
+[6:36:41] <flttl> Просто ебанутые если честно )
+[6:37:26] <flttl> Да не, в принципе поможет
+[6:37:40] <ut61a> дароу
+[6:37:55] <StreamElements> @summon_Destructor3000 а тебя то питон хоть установлен
+[6:37:59] <flttl> А я бы посоветовл ГЛ если не опыта программирования графики
+[6:38:58] <ut61a> хочу крутой совет
+[6:39:02] <ut61a> для крутых
+[6:39:03] <ut61a> рыбов
+[6:39:44] <flttl> Как говорил классик: "Времени на раскачку нет"
+[6:40:52] <flttl> streamlSmash
+[6:42:02] <dima2dvydenko> AAUGH
+[6:42:04] <kelvium_> @dima2dvydenko, ты покормил рыбку!
+[6:42:14] <ut61a> последний крутой совет для меня был "выкинь комп в окно, выйди на улицу, наведи суету", я по итогу так в чехию уехал, что тогда будет когда я блять с нуля выучу вулкан....?
+[6:42:20] <dima2dvydenko> !рурулетка
+[6:42:20] <StreamElements> повезло повезло
+[6:42:55] <StreamElements> со своим "зачем тебе, оно не скомпилиться Там либо надо явно конструктор определеть или i пронициализировать
+[6:43:00] <ut61a> Нет, не ты, мне его мой кореш дал
+[6:43:13] <ut61a> ты кнш тоже кореш, но не ты
+[6:43:58] <ChairGaminGnC> думаю будет извершение
+[6:44:03] <ut61a> У нас в "замке" на языковом курсе на паре информатики начали давать лекции по С
+[6:44:06] <ChairGaminGnC> тоько не вулкана а пукана
+[6:44:29] <ut61a> сижу теперь с важным ебалом типо я на это 4 года в шараге убил  WICKED
+[6:45:44] <ChairGaminGnC> может лучше через gdb
+[6:45:49] <flttl> VBO мы биндим к VAO, да
+[6:45:56] <ChairGaminGnC> ну или изи мод дебаг принты
+[6:46:17] <sidor_____> оооооооо
+[6:46:19] <sidor_____> цпп в лс
+[6:46:52] <flttl> Чтобы рисовать что-то нам надо только VAO активировать, VBO уже забинжен к VAO
+[6:47:17] <flttl> Один VBO можно биндить к многим VAO
+[6:47:28] <krahmalchek> KonCha что тут происходит?
+[6:47:55] <StreamElements> крутяк
+[6:48:13] <ut61a> рисуем вайфу на опенгле  ppSmoke
+[6:48:20] <antirtfm> не грусти , Все у тебя получится
+[6:48:21] <ut61a> крутяк
+[6:48:38] <flttl> Не может
+[6:49:10] <sidor_____> A Vertex Array Object (VAO) is an object which contains one or more Vertex Buffer Objects+
+[6:49:45] <ut61a> sorry for my english im from england  WickedSteer
+[6:49:59] <flttl> @sidor_____ А как это сделать и для чего ?
+[6:50:08] <ut61a> озарение, вот оно, харош
+[6:50:16] <sidor_____> @sidor_____ не ебу в доках так написано
+[6:50:31] <krahmalchek> а что за хацкеры на экране?
+[6:51:04] <ut61a> кста да
+[6:51:13] <ut61a> табор хацкеров
+[6:51:24] <sidor_____> написано что можно хранить позицию цвет и тд в разных вбошках
+[6:52:34] <sidor_____> только не понятно нахуя FeelsWeirdMan
+[6:52:55] <StreamElements> ну потому что фронтэндеры не знаю как тебя до конца освоил VeryLark
+[6:53:11] <sidor_____> не нихуя а нахуя
+[6:53:12] <flttl> Блять, я читаю другую инфу, хуй знаеи
+[6:54:00] <sidor_____> @flttl https://www.khronos.org/opengl/wiki/Tutorial2:_VAOs,_VBOs,_Vertex_and_Fragment_Shaders_(C_/_SDL)
+[6:54:08] <sidor_____> найс ссылка
+[6:54:11] <flttl> В общем, всё-таки нельзя, если хочешь два VBO надо вызывать glBindBuffer беред риосванием
+[6:54:17] <flttl> *перед
+[6:55:15] <ChairGaminGnC> нужно в комменте описать
+[6:55:20] <ChairGaminGnC> ато забудеться решение
+[6:56:17] <krahmalchek> Я не понял, что за последние 2 пары координат?
+[6:56:22] <flttl> Отрисовал с одним VBO, перебиндил другой буфер и ещё раз нарисовал, только так
+[6:56:45] <sidor_____> не
+[6:57:14] <sidor_____> ща проверю похуй
+[6:57:25] <flttl> Да, ты щас всё правильно сказал
+[6:57:55] <StreamElements> @Screamlark ты же говорил что софтскиллы говно и надо было идти, а я вернулся на механику, может она и была ошибка compiler is out of heap space.
+[6:59:41] <krahmalchek> а, понятно
+[7:00:48] <krahmalchek> Что произошло, или не произошло?
+[7:01:16] <flttl> В общем сидор видимо неправильно интепретировал информацию, там скорее всего говорилось о том, что можно хранить много правил для цвета, координат, но VBO может быть только один, это точная инфа
+[7:01:49] <flttl> Один VBO для одного draw
+[7:02:01] <flttl> glDraw...
+[7:02:04] <sidor_____> посмотри екзампл там
+[7:02:16] <flttl> Массив вершин вообще не хранит VBO, его можно ребиндить
+[7:02:38] <flttl> В один момент времени может быть забинжено толкьо один VBO
+[7:02:54] <flttl> Ну я почти на 100% уверен
+[7:02:56] <StreamElements> и не махать
+[7:03:48] <flttl> Да, всё так
+[7:04:36] <flttl> Собственно говоря мы биндим наш VBO к GL_ARRAY_BUFFER, а он только один
+[7:05:17] <ChairGaminGnC> утро вечера мудренее
+[7:05:21] <ChairGaminGnC> спокойной
+[7:05:35] <flttl> @sidor_____ Скинь нормальную ссылку, посмотрю что там
+[7:06:06] <sidor_____> скопируй просто
+[7:07:00] <ChairGaminGnC> Just do it! Yesterday you said tomorrow! So just do it
+[7:07:55] <StreamElements> ну я может психану и возьму пк за 300к
+[7:07:59] <Ugalekss> привет, а как я к тебе могу обращаться кстати?
+[7:09:29] <flttl> Ладно, сидор прав, при вызове glVertexAttribPointer он запоминает указатель на текущий забинженный VBO, так что в принципе можно сказать что их несколько
+[7:09:40] <krahmalchek> ну вообще, это переводится как вершины
+[7:10:57] <flttl> Ну типо можешь создавать для координат и цвета два массива а можешь и один
+[7:11:09] <ChairGaminGnC> пожалуй пойду спать, удачи
+[7:11:20] <flttl> Я думаю с одним массивом лучше производительность, а то они же могут быть в памяти далеко друг от друга
+[7:11:24] <flttl> А по сабжу да, сидор прав
+[7:11:47] <flttl> @sidor_____ Молодец, улучшил наше понимание ГЛ-а )
+[7:12:26] <sidor_____> ага нахуя только несколько вбо может понадобиться
+[7:12:30] <sidor_____> ну ладно
+[7:12:54] <flttl> Ну да, нахуя их несколько если можно пихнуть всё в один и получить большую производительность рили не понятно
+[7:12:55] <StreamElements> LUL https://distrotube.creator-spring.com/listing/keep-calm-and-reinstall-mug?product=658
+[7:14:16] <flttl> В смысле загружать массив ? В уже существующее VBO ?
+[7:15:17] <flttl> Если ответ да, то лучше сгенерить два VBO и ребиндить их
+[7:16:31] <flttl> peepoClap  Получилось )
+[7:18:13] <saulog123> а зачем различать статичные и динамичные ?
+[7:20:46] <saulog123> ну можно отталкиваться от того , что все динамичные , просто некоторые динамичные ведут себя как статичные
+[7:22:35] <flttl> Лол, чего-то вспомнил великого тестироващика убийцу ООП и по совместительству гробовщика Qt терминейта, он так после того и не зашёл ?)
+[7:22:37] <Screamlark> go__codewars_petushmen has followed! :)
+[7:22:39] <saulog123> налево пойдешь - в говно попадешь , направо пойдешь - архитектуру поймешь
+[7:22:55] <StreamElements> небось стикеры слать нельзя
+[7:23:39] <krahmalchek> Кто это? А что было?
+[7:23:54] <flttl> @krahmalchek Сказал что ООП говно и Qt полный мусор
+[7:24:09] <saulog123> Ну во всяком случае знакомство  с движками дает представление об архитектуре , она плюс минус одинаковая на поверхности
+[7:24:43] <flttl> И за Qt он тоже не ответил
+[7:25:21] <flttl> Он сказал что ООП подходит только для студенческих проектов  LOLOLOL  LOLOLOL  LOLOLOL
+[7:25:38] <flttl> Или поделок, не помню точно
+[7:25:50] <saulog123> ООП просто слишком разное
+[7:26:33] <saulog123> анемичная модель , богатая модель , DDD - 'это все варианты ООП
+[7:27:52] <flttl> Динамические это те из которых ту грузишь функции юзая dlopen
+[7:27:55] <StreamElements> @a2p1k04 ну вот купил себе комбик. Теперь времмя гитарки.
+[7:28:13] <flttl> Функция в ядре линух
+[7:28:21] <saulog123> статичные в плюсах это lib файлы на сколькоя помню
+[7:28:21] <flttl> Точнее в API
+[7:28:38] <saulog123> т.е они подключаются во время сборки проекта
+[7:28:40] <flttl> @saulog123 Это в VS, на линухе они .a
+[7:28:59] <flttl> so это как раз динамическая
+[7:29:00] <saulog123> а динамичные это типа dll , которые можно носить из проекта в проект
+[7:29:07] <saulog123> ну на винде во всяком случае
+[7:29:31] <flttl> Давай, пока
+[7:29:42] <krahmalchek> спокойной ночи
+[7:30:15] <sidor_____> бля тока пришол ну ладнго бб
+[7:30:15] <saulog123> осталась еще одна - opengl
+[7:30:21] <saulog123> надо от нее избавиться тоже
+[7:31:06] <sidor_____> пишем свой драйвер для нвидии FeelsWeirdMan
+[7:31:18] <saulog123> не , почему , opengl это же обертка над более низким апи
+[7:31:26] <saulog123> или там драйвера не юзаются ?
+[7:31:28] <sidor_____> над каким
+[7:31:33] <flttl> @saulog123 Драйвер
+[7:31:47] <flttl> OpenGL это и есть API драйвера
+[7:31:50] <sidor_____> драйвер имплементит графическое апи
+[7:31:53] <saulog123> сам opengl драйвер ? - или он просто управляет разными драйверами
+[7:32:10] <flttl> @saulog123 OpenGL это функции которые торчат из драйвера
+[7:32:14] <saulog123> ну когда качаешь драва для видяхи
+[7:32:22] <saulog123> они никакого отношения к directx не имеют
+[7:32:31] <saulog123> просто directx умеет с ними обращаться
+[7:32:32] <sidor_____> опенгл это интерфейс его реализует драйвер IOpenGl u know?
+[7:32:55] <StreamElements> @lusciousman Врачи не говорят, я зашел в даркнет, лучше уходи подобру поздорову AAUGH
+[7:32:57] <kelvium_> @streamelements, ты покормил рыбку!
+[7:33:16] <sidor_____> я писал свой драйвер для линукса в рамках лабы
+[7:33:25] <saulog123> или хз , в видяхах вроде вшита поддержка directx-а
+[7:33:28] <sidor_____> очень круто (похуй)
+[7:33:45] <flttl> @saulog123 DirectX это тоже функции которые торчат из драйвера
+[7:33:57] <sidor_____> d3d попрошу
+[7:34:12] <saulog123> а как они могут торчать из драйвера , если directx ставится отдельно , а дроваа видяхи отдельно
+[7:34:32] <flttl> @saulog123 Вроде как нет
+[7:34:41] <saulog123> т.е если на винде посмотреть , directx это просто набор dll
