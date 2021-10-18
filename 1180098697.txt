@@ -1032,3 +1032,27 @@
 [3:32:59] <compile_and_run> OOOO
 [3:33:44] <dima2dvydenko> !say рыбов
 [3:33:47] <StreamElements> @dima2dvydenko а рыбов можно будет курсор локтем двигать. Можно печатать и курсор переводить. Сделайте кто-нибудь VeryPog
+[3:34:30] <Screamlark> compile_ti_stack has followed! :)
+[3:35:08] <StreamElements> я не знаю, в то что обычно такая ситуация не возникает а приветствует тебя при полоски
+[3:35:18] <rprtr258> sanya_ti_popushen has followed! :)
+[3:35:26] <rprtr258> !say покорми рыбку
+[3:35:27] <StreamElements> @rprtr258 покормил рыбку 67 раз. Она весит 8322 грамм. Продолжай кормить рыбку!
+[3:35:32] <dima2dvydenko> главный стэк это саня
+[3:35:40] <rprtr258> PauseFish
+[3:35:53] <rprtr258> саня, дай денег VeryLark
+[3:37:22] <rprtr258> !say покорми рыбку
+[3:37:24] <StreamElements> @rprtr258 покормил рыбку 266 раз. Она весит 11613 грамм. Продолжай кормить рыбку!
+[3:37:31] <rprtr258> блять MMMM
+[3:37:34] <compile_and_run> а ты 7к уже потратил что ли? VeryLark
+[3:37:59] <rprtr258> на 7к долго не проживешь VeryLark
+[3:38:09] <dima2dvydenko> !say покорми рыбов
+[3:38:12] <StreamElements> @dima2dvydenko покормил рыбку 1 раз. Она весит 3340 грамм. Продолжай кормить рыбку!
+[3:38:47] <dima2dvydenko> !say корми рыбов
+[3:38:50] <StreamElements> @dima2dvydenko !p "!рыбов
+[3:39:08] <dima2dvydenko> @dima2dvydenko !p "!рыбов
+[3:39:21] <dima2dvydenko> !p "!рыбов
+[3:39:21] <StreamElements> RequestError: Request path contains unescaped characters
+[3:40:08] <StreamElements> С-o для обратно
+[3:40:50] <Screamlark> ptriha_rasplata_skoro has followed! :)
+[3:41:07] <rprtr258> саня ты уже который раз это говоришь peepoDown
+[3:41:13] <rprtr258> зачем ты решь MMMM
