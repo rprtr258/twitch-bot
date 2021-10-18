@@ -5,7 +5,7 @@ tasks:
     generates: [dataset]
     cmds:
       - tcd -q --channel screamlark --first 10
-      - cat *.txt | grep -v 'StreamElements' | cut -d' ' -f3- | grep -v '!g' > logs
+      - cat *.txt | grep -v 'StreamElements' | cut -d' ' -f3- | grep -v '!g' | grep -v 'Продолжай кормить рыбку!' | grep -v '!say' > logs
       - cat dataset logs | grep -v 'ставки' | sort -u > tmp_dataset
       - mv tmp_dataset dataset
       - rm logs
