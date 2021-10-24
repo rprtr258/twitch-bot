@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from subprocess import run
 import sys; sys.stdout.reconfigure(encoding="utf-8")
 from json import load
@@ -62,6 +63,16 @@ def genn():
         begin = choices([w for w, _ in begins], [math.pow(2, -p) for _, p in begins])
         return model.generate(begin)
     return model.generate()
+
+@app.route("/b")
+def balaboba():
+    from subprocess import check_output
+    TO_SKIP = len("please wait up to 15 seconds Без стиля".split())
+    message = request.args.get("m").split()
+    print(message, flush=True)
+    output = check_output(["./balaboba.exe"] + message)
+    return " ".join(output.decode("utf-8").split()[TO_SKIP:])
+
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
