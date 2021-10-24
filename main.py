@@ -70,7 +70,7 @@ def balaboba():
     TO_SKIP = len("please wait up to 15 seconds Без стиля".split())
     message = request.args.get("m").split()
     print(message, flush=True)
-    output = check_output(["./balaboba.exe"] + message)
+    output = check_output(["./balaboba"] + message)
     return " ".join(output.decode("utf-8").split()[TO_SKIP:])
 
 
