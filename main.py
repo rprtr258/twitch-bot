@@ -71,7 +71,9 @@ def balaboba():
     message = request.args.get("m").split()
     print(message, flush=True)
     output = check_output(["./balaboba"] + message)
-    return " ".join(output.decode("utf-8").split()[TO_SKIP:])
+    if "Балабоба не принимает запросы на острые темы, например, про политику или религию. Люди могут слишком серьёзно отнестись к сгенерированным текстам." in output:
+        return "PauseFish"
+    return " ".join(output.decode("utf-8").split()[TO_SKIP + len(message):])
 
 
 if __name__ == "__main__":
