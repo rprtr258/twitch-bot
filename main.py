@@ -79,7 +79,7 @@ def balaboba():
     if "на острые темы, например, про политику или религию" in output:
         return "PauseFish"
     response = " ".join(output.split()[TO_SKIP + len(message):])
-    if len(response) < 500 - 20:
+    if len(response) < 450 - 20:
         print(len(response))
         return response
     else:
