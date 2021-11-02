@@ -64,6 +64,11 @@ def genn():
         return model.generate(begin)
     return model.generate()
 
+save = {}
+@app.route("/blab/<idd>")
+def long_blab(idd):
+    return save[idd]
+
 @app.route("/b")
 def balaboba():
     from subprocess import check_output
@@ -71,9 +76,16 @@ def balaboba():
     message = request.args.get("m").split()
     print(message, flush=True)
     output = check_output(["./balaboba"] + message).decode("utf-8")
-    if "Балабоба не принимает запросы на острые темы, например, про политику или религию. Люди могут слишком серьёзно отнестись к сгенерированным текстам." in output:
+    if "на острые темы, например, про политику или религию" in output:
         return "PauseFish"
-    return " ".join(output.split()[TO_SKIP + len(message):])
+    response = " ".join(output.split()[TO_SKIP + len(message):])
+    if len(response) < 500 - 20:
+        return response
+    else:
+        global save
+        idd = max(save.keys()) + 1
+        save[idd] = response
+        return f"Читать продолжение в источнике: secure-waters-73337.herokuapp.com/blab/{idd}"
 
 
 if __name__ == "__main__":
