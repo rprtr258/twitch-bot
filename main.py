@@ -78,7 +78,7 @@ def load_db(db):
 def long_blab(idd):
     db = read_db()
     print(idd, db)
-    return db[int(idd)]
+    return db[idd]
 
 @app.route("/b")
 def balaboba():
@@ -95,7 +95,7 @@ def balaboba():
         return response
     else:
         db = read_db()
-        idd = max(db.keys()) + 1
+        idd = max(map(int, db.keys())) + 1
         db[idd] = response
         load_db(db)
         return f"Читать продолжение в источнике: secure-waters-73337.herokuapp.com/blab/{idd}"
