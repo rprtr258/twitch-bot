@@ -64,7 +64,7 @@ def genn():
         return model.generate(begin)
     return model.generate()
 
-save = {}
+save = {-1: "Your princess is in another castle"}
 @app.route("/blab/<idd>")
 def long_blab(idd):
     return save[idd]
