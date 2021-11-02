@@ -80,6 +80,7 @@ def balaboba():
         return "PauseFish"
     response = " ".join(output.split()[TO_SKIP + len(message):])
     if len(response) < 500 - 20:
+        print(len(response))
         return response
     else:
         global save
