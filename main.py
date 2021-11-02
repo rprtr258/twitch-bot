@@ -72,7 +72,7 @@ def read_db():
 def load_db(db):
     import json
     with open("db.json", "w", encoding="utf-8") as fd:
-        return json.dump(fd, db)
+        return json.dump(db, fd)
 
 @app.route("/blab/<idd>")
 def long_blab(idd):
