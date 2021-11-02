@@ -64,12 +64,21 @@ def genn():
         return model.generate(begin)
     return model.generate()
 
-save = {-1: "Your princess is in another castle"}
+def read_db():
+    import json
+    with open("db.json", "r", encoding="utf-8") as fd:
+        return json.load(fd)
+
+def load_db(db):
+    import json
+    with open("db.json", "w", encoding="utf-8") as fd:
+        return json.dump(fd, db)
+
 @app.route("/blab/<idd>")
 def long_blab(idd):
-    global save
-    print(idd, save)
-    return save[int(idd)]
+    db = read_db()
+    print(idd, db)
+    return db[int(idd)]
 
 @app.route("/b")
 def balaboba():
@@ -85,9 +94,10 @@ def balaboba():
         print(len(response))
         return response
     else:
-        global save
-        idd = max(save.keys()) + 1
-        save[idd] = response
+        db = read_db()
+        idd = max(db.keys()) + 1
+        db[idd] = response
+        load_db(db)
         return f"Читать продолжение в источнике: secure-waters-73337.herokuapp.com/blab/{idd}"
 
 
