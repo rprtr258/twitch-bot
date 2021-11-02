@@ -67,6 +67,8 @@ def genn():
 save = {-1: "Your princess is in another castle"}
 @app.route("/blab/<idd>")
 def long_blab(idd):
+    global save
+    print(idd, save)
     return save[int(idd)]
 
 @app.route("/b")
