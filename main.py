@@ -67,7 +67,7 @@ def genn():
 save = {-1: "Your princess is in another castle"}
 @app.route("/blab/<idd>")
 def long_blab(idd):
-    return save[idd]
+    return save[int(idd)]
 
 @app.route("/b")
 def balaboba():
