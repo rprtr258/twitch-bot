@@ -114,7 +114,10 @@ def feed():
     if user == "Gekmi":
         return "Гекми наказан за читерство с талончиками PauseFish"
     if len(encoded) > 1:
-        username, the_emote, count, minute = unpack(encoded)
+        try:
+            username, the_emote, count, minute = unpack(encoded)
+        except Exception as e:
+            return "Some error"
         if the_emote[0] != emote:
             return f"Ты используешь талончик {the_emote[0]} для {emote} . Так нельзя. Получить талончик: !feed {emote}"
         if username != user:
