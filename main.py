@@ -116,7 +116,7 @@ def feed():
     if len(encoded) > 1:
         username, the_emote, count, minute = unpack(encoded)
         if the_emote[0] != emote:
-            return f"Ты используешь талончик {the_emote[0]} для {emote}. Так нельзя. Получить талончик: !feed {emote}"
+            return f"Ты используешь талончик {the_emote[0]} для {emote} . Так нельзя. Получить талончик: !feed {emote}"
         if username != user:
             return f"Ты используешь талончик {username}, но тебя зовут {user}. Это называется воровство. Ты приговариваешься к расстрелу AAUGH"
         if minute <= current_minute < minute + 5:
