@@ -102,6 +102,8 @@ def feed():
     from datetime import datetime
     current_minute = datetime.now().minute
     emote = request.args.get('e')
+    if emote == '0':
+        return "Ты можешь покормить: " + " ".join(EMOTES.keys())
     if emote not in EMOTES:
         return f"{emote} никого не кормит FeelsWeakMan"
     encoded = request.args.get('c')
