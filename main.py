@@ -108,12 +108,12 @@ def feed():
     user = request.args.get('u')
     if len(encoded) > 1:
         username, the_emote, count, minute = unpack(encoded)
-        if minute <= current_minute < minute + 5:
-            return f"Ты еще не можешь покормить {EMOTES[emote][1]}"
         if the_emote[0] != emote:
             return f"Ты используешь талончик {the_emote[0]} для {emote}. Так нельзя. Получить талончик: !feed {emote}"
         if username != user:
             return f"Ты используешь талончик {username}, но тебя зовут {user}. Это называется воровство. Ты приговариваешься к расстрелу AAUGH"
+        if minute <= current_minute < minute + 5:
+            return f"Ты еще не можешь покормить {EMOTES[emote][1]}"
         count += 1
         response = pack(username, the_emote[1][0], count, minute)
         return f"Ты покормил {the_emote[1][1]} {count} раз. Талончик на следующую кормежку: {response}"
