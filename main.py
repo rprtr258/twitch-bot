@@ -97,6 +97,9 @@ def unpack(encoded):
     emote = [(k, v) for k, v in EMOTES.items() if v[0] == emote_code][0]
     return username, emote, count, minute
 
+def weight(count):
+    return 100 + 13 * count
+
 @app.route("/f")
 def feed():
     from datetime import datetime
@@ -117,11 +120,13 @@ def feed():
         if minute <= current_minute < minute + 5:
             return f"Ты еще не можешь покормить {EMOTES[emote][1]}"
         count += 1
+        w = weight(count)
         response = pack(username, the_emote[1][0], count, minute)
-        return f"Ты покормил {the_emote[1][1]} {count} раз. Талончик на следующую кормежку: {response}"
+        return f"Ты покормил {the_emote[1][1]} {count} раз. Теперь он весит {w} грамм. Талончик на следующую кормежку: {response}"
     response = pack(user, EMOTES[emote][0], 1, current_minute)
     print(unpack(response))
-    return f"Ты покормил {EMOTES[emote][1]} в первый раз. Талончик на следующую кормежку: {response}"
+    w = weight(1)
+    return f"Ты покормил {EMOTES[emote][1]} в первый раз. Теперь он весит {weight} грамм. Талончик на следующую кормежку: {response}"
 
 def read_db():
     import json
