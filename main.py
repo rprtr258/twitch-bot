@@ -117,7 +117,7 @@ def feed():
         try:
             username, the_emote, count, minute = unpack(encoded)
         except Exception as e:
-            return "Some error"
+            return "Некорректный талончик"
         if the_emote[0] != emote:
             return f"Ты используешь талончик {the_emote[0]} для {emote} . Так нельзя. Получить талончик: !feed {emote}"
         if username != user:
