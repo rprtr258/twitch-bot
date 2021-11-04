@@ -111,6 +111,8 @@ def feed():
         return f"{emote} никого не кормит FeelsWeakMan"
     encoded = request.args.get('c')
     user = request.args.get('u')
+    if user == "Gekmi":
+        return "Гекми наказан за читерство с талончиками PauseFish"
     if len(encoded) > 1:
         username, the_emote, count, minute = unpack(encoded)
         if the_emote[0] != emote:
