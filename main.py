@@ -106,7 +106,7 @@ def feed():
         return f"{emote} никого не кормит FeelsWeakMan"
     encoded = request.args.get('c')
     user = request.args.get('u')
-    if len(encoded) > 0:
+    if len(encoded) > 1:
         username, the_emote, count, minute = unpack(encoded)
         if minute <= current_minute < minute + 5:
             return f"Ты еще не можешь покормить {EMOTES[emote][1]}"
