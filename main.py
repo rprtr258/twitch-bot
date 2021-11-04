@@ -126,7 +126,7 @@ def feed():
     response = pack(user, EMOTES[emote][0], 1, current_minute)
     print(unpack(response))
     w = weight(1)
-    return f"Ты покормил {EMOTES[emote][1]} в первый раз. Теперь он весит {weight} грамм. Талончик на следующую кормежку: {response}"
+    return f"Ты покормил {EMOTES[emote][1]} в первый раз. Теперь он весит {w} грамм. Талончик на следующую кормежку: {response}"
 
 def read_db():
     import json
