@@ -119,7 +119,7 @@ def feed():
         return f"Ты покормил {the_emote[1][1]} {count} раз. Талончик на следующую кормежку: {response}"
     response = pack(user, EMOTES[emote][0], 1, current_minute)
     print(unpack(response))
-    return f"Ты покормил {EMOTES[emote][1]} в первый. Талончик на следующую кормежку: {response}"
+    return f"Ты покормил {EMOTES[emote][1]} в первый раз. Талончик на следующую кормежку: {response}"
 
 def read_db():
     import json
