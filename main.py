@@ -143,27 +143,27 @@ def load_db(db):
     with open("db.json", "w", encoding="utf-8") as fd:
         return json.dump(db, fd)
 
-def balabob(text):
+def balabob(text, skip=0):
     from subprocess import check_output
     TO_SKIP = len("please wait up to 15 seconds Без стиля".split())
-    return " ".join(check_output(["./balaboba"] + text.split()).decode("utf-8").split()[TO_SKIP:])
+    output = check_output(["./balaboba"] + text.split()).decode("utf-8").split()
+    if "на острые темы, например, про политику или религию" in output:
+        return "PauseFish"
+    return " ".join(output[TO_SKIP + skip:])
 
 @app.route("/blab/<idd>")
 def long_blab(idd):
     db = read_db()
-    db[idd] = balabob(db[idd])
+    db[idd] += balabob(db[idd])
     load_db(db)
     return f'''<p style="padding: 10% 15%; font-size: 1.8em;">{db[idd]}</p>'''
 
 @app.route("/b")
 def balaboba():
     message = request.args.get("m")
-    output = balabob(message)
-    if "на острые темы, например, про политику или религию" in output:
-        return "PauseFish"
-    response = " ".join(output.split()[len(message):])
+    output = balabob(message, skip=len(message))
     if len(response) < 300:
-        print(len(response))
+        print("TOO SHORT: ", message, len(response))
         return response
     else:
         db = read_db()
