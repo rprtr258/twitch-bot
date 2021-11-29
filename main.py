@@ -147,7 +147,7 @@ def load_db(db):
 def long_blab(idd):
     db = read_db()
     print(idd, db)
-    return db[idd]
+    return f'''<p style="padding: 10% 15%; font-size: 1.8em;">{db[idd]}</p>'''
 
 @app.route("/b")
 def balaboba():
