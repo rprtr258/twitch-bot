@@ -145,7 +145,7 @@ def load_db(db):
 
 def balabob(text):
     from subprocess import check_output
-    return check_output(["./balaboba"] + message.split()).decode("utf-8")
+    return check_output(["./balaboba"] + text.split()).decode("utf-8")
 
 @app.route("/blab/<idd>")
 def long_blab(idd):
