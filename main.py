@@ -162,7 +162,7 @@ def long_blab(idd):
 @app.route("/b")
 def balaboba():
     message = request.args.get("m")
-    response = balabob(message, skip=len(message))
+    response = balabob(message, skip=len(message.split()))
     if len(response) < 300:
         print("TOO SHORT: ", message, len(response))
         return response
