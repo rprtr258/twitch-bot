@@ -145,30 +145,30 @@ def load_db(db):
 
 def balabob(text):
     from subprocess import check_output
-    return check_output(["./balaboba"] + text.split()).decode("utf-8")
+    TO_SKIP = len("please wait up to 15 seconds Без стиля".split())
+    return " ".join(check_output(["./balaboba"] + text.split()).decode("utf-8").split()[TO_SKIP:])
 
 @app.route("/blab/<idd>")
 def long_blab(idd):
     db = read_db()
-    db[idd] += ' ' + balabob(db[idd])
+    db[idd] = balabob(db[idd])
     load_db(db)
     return f'''<p style="padding: 10% 15%; font-size: 1.8em;">{db[idd]}</p>'''
 
 @app.route("/b")
 def balaboba():
-    TO_SKIP = len("please wait up to 15 seconds Без стиля".split())
     message = request.args.get("m")
     output = balabob(message)
     if "на острые темы, например, про политику или религию" in output:
         return "PauseFish"
-    response = " ".join(output.split()[TO_SKIP + len(message):])
+    response = " ".join(output.split()[len(message):])
     if len(response) < 300:
         print(len(response))
         return response
     else:
         db = read_db()
         idd = max(map(int, db.keys())) + 1
-        db[idd] = ' '.join(message) + ' ' + response
+        db[idd] = message + ' ' + response
         load_db(db)
         return f"Читать продолжение в источнике: secure-waters-73337.herokuapp.com/blab/{idd}"
 
