@@ -148,9 +148,9 @@ def balabob(text, skip=0):
     TO_SKIP = len("please wait up to 15 seconds Без стиля".split())
     output = check_output(["./balaboba"] + text.split()).decode("utf-8").split()
     print(output)
-    if "на острые темы, например, про политику или религию" in output:
+    if "на острые темы, например, про политику или религию" in ' '.join(output):
         return "PauseFish"
-    return " ".join(output[TO_SKIP + skip:])
+    return ' '.join(output[TO_SKIP + skip:])
 
 @app.route("/blab/<idd>")
 def long_blab(idd):
