@@ -147,6 +147,7 @@ def balabob(text, skip=0):
     from subprocess import check_output
     TO_SKIP = len("please wait up to 15 seconds Без стиля".split())
     output = check_output(["./balaboba"] + text.split()).decode("utf-8").split()
+    print(output)
     if "на острые темы, например, про политику или религию" in output:
         return "PauseFish"
     return " ".join(output[TO_SKIP + skip:])
