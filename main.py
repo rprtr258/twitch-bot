@@ -144,6 +144,7 @@ def load_db(db):
         return json.dump(db, fd)
 
 def balabob(text):
+    from subprocess import check_output
     return check_output(["./balaboba"] + message.split()).decode("utf-8")
 
 @app.route("/blab/<idd>")
@@ -155,7 +156,6 @@ def long_blab(idd):
 
 @app.route("/b")
 def balaboba():
-    from subprocess import check_output
     TO_SKIP = len("please wait up to 15 seconds Без стиля".split())
     message = request.args.get("m")
     output = balabob(message)
