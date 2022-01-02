@@ -4,3 +4,6 @@
 [submodule "pyth"]
 	path = pyth
 	url = https://github.com/isaacg1/pyth
+[submodule "balaboba"]
+	path = balaboba
+	url = https://github.com/Toffee-iZt/balaboba
