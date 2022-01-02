@@ -1,6 +1,17 @@
 version: '3'
 
 tasks:
+  run:
+    - set -a && source .env && set +a && winpty python3 src/main.py
+
+  init:
+    - git submodule update --init --recursive
+    - sqlite3 db.db < sql/init.sql
+    # TODO: cd balaboba && go build && mv ~/go/bin/cmd balaboba
+
+  linter:
+    - flake8 *.py commands/*.py --max-line-length 120 --ignore=E302,E305
+
   get_chat_logs:
     generates: [dataset]
     cmds:
@@ -19,6 +30,7 @@ tasks:
 
   commit:
     - venv/Scripts/pip freeze > requirements.txt
+    - task: linter
     - cmd: git add .
       ignore_error: true
     - git status
