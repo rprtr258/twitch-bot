@@ -8,6 +8,8 @@ import utils
 
 @commands.utils.if_empty_message("Provide pyth program: pyth.readthedocs.io")
 def pyth(conf: config.Config, message_record: utils.MessageRecord):
+    if message_record.username == "passionsausage":
+        return "PassionSausage наказан за абьюз системы AAUGH"
     with open("c", "w", encoding="utf-8") as fd:
         fd.write(message_record.message)
     ps = subprocess.run(['echo', '6'], check=True, capture_output=True)
