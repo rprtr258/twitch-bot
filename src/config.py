@@ -74,6 +74,7 @@ def load_twitch_config() -> TwitchConfig:
     PORT = 6667
     sock = socket.socket()
     sock.connect((HOST, PORT))
+    sock.settimeout(1)
     NICK = os.environ["NICK"]
     PASSWORD = os.environ["PASSWORD"]
     return TwitchConfig(

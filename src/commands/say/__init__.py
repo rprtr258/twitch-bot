@@ -32,19 +32,22 @@ def levenshteinDistance(s1, s2):
 def get_begins(message_word, vocabulary):
     words = {}
     for prior_ngram in vocabulary:
+        if ' ' not in prior_ngram: # TODO: check why priors contain not-2grams
+            continue
         dist = levenshteinDistance(prior_ngram, message_word)
-        if dist < len(message_word) * 1.2:
+        if dist < len(message_word) * 1.2 or len(words) == 0:
             words[prior_ngram] = dist
     return list(sorted(words.items(), key=lambda kv: kv[1]))[:10]
 
 # TODO: speed up
 @commands.utils.with_mention
 def say(conf: config.Config, message_record: utils.MessageRecord):
+    # TODO: move logic to ngram, remove vocabulary from config
     model = conf.say_config.model
     vocabulary = conf.say_config.vocabulary
     if not message_record.message:
         return model.generate()
-    message = message_record.message[0].split()
+    message = message_record.message.split()
     message = sorted(message, key=len)[-5:]
     begins = sum([get_begins(w, vocabulary) for w in message], [])
     begin = random.choices([w for w, _ in begins], [math.pow(2, -p) for _, p in begins])
