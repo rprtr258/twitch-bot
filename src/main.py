@@ -53,7 +53,7 @@ def action_on_message(conf: config.Config, message_record: utils.MessageRecord):
         text = commands.balaboba_continue(conf, command_message_record)
         send_long_message(conf.twitch_config, message_record.channel, text)
     elif command == "!say":
-        send_message(conf.sock, message_record.channel, commands.say(conf, command_message_record))
+        send_message(conf.twitch_config, message_record.channel, commands.say(conf, command_message_record))
     elif command == "!pyth":
         send_message(conf.twitch_config, message_record.channel, commands.pyth(conf, command_message_record))
     elif command == "!feed":
@@ -100,8 +100,7 @@ with conf.twitch_config.sock:
                 else:
                     logging.info(line)
         except socket.timeout as e:
-            logging.error("Socket timeout:", e)
-            is_running = False
+            pass
         except socket.error as e:
             logging.error("Socket died:", e)
             is_running = False
