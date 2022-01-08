@@ -77,9 +77,11 @@ for channel in conf.twitch_config.channels:
     send(conf.twitch_config.sock, f"JOIN #{channel}")
 # TODO: fix unicode on !mmmm
 with conf.twitch_config.sock:
-    while True:
+    is_running = True
+    while is_running:
         try:
             conf.twitch_config.buffer += conf.twitch_config.sock.recv(1024).decode("utf-8")
+            logging.info(repr(conf.twitch_config.buffer))
             data_split = conf.twitch_config.buffer.split("\r\n")
             conf.twitch_config.buffer = data_split.pop()
 
@@ -99,12 +101,12 @@ with conf.twitch_config.sock:
                     )
                 else:
                     logging.info(line)
-        except socket.error as e:
-            logging.error("Socket died:", e)
-            break
         except socket.timeout as e:
             logging.error("Socket timeout:", e)
-            break
+            is_running = False
+        except socket.error as e:
+            logging.error("Socket died:", e)
+            is_running = False
         except Exception:
             logging.error(traceback.format_exc())
-            break
+            is_running = False
