@@ -7,7 +7,8 @@ tasks:
   init:
     - git submodule update --init --recursive
     - sqlite3 db.db < sql/init.sql
-    # TODO: cd balaboba && go build && mv ~/go/bin/cmd balaboba
+    - (cd balaboba; go build cmd/*.go && mv cmd.exe ../balaboba.exe)
+    # TODO: download dataset and build model
 
   linter:
     - flake8 *.py commands/*.py --max-line-length 120 --ignore=E302,E305
