@@ -80,7 +80,7 @@ with conf.twitch_config.sock:
     is_running = True
     while is_running:
         try:
-            conf.twitch_config.buffer += conf.twitch_config.sock.recv(1024).decode("utf-8")
+            conf.twitch_config.buffer += conf.twitch_config.sock.recv(2048).decode("utf-8")
             logging.info(repr(conf.twitch_config.buffer))
             data_split = conf.twitch_config.buffer.split("\r\n")
             conf.twitch_config.buffer = data_split.pop()
