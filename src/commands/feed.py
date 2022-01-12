@@ -41,7 +41,7 @@ def feed(
     if username == "Gekmi":
         return
     now = datetime.datetime.utcnow()
-    ensure_user_in_db(db_config.conn, username, channel, now)
+    ensure_user_in_db(db_config.conn, username, channel, now - feed_config.FEED_TIME_LIMIT)
     feedings = db_config.conn.execute("""
         SELECT emote.id, emote.emote, feed.at
         FROM feed
@@ -50,7 +50,7 @@ def feed(
     """, (username, channel)).fetchall()
     emotes_to_feed = set()
     for emote_id, emote, last_feed_time in feedings:
-        if now - last_feed_time <= feed_config.FEED_TIME_LIMIT:
+        if now - last_feed_time < feed_config.FEED_TIME_LIMIT:
             continue
         if emote not in words:
             continue
