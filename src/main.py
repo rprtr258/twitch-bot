@@ -43,6 +43,7 @@ def action_on_message(conf: config.Config, message_record: utils.MessageRecord):
         channel=message_record.channel,
     )
     # TODO: match case
+    # TODO: list blab's pastas
     if command == "!блаб":
         text = commands.balaboba(conf, command_message_record)
         send_long_message(conf.twitch_config, message_record.channel, text)
