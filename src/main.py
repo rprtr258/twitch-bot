@@ -75,6 +75,7 @@ send(conf.twitch_config.sock, f"PASS {conf.twitch_config.password}")
 send(conf.twitch_config.sock, f"NICK {conf.twitch_config.nick}")
 for channel in conf.twitch_config.channels:
     send(conf.twitch_config.sock, f"JOIN #{channel}")
+# TODO: task with writing messages from bot
 with conf.twitch_config.sock:
     is_running = True
     while is_running:
