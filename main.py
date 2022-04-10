@@ -153,7 +153,7 @@ def balabob(text, skip=0):
         if resp.status_code == 500 or resp.status_code == 502:
             pitsots += 1
         else:
-            print(resp.content)
+            print(resp.content.decode('utf-8'))
             resp = resp.json()
             text = ' '.join(text.split() + resp['replies'][0].split())
     if pitsots == tries:
