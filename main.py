@@ -195,7 +195,7 @@ def sber():
     text = request.args.get("m")
     import requests
     for _ in range(4):
-        resp = requests.post('https://api-inference.huggingface.co/models/sberbank-ai/rugpt3large_based_on_gpt2', json={"inputs":text})
+        resp = requests.post('https://api-inference.huggingface.co/models/sberbank-ai/rugpt3small_based_on_gpt2', json={"inputs":text})
         if resp.status_code == 500:
             return 'Сбер сейчас в ахуе, попробуйте еще раз позже'
         print(resp.content.decode('utf-8'))
