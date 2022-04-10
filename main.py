@@ -145,7 +145,9 @@ def load_db(db):
 
 def balabob(text, skip=0):
     import requests
-    resp = requests.post('https://pelevin.gpt.dobro.ai/generate/', json={"prompt":"ты хочешь что бы я поменял auto && на int?"}).json()
+    resp = requests.post('https://pelevin.gpt.dobro.ai/generate/', json={"prompt":text})
+    print(resp.content)
+    resp = resp.json()
     return ' '.join(' '.join(resp['replies']).split())
     from subprocess import check_output
     TO_SKIP = len("please wait up to 15 seconds Без стиля".split())
