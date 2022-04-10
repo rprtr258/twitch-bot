@@ -146,7 +146,8 @@ def load_db(db):
 def balabob(text, skip=0):
     pitsots = 0
     ln = len(text)
-    for _ in range(3):
+    tries = 4
+    for _ in range(tries):
         import requests
         resp = requests.post('https://pelevin.gpt.dobro.ai/generate/', json={"prompt":text})
         if resp.status_code == 500:
@@ -155,7 +156,7 @@ def balabob(text, skip=0):
             print(resp.content)
             resp = resp.json()
             text = ' '.join(text.split() + resp['replies'][0].split())
-    if pitsots == 3:
+    if pitsots == tries:
         return 'Порфирьевич в ахуе, попробуйте еще раз позже'
     else:
         return text[ln:]
