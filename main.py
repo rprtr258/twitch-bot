@@ -146,6 +146,8 @@ def load_db(db):
 def balabob(text, skip=0):
     import requests
     resp = requests.post('https://pelevin.gpt.dobro.ai/generate/', json={"prompt":text})
+    if resp.status_code == 500:
+        return 'Порфирьевич в ахуе, попробуйте еще раз позже'
     print(resp.content)
     resp = resp.json()
     return ' '.join(' '.join(resp['replies']).split())
