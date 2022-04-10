@@ -145,6 +145,7 @@ def load_db(db):
 
 def balabob(text, skip=0):
     from random import choice
+    import requests
     resp = requests.post('https://pelevin.gpt.dobro.ai/generate/', data={"prompt":"ты хочешь что бы я поменял auto && на int?"}).json()
     res = choice(resp['replies'])
     return ' '.join(res.split())
