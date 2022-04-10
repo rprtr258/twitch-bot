@@ -144,13 +144,22 @@ def load_db(db):
         return json.dump(db, fd)
 
 def balabob(text, skip=0):
-    import requests
-    resp = requests.post('https://pelevin.gpt.dobro.ai/generate/', json={"prompt":text})
-    if resp.status_code == 500:
+    pitsots = 0
+    ln = len(text)
+    for _ in range(3):
+        import requests
+        resp = requests.post('https://pelevin.gpt.dobro.ai/generate/', json={"prompt":text})
+        if resp.status_code == 500:
+            pitsots += 1
+        else:
+            print(resp.content)
+            resp = resp.json()
+            text = ' '.join(text.split() + resp['replies'][0].split())
+    if pitsots == 3:
         return 'Порфирьевич в ахуе, попробуйте еще раз позже'
-    print(resp.content)
-    resp = resp.json()
-    return ' '.join(' '.join(resp['replies']).split())
+    else:
+        return text[ln:]
+
     from subprocess import check_output
     TO_SKIP = len("please wait up to 15 seconds Без стиля".split())
     output = check_output(["./balaboba"] + text.split()).decode("utf-8").split()
@@ -179,6 +188,19 @@ def balaboba():
         db[idd] = message + ' ' + response
         load_db(db)
         return f"Читать продолжение в источнике: secure-waters-73337.herokuapp.com/blab/{idd}"
+
+@app.route("/s")
+def sber():
+    text = request.args.get("m")
+    import requests
+    for _ in range(4):
+        resp = requests.post('https://api-inference.huggingface.co/models/sberbank-ai/rugpt3large_based_on_gpt2', json={"inputs":text})
+        if resp.status_code == 500:
+            return 'Сбер сейчас в ахуе, попробуйте еще раз позже'
+        print(resp.content.decode('utf-8'))
+        resp = resp.json()
+        text = ' '.join(resp[0]['generated_text'].split())
+    return text
 
 
 if __name__ == "__main__":
