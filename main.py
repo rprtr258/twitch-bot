@@ -158,6 +158,8 @@ def balabob(text, skip=0):
             text = ' '.join(text.split() + resp['replies'][0].split())
     if pitsots == tries:
         return 'Порфирьевич в ахуе, попробуйте еще раз позже'
+    elif any(x in text.lower() for x in ['пидор', 'негр', 'нигер']):
+        return 'Порфирьевич сказал очень плохое слово, поэтому ловите рыбку AAUGH'
     else:
         return text[ln:]
 
