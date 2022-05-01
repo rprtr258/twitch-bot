@@ -174,7 +174,8 @@ def balabob(text, skip=0):
     print(output)
     if "на острые темы, например, про политику или религию" in ' '.join(output):
         return "PauseFish"
-    return ' '.join(output[TO_SKIP + skip:])
+    last_balaboba = ' '.join(output[TO_SKIP + skip:])
+    return last_balaboba
 
 @app.route("/blab/<idd>")
 def long_blab(idd):
