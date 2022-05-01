@@ -143,7 +143,12 @@ def load_db(db):
     with open("db.json", "w", encoding="utf-8") as fd:
         return json.dump(db, fd)
 
+last_balaboba = ""
+
 def balabob(text, skip=0):
+    global last_balaboba
+    if text == "":
+        text = last_balaboba
     pitsots = 0
     ln = len(text)
     tries = 4
