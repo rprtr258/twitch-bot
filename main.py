@@ -160,7 +160,7 @@ def balabob(text, skip=0):
         else:
             print(resp.content.decode('utf-8'))
             resp = resp.json()
-            text = ' '.join(text.split() + resp['replies'][0].split())
+            text = ' '.join(text.split() + max(resp['replies'], key=len).split())
     if pitsots == tries:
         return 'Порфирьевич в ахуе, попробуйте еще раз позже'
     elif any(x in text.lower() for x in ['пидор', 'негр', 'нигер']):
