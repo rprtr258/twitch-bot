@@ -154,7 +154,7 @@ def balabob(text, skip=0):
     tries = 4
     for _ in range(tries):
         import requests
-        resp = requests.post('https://pelevin.gpt.dobro.ai/generate/', json={"prompt":text})
+        resp = requests.post('https://pelevin.gpt.dobro.ai/generate/', json={"prompt":text}, verify=False)
         if resp.status_code == 500 or resp.status_code == 502:
             pitsots += 1
         else:
