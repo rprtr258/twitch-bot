@@ -48,7 +48,6 @@ def get_begins(message_word, vocabulary):
 
 @app.route("/g")
 def genn():
-    return "@Chelovchik FrogWave"
     from random import choices
     import math
     from quotes_generator.ngram import NGram
