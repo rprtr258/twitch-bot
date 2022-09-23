@@ -16,7 +16,7 @@ type Services struct {
 	TwitchApiClient *helix.Client
 }
 
-const cmdPrefix = "?intel "
+const intelCmdPrefix = "?intel "
 
 func formatDuration(d time.Time) string {
 	var parts []string
@@ -66,7 +66,7 @@ func formatDuration(d time.Time) string {
 }
 
 func (s *Services) getIntelCmd(message twitch.PrivateMessage) (string, error) {
-	login := strings.TrimPrefix(message.Message, cmdPrefix)
+	login := strings.TrimPrefix(message.Message, intelCmdPrefix)
 	resp, err := s.TwitchApiClient.GetUsers(&helix.UsersParams{
 		Logins: []string{login},
 	})
@@ -95,14 +95,4 @@ func (s *Services) getIntelCmd(message twitch.PrivateMessage) (string, error) {
 		user.DisplayName,
 		user.ViewCount,
 	), nil
-}
-
-func (s *Services) OnPrivateMessage(message twitch.PrivateMessage) {
-	if message.User.Name == "rprtr258" && strings.HasPrefix(message.Message, cmdPrefix) {
-		response, err := s.getIntelCmd(message)
-		if err != nil {
-			response = fmt.Sprintf("Internal error: %s", err.Error())
-		}
-		s.ChatClient.Reply(message.Channel, message.ID, response)
-	}
 }
