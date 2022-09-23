@@ -1,3 +1,6 @@
+run:
+  rwenv -i -e .env go run cmd/main.go
+
 # generates: [dataset]
 get_chat_logs:
   python3 dump.py >> tmp

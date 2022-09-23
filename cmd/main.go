@@ -1,15 +1,14 @@
 package main
 
 import (
-	"fmt"
 	"log"
-	"math"
 	"net/http"
-	"strings"
-	"time"
+	"os"
 
-	"github.com/gempir/go-twitch-irc/v3"
+	twitch "github.com/gempir/go-twitch-irc/v3"
 	"github.com/nicklaw5/helix"
+
+	abobus "abobus/internal"
 )
 
 // app = Flask(__name__)
@@ -216,132 +215,65 @@ import (
 //         text = ' '.join(resp[0]['generated_text'].split())
 //     return text
 
-func formatDuration(d time.Time) string {
-	var parts []string
-	now := time.Now()
-
-	{
-		var years int
-		for d.AddDate(1, 0, 0).Before(now) {
-			years++
-			d = d.AddDate(1, 0, 0)
+func handleTwitchAuth(helixClient *helix.Client) {
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		code, ok := r.URL.Query()["code"]
+		if !ok {
+			return
 		}
-		if years > 0 {
-			parts = append(parts, fmt.Sprintf("%d years", years))
+
+		resp, err := helixClient.RequestUserAccessToken(code[0])
+		if err != nil {
+			log.Println(err.Error())
 		}
-	}
 
-	{
-		var months int
-		for d.AddDate(0, 1, 0).Before(now) {
-			months++
-			d = d.AddDate(0, 1, 0)
-		}
-		if months > 0 {
-			parts = append(parts, fmt.Sprintf("%d months", months))
-		}
-	}
-
-	{
-		var days int
-		for d.AddDate(0, 0, 1).Before(now) {
-			days++
-			d = d.AddDate(0, 0, 1)
-		}
-		if days > 0 {
-			parts = append(parts, fmt.Sprintf("%d days", days))
-		}
-	}
-
-	minutes := (int64)(math.Floor(now.Sub(d).Minutes()))
-	if minutes/60 > 0 {
-		parts = append(parts, fmt.Sprintf("%d hours", minutes/60))
-	}
-
-	parts = append(parts, fmt.Sprintf("%d minutes", minutes%60))
-
-	return strings.Join(parts, " ")
-}
-
-func main() {
-	helixClient, err := helix.NewClient(&helix.Options{
-		ClientID:     "mt9ja48gda8fer9070skciyibrbo1p",
-		ClientSecret: "xhclakq6hqeawyhb62dg5d8566h8tw",
-		RedirectURI:  "http://localhost",
+		// Set the access token on the client
+		// TODO: remember token, https://github.com/nicklaw5/helix/blob/main/docs/authentication_docs.md#refresh-user-access-token
+		helixClient.SetUserAccessToken(resp.Data.AccessToken)
 	})
-	if err != nil {
+	if err := http.ListenAndServe(":5000", nil); err != nil {
 		log.Println(err.Error())
 	}
+}
+
+func run() error {
+	helixClient, err := helix.NewClient(&helix.Options{
+		ClientID:     os.Getenv("TWITCH_CLIENT_ID"),
+		ClientSecret: os.Getenv("TWITCH_CLIENT_SECRET"),
+		RedirectURI:  os.Getenv("TWITCH_REDIRECT_URI"),
+	})
+	if err != nil {
+		return err
+	}
+
+	go handleTwitchAuth(helixClient)
 
 	url := helixClient.GetAuthorizationURL(&helix.AuthorizationURLParams{
-		ResponseType: "code", // or "token"
+		ResponseType: "code",
 		Scopes:       []string{"user:read:email"},
 		ForceVerify:  false,
 	})
+	log.Println(url)
 
-	fmt.Printf("%s\n", url)
-
-	if err != nil {
-		log.Println(err.Error())
-	}
-
-	go func() {
-		http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-			code, ok := r.URL.Query()["code"]
-			if !ok {
-				return
-			}
-			fmt.Println(code[0])
-			resp, err := helixClient.RequestUserAccessToken(code[0])
-			if err != nil {
-				log.Println(err.Error())
-			}
-
-			fmt.Printf("%+v\n", resp)
-
-			// Set the access token on the client
-			// TODO: remember token, https://github.com/nicklaw5/helix/blob/main/docs/authentication_docs.md#refresh-user-access-token
-			helixClient.SetUserAccessToken(resp.Data.AccessToken)
-		})
-		if err := http.ListenAndServe(":80", nil); err != nil {
-			log.Println(err.Error())
-		}
-	}()
-
-	client := twitch.NewClient("trooba_bot", "oauth:ek5dqu7mt4luy7mns3sjesgongsc6a")
+	client := twitch.NewClient("trooba_bot", os.Getenv("TWITCH_OAUTH_TOKEN"))
 	client.Join("vs_code")
 
-	client.OnPrivateMessage(func(message twitch.PrivateMessage) {
-		fmt.Println(message.User.Name, message.Message)
-		if message.User.Name == "rprtr258" && strings.HasPrefix(message.Message, "?test ") {
-			login := strings.TrimPrefix(message.Message, "?test ")
-			resp, err := helixClient.GetUsers(&helix.UsersParams{
-				Logins: []string{login},
-			})
-			if err != nil {
-				log.Println(err.Error())
-			}
+	srvcs := abobus.Services{
+		ChatClient:      client,
+		TwitchApiClient: helixClient,
+	}
 
-			users := resp.Data.Users
-			if len(users) == 0 {
-				client.Reply(message.Channel, message.ID, fmt.Sprintf("%s not found", login))
-				return
-			}
-
-			user := users[0]
-			createdAt := user.CreatedAt.Time
-			delta := formatDuration(createdAt)
-			responseText := fmt.Sprintf(
-				"%s created account at %s (%s ago)",
-				login,
-				createdAt.Format("2 January 2006 15:04"),
-				delta,
-			)
-			client.Reply(message.Channel, message.ID, responseText)
-		}
-	})
+	client.OnPrivateMessage(srvcs.OnPrivateMessage)
 
 	if err := client.Connect(); err != nil {
-		panic(err)
+		return err
+	}
+
+	return nil
+}
+
+func main() {
+	if err := run(); err != nil {
+		log.Fatal(err.Error())
 	}
 }
