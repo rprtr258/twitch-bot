@@ -1,5 +1,5 @@
 run:
-  rwenv -i -e .env go run cmd/main.go
+  rwenv -i -e .env go run cmd/main.go serve
 
 # generates: [dataset]
 get_chat_logs:
