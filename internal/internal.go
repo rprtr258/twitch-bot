@@ -1,6 +1,7 @@
 package internal
 
 import (
+	"database/sql"
 	"fmt"
 	"log"
 	"strings"
@@ -55,8 +56,30 @@ func (s *Services) leave(message twitch.PrivateMessage) (string, error) {
 	return fmt.Sprintf("left %s successfully", channel), nil
 }
 
+type command struct {
+	Relation string
+	Command  string
+	Run      func(*Services, twitch.PrivateMessage) (string, error)
+}
+
 func (s *Services) OnPrivateMessage(message twitch.PrivateMessage) {
+	cmds := []command{{
+		Relation: "execute",
+		Command:  intelCmd,
+		Run:      (*Services).getIntelCmd,
+	}, {
+		Relation: "execute",
+		Command:  joinCmd,
+		Run:      (*Services).join,
+	}, {
+		Relation: "execute",
+		Command:  leaveCmd,
+		Run:      (*Services).leave,
+	}}
+
 	db := s.Backend.DB()
+
+	// TODO: users table
 	if _, err := db.Insert("messages", dbx.Params{
 		"user_id":           message.User.ID,
 		"message":           message.Message,
@@ -70,61 +93,42 @@ func (s *Services) OnPrivateMessage(message twitch.PrivateMessage) {
 	}
 
 	cmd := strings.Split(message.Message, " ")[0]
-	if message.User.Name == "rprtr258" && cmd == intelCmd {
-		response, err := s.getIntelCmd(message)
+	userName := message.User.Name
+
+	var relation string
+	if err := db.Select("relation").From("permissions").Where(dbx.And(
+		dbx.NewExp("user_id={:user_id}", dbx.Params{"user_id": message.User.ID}),
+		dbx.NewExp("object={:cmd}", dbx.Params{"cmd": fmt.Sprintf("cmd:%s", cmd)}),
+	)).Build().Row(&relation); err != nil {
+		if err == sql.ErrNoRows {
+			return
+		}
+		log.Println(err.Error())
+	}
+
+	for _, command := range cmds {
+		if command.Command != cmd || command.Relation != relation {
+			continue
+		}
+
+		response, err := command.Run(s, message)
 		if err != nil {
 			response = fmt.Sprintf("Internal error: %s", err.Error())
 		}
+
 		s.ChatClient.Whisper(message.User.Name, response)
-		db := s.Backend.DB()
 		if _, err := db.Insert("chat_commands", dbx.Params{
-			"command":  intelCmd,
+			"command":  command.Command,
 			"args":     message.Message,
 			"at":       time.Now(),
 			"response": response,
-			"user":     message.User.Name,
+			"user":     userName,
 			"channel":  message.Channel,
 		}).Execute(); err != nil {
 			// TODO: save log
 			log.Println(err.Error())
 		}
-	}
-	if message.User.Name == "rprtr258" && cmd == joinCmd {
-		response, err := s.join(message)
-		if err != nil {
-			response = fmt.Sprintf("Internal error: %s", err.Error())
-		}
-		s.ChatClient.Reply(message.Channel, message.ID, response)
-		db := s.Backend.DB()
-		if _, err := db.Insert("chat_commands", dbx.Params{
-			"command":  joinCmd,
-			"args":     message.Message,
-			"at":       time.Now(),
-			"response": response,
-			"user":     message.User.Name,
-			"channel":  message.Channel,
-		}).Execute(); err != nil {
-			// TODO: save log
-			log.Println(err.Error())
-		}
-	}
-	if message.User.Name == "rprtr258" && cmd == leaveCmd {
-		response, err := s.leave(message)
-		if err != nil {
-			response = fmt.Sprintf("Internal error: %s", err.Error())
-		}
-		s.ChatClient.Reply(message.Channel, message.ID, response)
-		db := s.Backend.DB()
-		if _, err := db.Insert("chat_commands", dbx.Params{
-			"command":  leaveCmd,
-			"args":     message.Message,
-			"at":       time.Now(),
-			"response": response,
-			"user":     message.User.Name,
-			"channel":  message.Channel,
-		}).Execute(); err != nil {
-			// TODO: save log
-			log.Println(err.Error())
-		}
+
+		break
 	}
 }
