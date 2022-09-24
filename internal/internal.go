@@ -57,6 +57,10 @@ var cmds []command = []command{{
 	Relation: everyoneRelation,
 	Command:  blabCmd,
 	Run:      (*Services).blab,
+}, {
+	Relation: everyoneRelation,
+	Command:  pythCmd,
+	Run:      (*Services).pyth,
 }}
 
 func (s *Services) logMessage(message twitch.PrivateMessage) {
@@ -125,7 +129,10 @@ func (s *Services) OnPrivateMessage(message twitch.PrivateMessage) {
 			response = "Empty response"
 		}
 		response = strings.ReplaceAll(response, "\n", " ")
-		// TODO: handle long response
+		if len(response) > _maxMessageLength {
+			runes := []rune(response)
+			response = string(runes[:_maxMessageLength])
+		}
 
 		if whisper {
 			s.ChatClient.Whisper(message.User.Name, response)

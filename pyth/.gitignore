@@ -1,0 +1,7 @@
+*.pyc
+*.swp
+*.pyth
+venv/
+tags
+*.gv*
+.coverage

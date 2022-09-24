@@ -43,6 +43,7 @@ func (s *Services) fed(message twitch.PrivateMessage) (string, error) {
 		// TODO: fix theWord = '%%' escaping
 		dbx.Like("message", theWord),
 		dbx.NotLike("message", fedCmd).Match(false, true),
+		// TODO: add command for total word usage on channel
 		dbx.NewExp("user_name={:user_name}", dbx.Params{"user_name": user}),
 	)).Row(&count)
 	if err != nil && err != sql.ErrNoRows {
