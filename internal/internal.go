@@ -21,12 +21,14 @@ type command struct {
 	Relation string
 	Command  string
 	Run      func(*Services, twitch.PrivateMessage) (string, error)
+	Whisper  bool
 }
 
 var cmds []command = []command{{
 	Relation: executeRelation,
 	Command:  intelCmd,
 	Run:      (*Services).getIntelCmd,
+	Whisper:  true,
 }, {
 	Relation: executeRelation,
 	Command:  joinCmd,
@@ -41,9 +43,8 @@ var cmds []command = []command{{
 	Run:      (*Services).fed,
 }}
 
-func (s *Services) OnPrivateMessage(message twitch.PrivateMessage) {
+func (s *Services) logMessage(message twitch.PrivateMessage) {
 	db := s.Backend.DB()
-
 	// TODO: users table
 	if _, err := db.Insert("messages", dbx.Params{
 		"user_id":           message.User.ID,
@@ -56,6 +57,12 @@ func (s *Services) OnPrivateMessage(message twitch.PrivateMessage) {
 		// TODO: save log
 		log.Println(err.Error())
 	}
+}
+
+func (s *Services) OnPrivateMessage(message twitch.PrivateMessage) {
+	db := s.Backend.DB()
+
+	s.logMessage(message)
 
 	firstWord := strings.Split(message.Message, " ")[0]
 	userName := message.User.Name
@@ -81,7 +88,18 @@ func (s *Services) OnPrivateMessage(message twitch.PrivateMessage) {
 		}
 
 		if cmd.Relation != everyoneRelation && cmd.Relation != relation {
-			continue
+			break
+		}
+
+		// TODO: peredelat'
+		if cmd.Command == fedCmd && message.Channel != "rprtr258" {
+			break
+		}
+
+		// TODO: peredelat'
+		whisper := cmd.Whisper
+		if cmd.Command == intelCmd && message.Channel == "rprtr258" {
+			whisper = false
 		}
 
 		response, err := cmd.Run(s, message)
@@ -89,7 +107,12 @@ func (s *Services) OnPrivateMessage(message twitch.PrivateMessage) {
 			response = fmt.Sprintf("Internal error: %s", err.Error())
 		}
 
-		s.ChatClient.Whisper(message.User.Name, response)
+		if whisper {
+			s.ChatClient.Whisper(message.User.Name, response)
+		} else {
+			s.ChatClient.Reply(message.Channel, message.ID, response)
+		}
+
 		if _, err := db.Insert("chat_commands", dbx.Params{
 			"command":  cmd.Command,
 			"args":     message.Message,

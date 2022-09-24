@@ -68,11 +68,12 @@ func formatDuration(d time.Time) string {
 }
 
 func (s *Services) getIntelCmd(message twitch.PrivateMessage) (string, error) {
-	if !strings.HasPrefix(message.Message, intelCmd+" ") {
+	words := strings.Split(message.Message, " ")
+	if len(words) < 2 {
 		return "No username provided", nil
 	}
 
-	login := strings.TrimPrefix(message.Message, intelCmd+" ")
+	login := words[1]
 	resp, err := s.TwitchApiClient.GetUsers(&helix.UsersParams{
 		Logins: []string{login},
 	})

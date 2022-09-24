@@ -38,7 +38,7 @@ func (s *Services) join(message twitch.PrivateMessage) (string, error) {
 func (s *Services) leave(message twitch.PrivateMessage) (string, error) {
 	words := strings.Split(message.Message, " ")
 	if len(words) != 2 {
-		return fmt.Sprintf("Usage: %s <channel>", joinCmd), nil
+		return fmt.Sprintf("Usage: %s <channel>", leaveCmd), nil
 	}
 
 	channel := words[1]
