@@ -7,8 +7,6 @@ import (
 
 	twitch "github.com/gempir/go-twitch-irc/v3"
 	"github.com/karalef/balaboba"
-	"github.com/pocketbase/pocketbase/forms"
-	"github.com/pocketbase/pocketbase/models"
 )
 
 // last_balaboba = ""
@@ -83,25 +81,12 @@ func (s *Services) blab(message twitch.PrivateMessage) (string, error) {
 		return "", err
 	}
 
-	// return response.Text, nil
-
-	collection, err := s.Backend.Dao().FindCollectionByNameOrId("blab")
+	_, err = s._insert("blab", map[string]any{
+		"text":          response.Text,
+		"author_id":     message.User.ID,
+		"continuations": 1,
+	})
 	if err != nil {
-		return "", err
-	}
-
-	record := models.NewRecord(collection)
-	record.SetDataValue("text", response.Text)
-	record.SetDataValue("author_id", message.User.ID)
-	record.SetDataValue("continuations", 1)
-
-	form := forms.NewRecordUpsert(s.Backend.App, record)
-
-	if err := form.Validate(); err != nil {
-		return "", err
-	}
-
-	if err := form.Submit(); err != nil {
 		return "", err
 	}
 

@@ -12,6 +12,8 @@ import (
 	"github.com/nicklaw5/helix"
 	"github.com/pocketbase/dbx"
 	"github.com/pocketbase/pocketbase"
+	"github.com/pocketbase/pocketbase/forms"
+	"github.com/pocketbase/pocketbase/models"
 )
 
 const (
@@ -58,16 +60,16 @@ var cmds []command = []command{{
 }}
 
 func (s *Services) logMessage(message twitch.PrivateMessage) {
-	db := s.Backend.DB()
-	// TODO: users table
-	if _, err := db.Insert("messages", dbx.Params{
+	_, err := s._insert("messages", map[string]any{
 		"user_id":           message.User.ID,
 		"message":           message.Message,
 		"at":                message.Time,
 		"channel":           message.Channel,
 		"user_name":         message.User.Name,
 		"user_display_name": message.User.DisplayName,
-	}).Execute(); err != nil {
+	})
+	// TODO: users table
+	if err != nil {
 		// TODO: save log
 		log.Println(err.Error())
 	}
@@ -131,18 +133,42 @@ func (s *Services) OnPrivateMessage(message twitch.PrivateMessage) {
 			s.ChatClient.Reply(message.Channel, message.ID, response)
 		}
 
-		if _, err := db.Insert("chat_commands", dbx.Params{
+		if _, err := s._insert("chat_commands", map[string]any{
 			"command":  cmd.Command,
 			"args":     message.Message,
 			"at":       time.Now(),
 			"response": response,
 			"user":     userName,
 			"channel":  message.Channel,
-		}).Execute(); err != nil {
+		}); err != nil {
 			// TODO: save log
 			log.Println(err.Error())
 		}
 
 		break
 	}
+}
+
+func (s *Services) _insert(collectionName string, data map[string]any) (string, error) {
+	collection, err := s.Backend.Dao().FindCollectionByNameOrId(collectionName)
+	if err != nil {
+		return "", err
+	}
+
+	record := models.NewRecord(collection)
+	for k, v := range data {
+		record.SetDataValue(k, v)
+	}
+
+	form := forms.NewRecordUpsert(s.Backend.App, record)
+
+	if err := form.Validate(); err != nil {
+		return "", err
+	}
+
+	if err := form.Submit(); err != nil {
+		return "", err
+	}
+
+	return record.Id, nil
 }

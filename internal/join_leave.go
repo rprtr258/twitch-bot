@@ -24,10 +24,9 @@ func (s *Services) join(message twitch.PrivateMessage) (string, error) {
 
 	s.ChatClient.Join(channel)
 
-	db := s.Backend.DB()
-	if _, err := db.Insert("joined_channels", dbx.Params{
+	if _, err := s._insert("joined_channels", map[string]any{
 		"channel": channel,
-	}).Execute(); err != nil {
+	}); err != nil {
 		// TODO: save log
 		log.Println(err.Error())
 	}
