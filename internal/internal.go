@@ -56,13 +56,26 @@ func (s *Services) leave(message twitch.PrivateMessage) (string, error) {
 }
 
 func (s *Services) OnPrivateMessage(message twitch.PrivateMessage) {
+	db := s.Backend.DB()
+	if _, err := db.Insert("messages", dbx.Params{
+		"user_id":           message.User.ID,
+		"message":           message.Message,
+		"at":                message.Time,
+		"channel":           message.Channel,
+		"user_name":         message.User.Name,
+		"user_display_name": message.User.DisplayName,
+	}).Execute(); err != nil {
+		// TODO: save log
+		log.Println(err.Error())
+	}
+
 	cmd := strings.Split(message.Message, " ")[0]
 	if message.User.Name == "rprtr258" && cmd == intelCmd {
 		response, err := s.getIntelCmd(message)
 		if err != nil {
 			response = fmt.Sprintf("Internal error: %s", err.Error())
 		}
-		s.ChatClient.Reply(message.Channel, message.ID, response)
+		s.ChatClient.Whisper(message.User.Name, response)
 		db := s.Backend.DB()
 		if _, err := db.Insert("chat_commands", dbx.Params{
 			"command":  intelCmd,
