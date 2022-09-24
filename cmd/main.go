@@ -1,12 +1,17 @@
 package main
 
 import (
+	"database/sql"
+	"fmt"
 	"log"
+	"net/http"
 	"os"
 
 	"github.com/gempir/go-twitch-irc/v3"
 	"github.com/karalef/balaboba"
+	"github.com/labstack/echo/v5"
 	"github.com/nicklaw5/helix"
+	"github.com/pocketbase/dbx"
 	"github.com/pocketbase/pocketbase"
 	"github.com/pocketbase/pocketbase/core"
 
@@ -67,6 +72,37 @@ func run() error {
 				log.Fatal(err.Error())
 			}
 		}()
+
+		return nil
+	})
+
+	app.OnBeforeServe().Add(func(e *core.ServeEvent) error {
+		e.Router.AddRoute(echo.Route{
+			Method: http.MethodGet,
+			Path:   "/blab/:id",
+			Handler: func(c echo.Context) error {
+				blabID := c.PathParam("id")
+				db := app.DB()
+
+				var text string
+				err := db.Select("text").From("blab").Where(dbx.NewExp(
+					"id={:id}", dbx.Params{"id": blabID},
+				)).Row(&text)
+				if err != nil && err != sql.ErrNoRows {
+					// TODO: save log
+					log.Println(err.Error())
+					return echo.ErrInternalServerError
+				} else if err == sql.ErrNoRows {
+					return echo.ErrNotFound
+				}
+
+				// TODO: use html template with text safeguarding
+				return c.HTML(http.StatusOK, fmt.Sprintf(
+					`<p style="padding: 10%% 15%%; font-size: 1.8em;">%s</p>`,
+					text,
+				))
+			},
+		})
 
 		return nil
 	})

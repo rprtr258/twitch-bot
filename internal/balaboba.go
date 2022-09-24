@@ -4,47 +4,20 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
+	"unicode/utf8"
 
 	twitch "github.com/gempir/go-twitch-irc/v3"
 	"github.com/karalef/balaboba"
 )
 
-// last_balaboba = ""
-
-// def balabob(text, skip=0):
-//     from subprocess import check_output
-//     TO_SKIP = len("please wait up to 15 seconds Без стиля".split())
-//     output = check_output(["./balaboba"] + text.split()).decode("utf-8").split()
-//     print(output)
-//     if "на острые темы, например, про политику или религию" in ' '.join(output):
-//         return "PauseFish"
-//     last_balaboba = ' '.join(output[TO_SKIP + skip:])
-//     return last_balaboba
-
-// @app.route("/blab/<idd>")
-// def long_blab(idd):
-//     db = read_db()
-//     db[idd] = balabob(db[idd])
-//     load_db(db)
-//     return f'''<p style="padding: 10% 15%; font-size: 1.8em;">{db[idd]}</p>'''
-
-// @app.route("/b")
-// def balaboba():
-//     message = request.args.get("m")
-//     response = balabob(message, skip=len(message.split()))
-//     if len(response) < 300:
-//         print("TOO SHORT: ", message, len(response))
-//         return response
-//     else:
-//         db = read_db()
-//         idd = max(map(int, db.keys())) + 1
-//         db[idd] = message + ' ' + response
-//         load_db(db)
-//         return f"Читать продолжение в источнике: secure-waters-73337.herokuapp.com/blab/{idd}"
+const _maxMessageLength = 500
 
 const (
 	blabCmd = "?blab"
 )
+
+// TODO: continue command
+// TODO: read command
 
 func (s *Services) blab(message twitch.PrivateMessage) (string, error) {
 	words := strings.Split(message.Message, " ")
@@ -81,7 +54,7 @@ func (s *Services) blab(message twitch.PrivateMessage) (string, error) {
 		return "", err
 	}
 
-	_, err = s._insert("blab", map[string]any{
+	id, err := s._insert("blab", map[string]any{
 		"text":          response.Text,
 		"author_id":     message.User.ID,
 		"continuations": 1,
@@ -90,27 +63,10 @@ func (s *Services) blab(message twitch.PrivateMessage) (string, error) {
 		return "", err
 	}
 
-	// TODO: handle long text
-	return response.Text, nil
+	res := fmt.Sprintf("%s: %s", id, response.Text)
+	if utf8.RuneCountInString(res) > _maxMessageLength {
+		return fmt.Sprintf("Читать продолжение в источнике: %s/blab/%s", s.Backend.Settings().Meta.AppUrl, id), nil
+	}
 
-	// db := s.Backend.DB()
-
-	// theWord := words[1]
-
-	// var count int
-	// err = db.Select("COUNT(*) AS count").From("messages").Where(dbx.And(
-	// 	dbx.NewExp("channel={:channel}", dbx.Params{"channel": message.Channel}),
-	// 	// TODO: fix theWord = '%%' escaping
-	// 	dbx.Like("message", theWord),
-	// 	dbx.NotLike("message", fedCmd).Match(false, true),
-	// 	dbx.NewExp("user_id={:user_id}", dbx.Params{"user_id": userID}),
-	// )).Row(&count)
-	// if err != nil && err != sql.ErrNoRows {
-	// 	// TODO: save log
-	// 	log.Println(err.Error())
-	// 	return "", err
-	// }
-
-	// // TODO: add feed after duration
-	// return fmt.Sprintf("Ты использовал слово %s %d раз.", theWord, count), nil
+	return res, nil
 }
