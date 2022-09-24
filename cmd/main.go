@@ -12,7 +12,7 @@ import (
 	abobus "abobus/internal"
 )
 
-func handleTwitchAuth(helixClient *helix.Client) {
+func twitchAuth(helixClient *helix.Client) {
 	resp, err := helixClient.RequestAppAccessToken([]string{"user:read:email"})
 	if err != nil {
 		log.Println(err.Error())
@@ -36,10 +36,19 @@ func run() error {
 			return err
 		}
 
-		handleTwitchAuth(helixClient)
+		twitchAuth(helixClient)
 
-		client := twitch.NewClient("trooba_bot", os.Getenv("TWITCH_OAUTH_TOKEN"))
-		client.Join("vs_code")
+		client := twitch.NewClient(os.Getenv("TWITCH_USERNAME"), os.Getenv("TWITCH_OAUTH_TOKEN"))
+
+		res, err := app.DB().Select("channel").From("joined_channels").Build().Rows()
+		if err != nil {
+			return err
+		}
+		var channel string
+		for res.Next() {
+			res.Scan(&channel)
+			client.Join(channel)
+		}
 
 		srvcs := abobus.Services{
 			ChatClient:      client,

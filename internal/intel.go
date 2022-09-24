@@ -18,7 +18,7 @@ type Services struct {
 	Backend         *pocketbase.PocketBase
 }
 
-const intelCmdPrefix = "?intel"
+const intelCmd = "?intel"
 
 func formatDuration(d time.Time) string {
 	var parts []string
@@ -68,11 +68,11 @@ func formatDuration(d time.Time) string {
 }
 
 func (s *Services) getIntelCmd(message twitch.PrivateMessage) (string, error) {
-	if !strings.HasPrefix(message.Message, intelCmdPrefix+" ") {
+	if !strings.HasPrefix(message.Message, intelCmd+" ") {
 		return "No username provided", nil
 	}
 
-	login := strings.TrimPrefix(message.Message, intelCmdPrefix+" ")
+	login := strings.TrimPrefix(message.Message, intelCmd+" ")
 	resp, err := s.TwitchApiClient.GetUsers(&helix.UsersParams{
 		Logins: []string{login},
 	})
