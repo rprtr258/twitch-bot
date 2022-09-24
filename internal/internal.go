@@ -119,7 +119,11 @@ func (s *Services) OnPrivateMessage(message twitch.PrivateMessage) {
 		response, err := cmd.Run(s, message)
 		if err != nil {
 			response = fmt.Sprintf("Internal error: %s", err.Error())
+		} else if response == "" {
+			response = "Empty response"
 		}
+		response = strings.ReplaceAll(response, "\n", " ")
+		// TODO: handle long response
 
 		if whisper {
 			s.ChatClient.Whisper(message.User.Name, response)
