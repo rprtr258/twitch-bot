@@ -12,49 +12,10 @@ import (
 )
 
 const (
-	joinCmd  = "?join"
-	leaveCmd = "?leave"
+	everyoneRelation  = ""
+	executeRelation   = "execute"
+	forbiddenRelation = "forbidden"
 )
-
-func (s *Services) join(message twitch.PrivateMessage) (string, error) {
-	words := strings.Split(message.Message, " ")
-	if len(words) != 2 {
-		return fmt.Sprintf("Usage: %s <channel>", joinCmd), nil
-	}
-
-	channel := words[1]
-
-	s.ChatClient.Join(channel)
-
-	db := s.Backend.DB()
-	if _, err := db.Insert("joined_channels", dbx.Params{
-		"channel": channel,
-	}).Execute(); err != nil {
-		// TODO: save log
-		log.Println(err.Error())
-	}
-
-	return fmt.Sprintf("joined %s successfully", channel), nil
-}
-
-func (s *Services) leave(message twitch.PrivateMessage) (string, error) {
-	words := strings.Split(message.Message, " ")
-	if len(words) != 2 {
-		return fmt.Sprintf("Usage: %s <channel>", joinCmd), nil
-	}
-
-	channel := words[1]
-
-	s.ChatClient.Depart(channel)
-
-	db := s.Backend.DB()
-	if _, err := db.Delete("joined_channels", dbx.NewExp("channel={:channel}", dbx.Params{"channel": channel})).Execute(); err != nil {
-		// TODO: save log
-		log.Println(err.Error())
-	}
-
-	return fmt.Sprintf("left %s successfully", channel), nil
-}
 
 type command struct {
 	Relation string
@@ -62,21 +23,25 @@ type command struct {
 	Run      func(*Services, twitch.PrivateMessage) (string, error)
 }
 
-func (s *Services) OnPrivateMessage(message twitch.PrivateMessage) {
-	cmds := []command{{
-		Relation: "execute",
-		Command:  intelCmd,
-		Run:      (*Services).getIntelCmd,
-	}, {
-		Relation: "execute",
-		Command:  joinCmd,
-		Run:      (*Services).join,
-	}, {
-		Relation: "execute",
-		Command:  leaveCmd,
-		Run:      (*Services).leave,
-	}}
+var cmds []command = []command{{
+	Relation: executeRelation,
+	Command:  intelCmd,
+	Run:      (*Services).getIntelCmd,
+}, {
+	Relation: executeRelation,
+	Command:  joinCmd,
+	Run:      (*Services).join,
+}, {
+	Relation: executeRelation,
+	Command:  leaveCmd,
+	Run:      (*Services).leave,
+}, {
+	Relation: everyoneRelation,
+	Command:  fedCmd,
+	Run:      (*Services).fed,
+}}
 
+func (s *Services) OnPrivateMessage(message twitch.PrivateMessage) {
 	db := s.Backend.DB()
 
 	// TODO: users table
@@ -92,33 +57,41 @@ func (s *Services) OnPrivateMessage(message twitch.PrivateMessage) {
 		log.Println(err.Error())
 	}
 
-	cmd := strings.Split(message.Message, " ")[0]
+	firstWord := strings.Split(message.Message, " ")[0]
 	userName := message.User.Name
 
 	var relation string
 	if err := db.Select("relation").From("permissions").Where(dbx.And(
 		dbx.NewExp("user_id={:user_id}", dbx.Params{"user_id": message.User.ID}),
-		dbx.NewExp("object={:cmd}", dbx.Params{"cmd": fmt.Sprintf("cmd:%s", cmd)}),
+		dbx.NewExp("object={:cmd}", dbx.Params{"cmd": fmt.Sprintf("cmd:%s", firstWord)}),
 	)).Build().Row(&relation); err != nil {
-		if err == sql.ErrNoRows {
+		if err != sql.ErrNoRows {
+			log.Println(err.Error())
 			return
 		}
-		log.Println(err.Error())
 	}
 
-	for _, command := range cmds {
-		if command.Command != cmd || command.Relation != relation {
+	for _, cmd := range cmds {
+		if cmd.Command != firstWord {
 			continue
 		}
 
-		response, err := command.Run(s, message)
+		if relation == forbiddenRelation {
+			break
+		}
+
+		if cmd.Relation != everyoneRelation && cmd.Relation != relation {
+			continue
+		}
+
+		response, err := cmd.Run(s, message)
 		if err != nil {
 			response = fmt.Sprintf("Internal error: %s", err.Error())
 		}
 
 		s.ChatClient.Whisper(message.User.Name, response)
 		if _, err := db.Insert("chat_commands", dbx.Params{
-			"command":  command.Command,
+			"command":  cmd.Command,
 			"args":     message.Message,
 			"at":       time.Now(),
 			"response": response,
