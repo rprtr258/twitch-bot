@@ -8,7 +8,10 @@ import (
 	"time"
 
 	twitch "github.com/gempir/go-twitch-irc/v3"
+	"github.com/karalef/balaboba"
+	"github.com/nicklaw5/helix"
 	"github.com/pocketbase/dbx"
+	"github.com/pocketbase/pocketbase"
 )
 
 const (
@@ -16,6 +19,13 @@ const (
 	executeRelation   = "execute"
 	forbiddenRelation = "forbidden"
 )
+
+type Services struct {
+	ChatClient      *twitch.Client
+	TwitchApiClient *helix.Client
+	Backend         *pocketbase.PocketBase
+	Balaboba        *balaboba.Client
+}
 
 type command struct {
 	Relation string
@@ -41,6 +51,10 @@ var cmds []command = []command{{
 	Relation: everyoneRelation,
 	Command:  fedCmd,
 	Run:      (*Services).fed,
+}, {
+	Relation: everyoneRelation,
+	Command:  blabCmd,
+	Run:      (*Services).blab,
 }}
 
 func (s *Services) logMessage(message twitch.PrivateMessage) {
@@ -92,7 +106,7 @@ func (s *Services) OnPrivateMessage(message twitch.PrivateMessage) {
 		}
 
 		// TODO: peredelat'
-		if cmd.Command == fedCmd && message.Channel != "rprtr258" {
+		if (cmd.Command == fedCmd || cmd.Command == blabCmd) && message.Channel != "rprtr258" {
 			break
 		}
 

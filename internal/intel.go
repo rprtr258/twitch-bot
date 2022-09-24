@@ -9,14 +9,7 @@ import (
 
 	twitch "github.com/gempir/go-twitch-irc/v3"
 	"github.com/nicklaw5/helix"
-	"github.com/pocketbase/pocketbase"
 )
-
-type Services struct {
-	ChatClient      *twitch.Client
-	TwitchApiClient *helix.Client
-	Backend         *pocketbase.PocketBase
-}
 
 const intelCmd = "?intel"
 

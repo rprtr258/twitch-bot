@@ -4,6 +4,7 @@ go 1.19
 
 require (
 	github.com/gempir/go-twitch-irc/v3 v3.2.0
+	github.com/karalef/balaboba v0.0.0-20220920173959-7e9a07b058c8
 	github.com/nicklaw5/helix v1.25.0
 	github.com/pocketbase/dbx v1.6.0
 	github.com/pocketbase/pocketbase v0.7.6

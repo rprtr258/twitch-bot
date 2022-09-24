@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/gempir/go-twitch-irc/v3"
+	"github.com/karalef/balaboba"
 	"github.com/nicklaw5/helix"
 	"github.com/pocketbase/pocketbase"
 	"github.com/pocketbase/pocketbase/core"
@@ -50,10 +51,13 @@ func run() error {
 			client.Join(channel)
 		}
 
+		balabobaClient := balaboba.New(balaboba.Rus)
+
 		srvcs := abobus.Services{
 			ChatClient:      client,
 			TwitchApiClient: helixClient,
 			Backend:         app,
+			Balaboba:        balabobaClient,
 		}
 
 		client.OnPrivateMessage(srvcs.OnPrivateMessage)
