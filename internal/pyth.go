@@ -73,5 +73,10 @@ func (s *Services) pyth(message twitch.PrivateMessage) (string, error) {
 		return string(stderrStr), nil
 	}
 
-	return "> " + string(stdout), nil
+	stdoutStr := string(stdout)
+	if strings.HasPrefix(stdoutStr, "/") || strings.HasPrefix(stdoutStr, ".") {
+		return "пососи", nil
+	}
+
+	return stdoutStr, nil
 }

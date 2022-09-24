@@ -20,6 +20,8 @@ const (
 	everyoneRelation  = ""
 	executeRelation   = "execute"
 	forbiddenRelation = "forbidden"
+
+	commandsCmd = "?commands"
 )
 
 type Services struct {
@@ -30,38 +32,54 @@ type Services struct {
 }
 
 type command struct {
-	Relation string
-	Command  string
-	Run      func(*Services, twitch.PrivateMessage) (string, error)
-	Whisper  bool
+	Relation    string
+	Command     string
+	Run         func(*Services, twitch.PrivateMessage) (string, error)
+	Whisper     bool
+	Description string
 }
 
-var cmds []command = []command{{
-	Relation: executeRelation,
-	Command:  intelCmd,
-	Run:      (*Services).getIntelCmd,
-	Whisper:  true,
-}, {
-	Relation: executeRelation,
-	Command:  joinCmd,
-	Run:      (*Services).join,
-}, {
-	Relation: executeRelation,
-	Command:  leaveCmd,
-	Run:      (*Services).leave,
-}, {
-	Relation: everyoneRelation,
-	Command:  fedCmd,
-	Run:      (*Services).fed,
-}, {
-	Relation: everyoneRelation,
-	Command:  blabCmd,
-	Run:      (*Services).blab,
-}, {
-	Relation: everyoneRelation,
-	Command:  pythCmd,
-	Run:      (*Services).pyth,
-}}
+var cmds []command
+
+func init() {
+	cmds = []command{{
+		Relation:    executeRelation,
+		Command:     intelCmd,
+		Run:         (*Services).getIntelCmd,
+		Whisper:     true,
+		Description: "Gather intel on user",
+	}, {
+		Relation:    executeRelation,
+		Command:     joinCmd,
+		Run:         (*Services).join,
+		Description: "Join channel",
+	}, {
+		Relation:    executeRelation,
+		Command:     leaveCmd,
+		Run:         (*Services).leave,
+		Description: "Leave channel",
+	}, {
+		Relation:    everyoneRelation,
+		Command:     fedCmd,
+		Run:         (*Services).fed,
+		Description: "Show how many times word has been used",
+	}, {
+		Relation:    everyoneRelation,
+		Command:     blabCmd,
+		Run:         (*Services).blab,
+		Description: "Balaboba text generation neural network",
+	}, {
+		Relation:    everyoneRelation,
+		Command:     pythCmd,
+		Run:         (*Services).pyth,
+		Description: "Eval in pyth",
+	}, {
+		Relation:    everyoneRelation,
+		Command:     commandsCmd,
+		Run:         (*Services).commands,
+		Description: "List all commands",
+	}}
+}
 
 func (s *Services) logMessage(message twitch.PrivateMessage) {
 	_, err := s._insert("messages", map[string]any{
@@ -112,7 +130,7 @@ func (s *Services) OnPrivateMessage(message twitch.PrivateMessage) {
 		}
 
 		// TODO: peredelat'
-		if (cmd.Command == fedCmd || cmd.Command == blabCmd) && message.Channel != "rprtr258" {
+		if (cmd.Command == fedCmd || cmd.Command == blabCmd || cmd.Command == pythCmd || cmd.Command == commandsCmd) && message.Channel != "rprtr258" {
 			break
 		}
 
@@ -178,4 +196,14 @@ func (s *Services) _insert(collectionName string, data map[string]any) (string, 
 	}
 
 	return record.Id, nil
+}
+
+func (s *Services) commands(message twitch.PrivateMessage) (string, error) {
+	parts := make([]string, 0, len(cmds))
+
+	for _, cmd := range cmds {
+		parts = append(parts, fmt.Sprintf("%s - %s", cmd.Command, cmd.Description))
+	}
+
+	return strings.Join(parts, ", "), nil
 }
