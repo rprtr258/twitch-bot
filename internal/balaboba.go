@@ -12,28 +12,6 @@ import (
 // last_balaboba = ""
 
 // def balabob(text, skip=0):
-//     global last_balaboba
-//     if text == "":
-//         text = last_balaboba
-//     pitsots = 0
-//     ln = len(text)
-//     tries = 4
-//     for _ in range(tries):
-//         import requests
-//         resp = requests.post('https://pelevin.gpt.dobro.ai/generate/', json={"prompt":text}, verify=False)
-//         if resp.status_code == 500 or resp.status_code == 502:
-//             pitsots += 1
-//         else:
-//             print(resp.content.decode('utf-8'))
-//             resp = resp.json()
-//             text = ' '.join(text.split() + max(resp['replies'], key=len).split())
-//     if pitsots == tries:
-//         return 'Порфирьевич в ахуе, попробуйте еще раз позже'
-//     elif any(x in text.lower() for x in ['пидор', 'негр', 'нигер']):
-//         return 'Порфирьевич сказал очень плохое слово, поэтому ловите рыбку AAUGH'
-//     else:
-//         return text[ln:]
-
 //     from subprocess import check_output
 //     TO_SKIP = len("please wait up to 15 seconds Без стиля".split())
 //     output = check_output(["./balaboba"] + text.split()).decode("utf-8").split()
