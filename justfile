@@ -1,3 +1,7 @@
+@_help:
+  just --list --unsorted
+
+# run server
 run:
   rwenv -i -e .env go run cmd/main.go serve
 
@@ -12,3 +16,8 @@ get_chat_logs:
 # generates: [model.json]
 train: get_chat_logs
   python quotes_generator/main.py train --dataset dataset --model model.json
+
+# bump dependencies
+@bump:
+  go get -u ./...
+  go mod tidy
