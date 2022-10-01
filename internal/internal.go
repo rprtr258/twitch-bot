@@ -8,6 +8,7 @@ import (
 	"log"
 	"strings"
 	"time"
+	"unicode/utf8"
 
 	twitch "github.com/gempir/go-twitch-irc/v3"
 	"github.com/samber/lo"
@@ -65,6 +66,9 @@ var allCommands = []Command{{
 }, {
 	PermissionsRequired: []string{},
 	Cmd:                 cmds.PermsCmd{},
+}, {
+	PermissionsRequired: []string{},
+	Cmd:                 cmds.PastaSearchCmd{},
 }}
 
 // TODO: handle whispers
@@ -101,19 +105,22 @@ func OnPrivateMessage(s *services.Services) func(twitch.PrivateMessage) {
 			response = strings.ReplaceAll(response, "\n", " ")
 			// TODO: move responding to commands
 			// TODO: rewrite
-			if len(response) > _maxMessageLength {
+			// TODO: fix response: Must be less than 500 character(s). somewhere
+			if utf8.RuneCountInString(response) > _maxMessageLength {
+				runes := []rune(response)
+				log.Println(len(runes), utf8.RuneCountInString(response))
 				if message.User.Name == "rprtr258" {
-					runes := []rune(response)
 					for i := 0; i < len(runes); i += _maxMessageLength {
-						resp := string(runes[i : i+_maxMessageLength])
+						resp := string(lo.Subset(runes, i, _maxMessageLength))
 						if whisper {
 							s.ChatClient.Whisper(message.User.Name, resp)
 						} else {
 							s.ChatClient.Say(message.Channel, resp)
 						}
+						// TODO: check spam limit
+						time.Sleep(time.Millisecond * 500)
 					}
 				} else {
-					runes := []rune(response)
 					response = string(runes[:_maxMessageLength])
 
 					if whisper {
