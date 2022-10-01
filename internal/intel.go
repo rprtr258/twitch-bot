@@ -60,7 +60,7 @@ func formatDuration(d time.Time) string {
 	return strings.Join(parts, "")
 }
 
-func (s *Services) getIntelCmd(message twitch.PrivateMessage) (string, error) {
+func (s *Services) getIntelCmd(perms []string, message twitch.PrivateMessage) (string, error) {
 	words := strings.Split(message.Message, " ")
 	if len(words) < 2 {
 		return "No username provided", nil

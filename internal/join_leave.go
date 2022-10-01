@@ -14,7 +14,7 @@ const (
 	leaveCmd = "?leave"
 )
 
-func (s *Services) join(message twitch.PrivateMessage) (string, error) {
+func (s *Services) join(perms []string, message twitch.PrivateMessage) (string, error) {
 	words := strings.Split(message.Message, " ")
 	if len(words) != 2 {
 		return fmt.Sprintf("Usage: %s <channel>", joinCmd), nil
@@ -34,7 +34,7 @@ func (s *Services) join(message twitch.PrivateMessage) (string, error) {
 	return fmt.Sprintf("joined %s successfully", channel), nil
 }
 
-func (s *Services) leave(message twitch.PrivateMessage) (string, error) {
+func (s *Services) leave(perms []string, message twitch.PrivateMessage) (string, error) {
 	words := strings.Split(message.Message, " ")
 	if len(words) != 2 {
 		return fmt.Sprintf("Usage: %s <channel>", leaveCmd), nil

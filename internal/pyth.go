@@ -37,7 +37,7 @@ const (
 
 var running atomic.Int64
 
-func (s *Services) pyth(message twitch.PrivateMessage) (string, error) {
+func (s *Services) pyth(perms []string, message twitch.PrivateMessage) (string, error) {
 	if !strings.ContainsRune(message.Message, ' ') {
 		return "Pyth docs: https://pyth.readthedocs.io/en/latest/getting-started.html", nil
 	}

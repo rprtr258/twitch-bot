@@ -73,7 +73,7 @@ func run() error {
 					"username": "rprtr258",
 					"channel":  "rprtr258",
 				}},
-				"say_response": []abobus.Claims{{
+				"say_response": []abobus.Claims{{ // TODO: rename to say_response_on_admin_channel
 					"username": "rprtr258",
 					"channel":  "rprtr258",
 				}},

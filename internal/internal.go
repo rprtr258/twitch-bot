@@ -51,7 +51,7 @@ type Services struct {
 type command struct {
 	PermissionsRequired []string
 	Command             string
-	Run                 func(*Services, twitch.PrivateMessage) (string, error)
+	Run                 func(*Services, []string, twitch.PrivateMessage) (string, error)
 	Description         string
 }
 
@@ -93,7 +93,13 @@ func init() {
 		PermissionsRequired: []string{"execute_commands"},
 		Command:             commandsCmd,
 		Run:                 (*Services).commands,
-		Description:         "List all commands",
+		// TODO: list only available commands
+		Description: "List all commands",
+	}, {
+		PermissionsRequired: []string{},
+		Command:             permsCmd,
+		Run:                 (*Services).getPermissions,
+		Description:         "Get permissions",
 	}}
 }
 
@@ -136,10 +142,8 @@ func (s *Services) OnPrivateMessage(message twitch.PrivateMessage) {
 		}
 
 		whisper := !lo.Contains(userPermissions, "say_response")
-		// TODO: remove, add command to check permissions
-		s.ChatClient.Say(message.Channel, fmt.Sprint(cmd, userPermissions, whisper))
 
-		response, err := cmd.Run(s, message)
+		response, err := cmd.Run(s, userPermissions, message)
 		if err != nil {
 			response = fmt.Sprintf("Internal error: %s", err.Error())
 		} else if response == "" {
@@ -217,7 +221,7 @@ func (s *Services) _insert(collectionName string, data map[string]any) (string, 
 	return record.Id, nil
 }
 
-func (s *Services) commands(message twitch.PrivateMessage) (string, error) {
+func (s *Services) commands(perms []string, message twitch.PrivateMessage) (string, error) {
 	parts := make([]string, 0, len(cmds))
 
 	for _, cmd := range cmds {

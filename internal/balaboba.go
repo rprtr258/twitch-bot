@@ -19,7 +19,7 @@ const (
 // TODO: continue command
 // TODO: read command
 
-func (s *Services) blab(message twitch.PrivateMessage) (string, error) {
+func (s *Services) blab(perms []string, message twitch.PrivateMessage) (string, error) {
 	words := strings.Split(message.Message, " ")
 
 	if len(words) == 1 {

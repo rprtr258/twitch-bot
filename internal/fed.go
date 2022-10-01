@@ -14,7 +14,7 @@ const (
 	fedCmd = "?fed"
 )
 
-func (s *Services) fed(message twitch.PrivateMessage) (string, error) {
+func (s *Services) fed(perms []string, message twitch.PrivateMessage) (string, error) {
 	words := strings.Split(message.Message, " ")
 	if len(words) != 2 && len(words) != 3 {
 		return fmt.Sprintf(`Usage: "%[1]s <word>" or "%[1]s <user> <word>" or "%[1]s * <word>"`, fedCmd), nil
