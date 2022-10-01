@@ -27,11 +27,9 @@ func (CommandsCmd) Description() string {
 }
 
 func (CommandsCmd) Run(s *services.Services, perms []string, message twitch.PrivateMessage) (string, error) {
-	parts := make([]string, 0, len(allCommands))
-
-	for _, cmd := range allCommands {
-		parts = append(parts, fmt.Sprintf("%s - %s", cmd.Cmd.Command(), cmd.Cmd.Description()))
-	}
+	parts := lo.Map(allCommands, func(cmd Command, _ int) string {
+		return fmt.Sprintf("%s - %s", cmd.Cmd.Command(), cmd.Cmd.Description())
+	})
 
 	return strings.Join(parts, ", "), nil
 }
