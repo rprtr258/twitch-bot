@@ -46,7 +46,9 @@ func (cmd PastaSearchCmd) Run(s *services.Services, perms []string, message twit
 		return "", err
 	}
 
-	matches := fuzzy.RankFindNormalized(query, pastes)
+	matches := lo.Filter(fuzzy.RankFindNormalized(query, pastes), func(match fuzzy.Rank, _ int) bool {
+		return match.Distance < 500
+	})
 	totalDistance := lo.SumBy(matches, func(match fuzzy.Rank) int {
 		return match.Distance
 	})
