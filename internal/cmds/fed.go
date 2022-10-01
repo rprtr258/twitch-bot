@@ -1,4 +1,4 @@
-package internal
+package cmds
 
 import (
 	"database/sql"
@@ -10,14 +10,20 @@ import (
 	"github.com/pocketbase/dbx"
 )
 
-const (
-	fedCmd = "?fed"
-)
+type FedCmd struct{}
 
-func (s *Services) fed(perms []string, message twitch.PrivateMessage) (string, error) {
+func (FedCmd) Command() string {
+	return "?fed"
+}
+
+func (FedCmd) Description() string {
+	return "Show how many times word has been used"
+}
+
+func (cmd FedCmd) Run(s *Services, perms []string, message twitch.PrivateMessage) (string, error) {
 	words := strings.Split(message.Message, " ")
 	if len(words) != 2 && len(words) != 3 {
-		return fmt.Sprintf(`Usage: "%[1]s <word>" or "%[1]s <user> <word>" or "%[1]s * <word>"`, fedCmd), nil
+		return fmt.Sprintf(`Usage: "%[1]s <word>" or "%[1]s <user> <word>" or "%[1]s * <word>"`, cmd.Command()), nil
 	}
 
 	db := s.Backend.DB()
@@ -29,7 +35,7 @@ func (s *Services) fed(perms []string, message twitch.PrivateMessage) (string, e
 			dbx.NewExp("channel={:channel}", dbx.Params{"channel": message.Channel}),
 			// TODO: fix theWord = '%%' escaping
 			dbx.Like("message", theWord),
-			dbx.NotLike("message", fedCmd).Match(false, true),
+			dbx.NotLike("message", cmd.Command()).Match(false, true),
 		)).Row(&count)
 		if err != nil && err != sql.ErrNoRows {
 			// TODO: save log
@@ -60,7 +66,7 @@ func (s *Services) fed(perms []string, message twitch.PrivateMessage) (string, e
 		dbx.NewExp("channel={:channel}", dbx.Params{"channel": message.Channel}),
 		// TODO: fix theWord = '%%' escaping
 		dbx.Like("message", theWord),
-		dbx.NotLike("message", fedCmd).Match(false, true),
+		dbx.NotLike("message", cmd.Command()).Match(false, true),
 		dbx.NewExp("user_name={:user_name}", dbx.Params{"user_name": user}),
 	)).Row(&count)
 	if err != nil && err != sql.ErrNoRows {

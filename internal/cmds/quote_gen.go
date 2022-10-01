@@ -1,4 +1,4 @@
-package internal
+package cmds
 
 // app = Flask(__name__)
 // with open("model.json", "r") as fd:

@@ -1,4 +1,4 @@
-package internal
+package cmds
 
 import (
 	"bytes"
@@ -31,35 +31,41 @@ import (
 //     print(repr(out))
 //     return out
 
-const (
-	pythCmd = "?pyth"
-)
+type PythCmd struct {
+	running atomic.Int64
+}
 
-var running atomic.Int64
+func (*PythCmd) Command() string {
+	return "?pyth"
+}
 
-func (s *Services) pyth(perms []string, message twitch.PrivateMessage) (string, error) {
+func (*PythCmd) Description() string {
+	return "Eval in pyth"
+}
+
+func (cmd *PythCmd) Run(s *Services, perms []string, message twitch.PrivateMessage) (string, error) {
 	if !strings.ContainsRune(message.Message, ' ') {
 		return "Pyth docs: https://pyth.readthedocs.io/en/latest/getting-started.html", nil
 	}
 
-	program := strings.TrimPrefix(message.Message, pythCmd+" ")
+	program := strings.TrimPrefix(message.Message, cmd.Command()+" ")
 
-	if running.Load() > 2 {
+	if cmd.running.Load() > 2 {
 		return "Сервер загружен, попробуйте позже", nil
 	}
 
-	running.Add(1)
+	cmd.running.Add(1)
 	defer func() {
-		running.Add(-1)
+		cmd.running.Add(-1)
 	}()
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*5)
 	defer cancel()
 
-	cmd := exec.CommandContext(ctx, "docker", "run", "--memory=500m", "--cpus=1", "--rm", "pyth", program)
+	proc := exec.CommandContext(ctx, "docker", "run", "--memory=500m", "--cpus=1", "--rm", "pyth", program)
 	var stderr bytes.Buffer
-	cmd.Stderr = &stderr
-	stdout, err := cmd.Output()
+	proc.Stderr = &stderr
+	stdout, err := proc.Output()
 	if err != nil {
 		if err.Error() == "signal: killed" {
 			return "Was running too long, killed", nil

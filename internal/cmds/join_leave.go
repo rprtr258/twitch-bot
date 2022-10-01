@@ -1,4 +1,4 @@
-package internal
+package cmds
 
 import (
 	"fmt"
@@ -9,22 +9,27 @@ import (
 	"github.com/pocketbase/dbx"
 )
 
-const (
-	joinCmd  = "?join"
-	leaveCmd = "?leave"
-)
+type JoinCmd struct{}
 
-func (s *Services) join(perms []string, message twitch.PrivateMessage) (string, error) {
+func (JoinCmd) Command() string {
+	return "?join"
+}
+
+func (JoinCmd) Description() string {
+	return "Join channel"
+}
+
+func (cmd JoinCmd) Run(s *Services, perms []string, message twitch.PrivateMessage) (string, error) {
 	words := strings.Split(message.Message, " ")
 	if len(words) != 2 {
-		return fmt.Sprintf("Usage: %s <channel>", joinCmd), nil
+		return fmt.Sprintf("Usage: %s <channel>", cmd.Command()), nil
 	}
 
 	channel := words[1]
 
 	s.ChatClient.Join(channel)
 
-	if _, err := s._insert("joined_channels", map[string]any{
+	if _, err := s.Insert("joined_channels", map[string]any{
 		"channel": channel,
 	}); err != nil {
 		// TODO: save log
@@ -34,10 +39,20 @@ func (s *Services) join(perms []string, message twitch.PrivateMessage) (string, 
 	return fmt.Sprintf("joined %s successfully", channel), nil
 }
 
-func (s *Services) leave(perms []string, message twitch.PrivateMessage) (string, error) {
+type LeaveCmd struct{}
+
+func (LeaveCmd) Command() string {
+	return "?leave"
+}
+
+func (LeaveCmd) Description() string {
+	return "Leave channel"
+}
+
+func (cmd LeaveCmd) Run(s *Services, perms []string, message twitch.PrivateMessage) (string, error) {
 	words := strings.Split(message.Message, " ")
 	if len(words) != 2 {
-		return fmt.Sprintf("Usage: %s <channel>", leaveCmd), nil
+		return fmt.Sprintf("Usage: %s <channel>", cmd.Command()), nil
 	}
 
 	channel := words[1]

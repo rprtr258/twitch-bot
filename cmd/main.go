@@ -16,7 +16,10 @@ import (
 	"github.com/pocketbase/pocketbase/core"
 
 	// TODO: rename module, packages
-	abobus "abobus/internal"
+
+	"abobus/internal"
+	"abobus/internal/cmds"
+	"abobus/internal/permissions"
 )
 
 func twitchAuth(helixClient *helix.Client) {
@@ -59,31 +62,31 @@ func run() error {
 
 		balabobaClient := balaboba.New(balaboba.Rus)
 
-		srvcs := abobus.Services{
+		srvcs := cmds.Services{
 			ChatClient:      client,
 			TwitchApiClient: helixClient,
 			Backend:         app,
 			Balaboba:        balabobaClient,
 			// TODO: move out to file
-			Permissions: abobus.Permissions{
-				"global_admin": []abobus.Claims{{
+			Permissions: permissions.Permissions{
+				"global_admin": []permissions.Claims{{
 					"username": "rprtr258",
 				}},
-				"admin": []abobus.Claims{{
-					"username": "rprtr258",
-					"channel":  "rprtr258",
-				}},
-				"say_response": []abobus.Claims{{ // TODO: rename to say_response_on_admin_channel
+				"admin": []permissions.Claims{{
 					"username": "rprtr258",
 					"channel":  "rprtr258",
 				}},
-				"execute_commands": []abobus.Claims{{
+				"say_response": []permissions.Claims{{ // TODO: rename to say_response_on_admin_channel
+					"username": "rprtr258",
+					"channel":  "rprtr258",
+				}},
+				"execute_commands": []permissions.Claims{{
 					"channel": "rprtr258",
 				}},
 			},
 		}
 
-		client.OnPrivateMessage(srvcs.OnPrivateMessage)
+		client.OnPrivateMessage(internal.OnPrivateMessage(&srvcs))
 
 		go func() {
 			if err := client.Connect(); err != nil {

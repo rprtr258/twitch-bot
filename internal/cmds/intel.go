@@ -1,4 +1,4 @@
-package internal
+package cmds
 
 import (
 	"errors"
@@ -10,8 +10,6 @@ import (
 	twitch "github.com/gempir/go-twitch-irc/v3"
 	"github.com/nicklaw5/helix"
 )
-
-const intelCmd = "?intel"
 
 func formatDuration(d time.Time) string {
 	var parts []string
@@ -60,7 +58,17 @@ func formatDuration(d time.Time) string {
 	return strings.Join(parts, "")
 }
 
-func (s *Services) getIntelCmd(perms []string, message twitch.PrivateMessage) (string, error) {
+type IntelCmd struct{}
+
+func (IntelCmd) Command() string {
+	return "?intel"
+}
+
+func (IntelCmd) Description() string {
+	return "Gather intel on user"
+}
+
+func (IntelCmd) Run(s *Services, perms []string, message twitch.PrivateMessage) (string, error) {
 	words := strings.Split(message.Message, " ")
 	if len(words) < 2 {
 		return "No username provided", nil
