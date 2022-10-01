@@ -112,6 +112,7 @@ func OnPrivateMessage(s *services.Services) func(twitch.PrivateMessage) {
 				if message.User.Name == "rprtr258" {
 					for i := 0; i < len(runes); i += _maxMessageLength {
 						resp := string(lo.Subset(runes, i, _maxMessageLength))
+						log.Println("trying to send msg of len", utf8.RuneCountInString(resp))
 						if whisper {
 							s.ChatClient.Whisper(message.User.Name, resp)
 						} else {
@@ -123,6 +124,7 @@ func OnPrivateMessage(s *services.Services) func(twitch.PrivateMessage) {
 				} else {
 					response = string(runes[:_maxMessageLength])
 
+					log.Println("trying to send msg of len", utf8.RuneCountInString(response))
 					if whisper {
 						s.ChatClient.Whisper(message.User.Name, response)
 					} else {
@@ -130,6 +132,7 @@ func OnPrivateMessage(s *services.Services) func(twitch.PrivateMessage) {
 					}
 				}
 			} else {
+				log.Println("trying to send msg of len", utf8.RuneCountInString(response))
 				if whisper {
 					s.ChatClient.Whisper(message.User.Name, response)
 				} else {

@@ -76,8 +76,8 @@ func run() error {
 					"channel":  "rprtr258",
 				}},
 				"say_response": []permissions.Claims{{
-					"username": "rprtr258",
-					"channel":  "rprtr258",
+					// "username": "rprtr258",
+					"channel": "rprtr258",
 				}},
 				"execute_commands": []permissions.Claims{{
 					"channel": "rprtr258",

@@ -3,17 +3,13 @@ package cmds
 import (
 	"abobus/internal/services"
 	"bufio"
-	"errors"
-	"fmt"
 	"math/rand"
 	"os"
-	"strings"
-	"time"
 
 	twitch "github.com/gempir/go-twitch-irc/v3"
-	"github.com/lithammer/fuzzysearch/fuzzy"
-	"github.com/samber/lo"
 )
+
+const _distanceLimit = 500
 
 type PastaSearchCmd struct{}
 
@@ -27,8 +23,8 @@ func (PastaSearchCmd) Description() string {
 
 // TODO: cmd to add pastas
 func (cmd PastaSearchCmd) Run(s *services.Services, perms []string, message twitch.PrivateMessage) (string, error) {
-	// TODO: check empty query
-	query := strings.TrimPrefix(message.Message, cmd.Command()+" ")
+	// // TODO: check empty query
+	// query := strings.TrimPrefix(message.Message, cmd.Command()+" ")
 
 	// TODO: move pastes to database
 	file, err := os.Open("pastes.txt")
@@ -46,23 +42,27 @@ func (cmd PastaSearchCmd) Run(s *services.Services, perms []string, message twit
 		return "", err
 	}
 
-	matches := lo.Filter(fuzzy.RankFindNormalized(query, pastes), func(match fuzzy.Rank, _ int) bool {
-		return match.Distance < 500
-	})
-	totalDistance := lo.SumBy(matches, func(match fuzzy.Rank) int {
-		return match.Distance
-	})
-	if totalDistance <= 0 {
-		return "No pastes found", nil
-	}
+	// TODO: fix searching
+	res := pastes[rand.Intn(len(pastes))]
+	return res, nil
 
-	rand.Seed(time.Now().Unix())
-	rng := rand.Intn(totalDistance)
-	for _, match := range matches {
-		rng -= match.Distance
-		if rng <= 0 {
-			return fmt.Sprintf("%d: %s", match.Distance, match.Target), nil
-		}
-	}
-	return "", errors.New("SOMETHING VERY UNLIKELY HAPPENED PLEASE CONTACT @rprtr258 TO FIX THIS")
+	// type tmp struct {
+	// 	Target   string
+	// 	Distance int
+	// }
+	// matches := lo.Filter(lo.Map(pastes, func(pasta string, _ int) tmp {
+	// 	return tmp{
+	// 		Target:   pasta,
+	// 		Distance: fuzzy.LevenshteinDistance(strings.ToLower(query), strings.ToLower(pasta)),
+	// 	}
+	// }), func(match tmp, _ int) bool {
+	// 	return match.Distance > 0
+	// })
+	// if len(matches) == 0 {
+	// 	return "No pastes found", nil
+	// }
+
+	// res := matches[rand.Intn(len(matches))]
+
+	// return fmt.Sprintf("%d: %s", res.Distance, res.Target), nil
 }
