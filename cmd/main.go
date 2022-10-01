@@ -16,10 +16,9 @@ import (
 	"github.com/pocketbase/pocketbase/core"
 
 	// TODO: rename module, packages
-
 	"abobus/internal"
-	"abobus/internal/cmds"
 	"abobus/internal/permissions"
+	"abobus/internal/services"
 )
 
 func twitchAuth(helixClient *helix.Client) {
@@ -62,7 +61,7 @@ func run() error {
 
 		balabobaClient := balaboba.New(balaboba.Rus)
 
-		services := cmds.Services{
+		services := services.Services{
 			ChatClient:      client,
 			TwitchApiClient: helixClient,
 			Backend:         app,
@@ -76,7 +75,7 @@ func run() error {
 					"username": "rprtr258",
 					"channel":  "rprtr258",
 				}},
-				"say_response": []permissions.Claims{{ // TODO: rename to say_response_on_admin_channel
+				"say_response": []permissions.Claims{{
 					"username": "rprtr258",
 					"channel":  "rprtr258",
 				}},

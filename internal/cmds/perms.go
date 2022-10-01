@@ -8,6 +8,7 @@ import (
 	twitch "github.com/gempir/go-twitch-irc/v3"
 
 	"abobus/internal/permissions"
+	"abobus/internal/services"
 )
 
 type PermsCmd struct{}
@@ -20,7 +21,7 @@ func (PermsCmd) Description() string {
 	return "Get permissions"
 }
 
-func (cmd PermsCmd) Run(s *Services, perms []string, message twitch.PrivateMessage) (string, error) {
+func (cmd PermsCmd) Run(s *services.Services, perms []string, message twitch.PrivateMessage) (string, error) {
 	words := strings.Split(message.Message, " ")
 	permissionsToShow := perms
 	if len(words) > 1 {

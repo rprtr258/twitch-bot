@@ -1,6 +1,7 @@
 package cmds
 
 import (
+	"abobus/internal/services"
 	"database/sql"
 	"fmt"
 	"log"
@@ -20,7 +21,7 @@ func (FedCmd) Description() string {
 	return "Show how many times word has been used"
 }
 
-func (cmd FedCmd) Run(s *Services, perms []string, message twitch.PrivateMessage) (string, error) {
+func (cmd FedCmd) Run(s *services.Services, perms []string, message twitch.PrivateMessage) (string, error) {
 	words := strings.Split(message.Message, " ")
 	if len(words) != 2 && len(words) != 3 {
 		return fmt.Sprintf(`Usage: "%[1]s <word>" or "%[1]s <user> <word>" or "%[1]s * <word>"`, cmd.Command()), nil

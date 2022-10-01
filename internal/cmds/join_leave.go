@@ -1,6 +1,7 @@
 package cmds
 
 import (
+	"abobus/internal/services"
 	"fmt"
 	"log"
 	"strings"
@@ -19,7 +20,7 @@ func (JoinCmd) Description() string {
 	return "Join channel"
 }
 
-func (cmd JoinCmd) Run(s *Services, perms []string, message twitch.PrivateMessage) (string, error) {
+func (cmd JoinCmd) Run(s *services.Services, perms []string, message twitch.PrivateMessage) (string, error) {
 	words := strings.Split(message.Message, " ")
 	if len(words) != 2 {
 		return fmt.Sprintf("Usage: %s <channel>", cmd.Command()), nil
@@ -49,7 +50,7 @@ func (LeaveCmd) Description() string {
 	return "Leave channel"
 }
 
-func (cmd LeaveCmd) Run(s *Services, perms []string, message twitch.PrivateMessage) (string, error) {
+func (cmd LeaveCmd) Run(s *services.Services, perms []string, message twitch.PrivateMessage) (string, error) {
 	words := strings.Split(message.Message, " ")
 	if len(words) != 2 {
 		return fmt.Sprintf("Usage: %s <channel>", cmd.Command()), nil

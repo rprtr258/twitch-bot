@@ -1,6 +1,7 @@
 package cmds
 
 import (
+	"abobus/internal/services"
 	"fmt"
 	"strconv"
 	"strings"
@@ -22,7 +23,7 @@ func (BlabCmd) Description() string {
 	return "Balaboba text generation neural network"
 }
 
-func (cmd BlabCmd) Run(s *Services, perms []string, message twitch.PrivateMessage) (string, error) {
+func (cmd BlabCmd) Run(s *services.Services, perms []string, message twitch.PrivateMessage) (string, error) {
 	words := strings.Split(message.Message, " ")
 
 	if len(words) == 1 {

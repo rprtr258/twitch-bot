@@ -3,6 +3,7 @@ package internal
 import (
 	"abobus/internal/cmds"
 	"abobus/internal/permissions"
+	"abobus/internal/services"
 	"fmt"
 	"log"
 	"strings"
@@ -25,7 +26,7 @@ func (CommandsCmd) Description() string {
 	return "List all commands"
 }
 
-func (CommandsCmd) Run(s *cmds.Services, perms []string, message twitch.PrivateMessage) (string, error) {
+func (CommandsCmd) Run(s *services.Services, perms []string, message twitch.PrivateMessage) (string, error) {
 	parts := make([]string, 0, len(allCommands))
 
 	for _, cmd := range allCommands {
@@ -69,7 +70,7 @@ var allCommands = []Command{{
 }}
 
 // TODO: handle whispers
-func OnPrivateMessage(s *cmds.Services) func(twitch.PrivateMessage) {
+func OnPrivateMessage(s *services.Services) func(twitch.PrivateMessage) {
 	return func(message twitch.PrivateMessage) {
 		s.LogMessage(message)
 		userPermissions := s.Permissions.GetPermissions(permissions.Claims{

@@ -1,6 +1,7 @@
 package cmds
 
 import (
+	"abobus/internal/services"
 	"errors"
 	"fmt"
 	"math"
@@ -68,7 +69,7 @@ func (IntelCmd) Description() string {
 	return "Gather intel on user"
 }
 
-func (IntelCmd) Run(s *Services, perms []string, message twitch.PrivateMessage) (string, error) {
+func (IntelCmd) Run(s *services.Services, perms []string, message twitch.PrivateMessage) (string, error) {
 	words := strings.Split(message.Message, " ")
 	if len(words) < 2 {
 		return "No username provided", nil
