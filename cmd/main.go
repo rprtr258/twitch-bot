@@ -62,7 +62,7 @@ func run() error {
 
 		balabobaClient := balaboba.New(balaboba.Rus)
 
-		srvcs := cmds.Services{
+		services := cmds.Services{
 			ChatClient:      client,
 			TwitchApiClient: helixClient,
 			Backend:         app,
@@ -86,7 +86,7 @@ func run() error {
 			},
 		}
 
-		client.OnPrivateMessage(internal.OnPrivateMessage(&srvcs))
+		client.OnPrivateMessage(internal.OnPrivateMessage(&services))
 
 		go func() {
 			if err := client.Connect(); err != nil {
