@@ -41,6 +41,7 @@ type Command struct {
 }
 
 // TODO: permissions constants/store in db to dinamically update
+// TODO: change to map
 var allCommands = []Command{{
 	PermissionsRequired: []string{},
 	Cmd:                 cmds.IntelCmd{},
