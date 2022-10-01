@@ -148,14 +148,27 @@ func (s *Services) OnPrivateMessage(message twitch.PrivateMessage) {
 		}
 		response = strings.ReplaceAll(response, "\n", " ")
 		if len(response) > _maxMessageLength {
-			runes := []rune(response)
-			response = string(runes[:_maxMessageLength])
-		}
+			if message.User.Name == "rprtr258" {
+				// TODO: fix: not showing short responses to me
+				runes := []rune(response)
+				for i := 0; i < len(runes); i += _maxMessageLength {
+					resp := string(runes[i : i+_maxMessageLength])
+					if whisper {
+						s.ChatClient.Whisper(message.User.Name, resp)
+					} else {
+						s.ChatClient.Say(message.Channel, resp)
+					}
+				}
+			} else {
+				runes := []rune(response)
+				response = string(runes[:_maxMessageLength])
 
-		if whisper {
-			s.ChatClient.Whisper(message.User.Name, response)
-		} else {
-			s.ChatClient.Reply(message.Channel, message.ID, response)
+				if whisper {
+					s.ChatClient.Whisper(message.User.Name, response)
+				} else {
+					s.ChatClient.Reply(message.Channel, message.ID, response)
+				}
+			}
 		}
 
 		if _, err := s._insert("chat_commands", map[string]any{
