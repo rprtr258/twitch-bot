@@ -1,7 +1,6 @@
 package internal
 
 import (
-	"database/sql"
 	"fmt"
 	"log"
 	"strings"
@@ -10,74 +9,91 @@ import (
 	twitch "github.com/gempir/go-twitch-irc/v3"
 	"github.com/karalef/balaboba"
 	"github.com/nicklaw5/helix"
-	"github.com/pocketbase/dbx"
 	"github.com/pocketbase/pocketbase"
 	"github.com/pocketbase/pocketbase/forms"
 	"github.com/pocketbase/pocketbase/models"
+	"github.com/samber/lo"
 )
 
 const (
-	everyoneRelation  = ""
-	executeRelation   = "execute"
-	forbiddenRelation = "forbidden"
-
 	commandsCmd = "?commands"
 )
+
+// TODO: move to lib
+type Claims = map[string]string
+type Permissions map[string][]Claims
+
+func (perms Permissions) getPermissions(providedClaims Claims) []string {
+	res := []string{}
+	for permission, requiredClaimsSlice := range perms {
+		if lo.SomeBy(requiredClaimsSlice, func(requiredClaims Claims) bool {
+			for k, v := range requiredClaims {
+				if providedClaims[k] != v {
+					return false
+				}
+			}
+			return true
+		}) {
+			res = append(res, permission)
+		}
+	}
+	return res
+}
 
 type Services struct {
 	ChatClient      *twitch.Client
 	TwitchApiClient *helix.Client
 	Backend         *pocketbase.PocketBase
 	Balaboba        *balaboba.Client
+	Permissions     Permissions
 }
 
 type command struct {
-	Relation    string
-	Command     string
-	Run         func(*Services, twitch.PrivateMessage) (string, error)
-	Whisper     bool
-	Description string
+	PermissionsRequired []string
+	Command             string
+	Run                 func(*Services, twitch.PrivateMessage) (string, error)
+	Description         string
 }
 
 var cmds []command
 
 func init() {
+	// TODO: permissions constants
 	cmds = []command{{
-		Relation:    executeRelation,
-		Command:     intelCmd,
-		Run:         (*Services).getIntelCmd,
-		Whisper:     true,
-		Description: "Gather intel on user",
+		PermissionsRequired: []string{},
+		Command:             intelCmd,
+		Run:                 (*Services).getIntelCmd,
+		Description:         "Gather intel on user",
 	}, {
-		Relation:    executeRelation,
-		Command:     joinCmd,
-		Run:         (*Services).join,
-		Description: "Join channel",
+		PermissionsRequired: []string{"global_admin"},
+		Command:             joinCmd,
+		Run:                 (*Services).join,
+		Description:         "Join channel",
 	}, {
-		Relation:    executeRelation,
-		Command:     leaveCmd,
-		Run:         (*Services).leave,
-		Description: "Leave channel",
+		PermissionsRequired: []string{"global_admin"},
+		Command:             leaveCmd,
+		Run:                 (*Services).leave,
+		Description:         "Leave channel",
 	}, {
-		Relation:    everyoneRelation,
-		Command:     fedCmd,
-		Run:         (*Services).fed,
-		Description: "Show how many times word has been used",
+		PermissionsRequired: []string{"execute_commands"},
+		Command:             fedCmd,
+		Run:                 (*Services).fed,
+		Description:         "Show how many times word has been used",
 	}, {
-		Relation:    everyoneRelation,
-		Command:     blabCmd,
-		Run:         (*Services).blab,
-		Description: "Balaboba text generation neural network",
+		PermissionsRequired: []string{"execute_commands"},
+		Command:             blabCmd,
+		Run:                 (*Services).blab,
+		Description:         "Balaboba text generation neural network",
 	}, {
-		Relation:    everyoneRelation,
-		Command:     pythCmd,
-		Run:         (*Services).pyth,
-		Description: "Eval in pyth",
+		PermissionsRequired: []string{"execute_commands"},
+		Command:             pythCmd,
+		Run:                 (*Services).pyth,
+		Description:         "Eval in pyth",
 	}, {
-		Relation:    everyoneRelation,
-		Command:     commandsCmd,
-		Run:         (*Services).commands,
-		Description: "List all commands",
+		PermissionsRequired: []string{"execute_commands"},
+		Command:             commandsCmd,
+		Run:                 (*Services).commands,
+		Description:         "List all commands",
 	}}
 }
 
@@ -97,48 +113,31 @@ func (s *Services) logMessage(message twitch.PrivateMessage) {
 	}
 }
 
+// TODO: handle whispers
 func (s *Services) OnPrivateMessage(message twitch.PrivateMessage) {
-	db := s.Backend.DB()
-
 	s.logMessage(message)
+	userPermissions := s.Permissions.getPermissions(Claims{
+		"username": message.User.Name, // TODO: replace with user id
+		"channel":  message.Channel,
+		// TODO: vips, moders
+	})
 
 	firstWord := strings.Split(message.Message, " ")[0]
 	userName := message.User.Name
-
-	var relation string
-	if err := db.Select("relation").From("permissions").Where(dbx.And(
-		dbx.NewExp("user_id={:user_id}", dbx.Params{"user_id": message.User.ID}),
-		dbx.NewExp("object={:cmd}", dbx.Params{"cmd": fmt.Sprintf("cmd:%s", firstWord)}),
-	)).Build().Row(&relation); err != nil {
-		if err != sql.ErrNoRows {
-			log.Println(err.Error())
-			return
-		}
-	}
 
 	for _, cmd := range cmds {
 		if cmd.Command != firstWord {
 			continue
 		}
 
-		if relation == forbiddenRelation {
+		// TODO: add ban permissions
+		if !lo.Every(userPermissions, cmd.PermissionsRequired) {
 			break
 		}
 
-		if cmd.Relation != everyoneRelation && cmd.Relation != relation {
-			break
-		}
-
-		// TODO: peredelat'
-		if (cmd.Command == fedCmd || cmd.Command == blabCmd || cmd.Command == pythCmd || cmd.Command == commandsCmd) && message.Channel != "rprtr258" {
-			break
-		}
-
-		// TODO: peredelat'
-		whisper := cmd.Whisper
-		if cmd.Command == intelCmd && message.Channel == "rprtr258" {
-			whisper = false
-		}
+		whisper := !lo.Contains(userPermissions, "say_response")
+		// TODO: remove, add command to check permissions
+		s.ChatClient.Say(message.Channel, fmt.Sprint(cmd, userPermissions, whisper))
 
 		response, err := cmd.Run(s, message)
 		if err != nil {
@@ -147,9 +146,10 @@ func (s *Services) OnPrivateMessage(message twitch.PrivateMessage) {
 			response = "Empty response"
 		}
 		response = strings.ReplaceAll(response, "\n", " ")
+		// TODO: move responding to commands
+		// TODO: rewrite
 		if len(response) > _maxMessageLength {
 			if message.User.Name == "rprtr258" {
-				// TODO: fix: not showing short responses to me
 				runes := []rune(response)
 				for i := 0; i < len(runes); i += _maxMessageLength {
 					resp := string(runes[i : i+_maxMessageLength])
@@ -168,6 +168,12 @@ func (s *Services) OnPrivateMessage(message twitch.PrivateMessage) {
 				} else {
 					s.ChatClient.Reply(message.Channel, message.ID, response)
 				}
+			}
+		} else {
+			if whisper {
+				s.ChatClient.Whisper(message.User.Name, response)
+			} else {
+				s.ChatClient.Reply(message.Channel, message.ID, response)
 			}
 		}
 
