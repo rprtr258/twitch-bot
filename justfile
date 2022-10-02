@@ -25,3 +25,11 @@ train: get_chat_logs
 # check todos
 @todo:
   rg 'TODO' --glob '**/*.go' || echo 'All done!'
+
+# stupid deploy automation
+deploy:
+  GOOS=linux GOARCH=amd64 go build -o ./twitch-bot cmd/main.go
+  scp -i ~/.ssh/test_vds twitch-bot root@176.126.113.161:/root/go
+  scp -i ~/.ssh/test_vds twitch-bot.service root@176.126.113.161:/etc/systemd/system/
+  ssh root@176.126.113.161 -i ~/.ssh/test_vds 'systemctl daemon-reload'
+  scp -r -i ~/.ssh/test_vds permissions.json root@176.126.113.161:/root/go/

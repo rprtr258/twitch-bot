@@ -1,0 +1,12 @@
+[Unit]
+Description=Twitch bot
+After=multi-user.target
+
+[Service]
+User=root
+Group=root
+ExecStart=/root/go/twitch-bot serve --http=":80" --https=":443"
+EnvironmentFile=/root/.env
+
+[Install]
+WantedBy=multi-user.target
