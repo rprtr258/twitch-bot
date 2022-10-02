@@ -1,8 +1,2 @@
-.task/
-__pycache__/
-venv/
-*.txt
+pb_data/
 .env
-db.db
-balaboba.exe
-c
