@@ -65,17 +65,10 @@ func run() error {
 
 		balabobaClient := balaboba.New(balaboba.Rus)
 
-		// TODO: close when done using (where?)
-		fs, err := app.NewFilesystem()
-		if err != nil {
-			return err
-		}
-
 		services := services.Services{
 			ChatClient:      client,
 			TwitchApiClient: helixClient,
 			Backend:         app,
-			FS:              fs,
 			Balaboba:        balabobaClient,
 			// TODO: move out to file
 			Permissions: permissions.Permissions{

@@ -6,7 +6,6 @@ import (
 	"abobus/internal/services"
 	"fmt"
 	"log"
-	"os"
 	"strings"
 	"time"
 	"unicode/utf8"
@@ -75,13 +74,6 @@ var allCommands = []Command{{
 // TODO: handle whispers
 func OnPrivateMessage(s *services.Services) func(twitch.PrivateMessage) {
 	return func(message twitch.PrivateMessage) {
-		d := s.FS.Upload([]byte("xxx"), "aboba")
-
-		a, b := s.FS.Attributes("aboba")
-		xdd := &os.File{} // TODO: HOW TO USE IT WTF
-		c := a.As(&xdd)
-		log.Println(d, b, xdd, c)
-
 		s.LogMessage(message)
 		userPermissions := s.Permissions.GetPermissions(permissions.Claims{
 			"username": message.User.Name, // TODO: replace with user id
