@@ -21,3 +21,7 @@ train: get_chat_logs
 @bump:
   go get -u ./...
   go mod tidy
+
+# check todos
+@todo:
+  rg 'TODO' --glob '**/*.go' || echo 'All done!'
