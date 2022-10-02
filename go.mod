@@ -6,7 +6,6 @@ require (
 	github.com/gempir/go-twitch-irc/v3 v3.2.0
 	github.com/karalef/balaboba v0.0.0-20220920173959-7e9a07b058c8
 	github.com/labstack/echo/v5 v5.0.0-20220201181537-ed2888cfa198
-	github.com/lithammer/fuzzysearch v1.1.5
 	github.com/nicklaw5/helix v1.25.0
 	github.com/pocketbase/dbx v1.6.0
 	github.com/pocketbase/pocketbase v0.7.7
