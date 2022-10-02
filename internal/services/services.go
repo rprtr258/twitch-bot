@@ -9,15 +9,16 @@ import (
 	"github.com/pocketbase/pocketbase"
 	"github.com/pocketbase/pocketbase/forms"
 	"github.com/pocketbase/pocketbase/models"
+	"github.com/pocketbase/pocketbase/tools/filesystem"
 
 	"abobus/internal/permissions"
 )
 
-// TODO: move out
 type Services struct {
 	ChatClient      *twitch.Client
 	TwitchApiClient *helix.Client
 	Backend         *pocketbase.PocketBase
+	FS              *filesystem.System
 	Balaboba        *balaboba.Client
 	Permissions     permissions.Permissions
 }

@@ -4,8 +4,10 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
+	"math/rand"
 	"net/http"
 	"os"
+	"time"
 
 	"github.com/gempir/go-twitch-irc/v3"
 	"github.com/karalef/balaboba"
@@ -33,6 +35,8 @@ func twitchAuth(helixClient *helix.Client) {
 }
 
 func run() error {
+	rand.Seed(time.Now().Unix())
+
 	app := pocketbase.New()
 
 	app.OnBeforeServe().Add(func(data *core.ServeEvent) error {
@@ -61,10 +65,17 @@ func run() error {
 
 		balabobaClient := balaboba.New(balaboba.Rus)
 
+		// TODO: close when done using (where?)
+		fs, err := app.NewFilesystem()
+		if err != nil {
+			return err
+		}
+
 		services := services.Services{
 			ChatClient:      client,
 			TwitchApiClient: helixClient,
 			Backend:         app,
+			FS:              fs,
 			Balaboba:        balabobaClient,
 			// TODO: move out to file
 			Permissions: permissions.Permissions{
