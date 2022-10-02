@@ -75,8 +75,7 @@ func run() error {
 			TwitchApiClient: helixClient,
 			Backend:         app,
 			Balaboba:        balabobaClient,
-			// TODO: move out to file
-			Permissions: permissions,
+			Permissions:     permissions,
 		}
 
 		client.OnPrivateMessage(internal.OnPrivateMessage(&services))
