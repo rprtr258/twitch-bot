@@ -13,7 +13,7 @@ module.exports = {
       path: "/var/www/twitch-bot",
       // TODO: deploy just executable
       // "pre-setup": "go install github.com/rprtr258/rwenv && apt install just", // and install go
-      "post-deploy": "go mod download"
+      // "post-deploy": "go mod download"
     }
   }
 };
