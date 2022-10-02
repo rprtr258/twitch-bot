@@ -65,28 +65,18 @@ func run() error {
 
 		balabobaClient := balaboba.New(balaboba.Rus)
 
+		permissions, err := permissions.LoadFromJSONFile("permissions.json")
+		if err != nil {
+			return err
+		}
+
 		services := services.Services{
 			ChatClient:      client,
 			TwitchApiClient: helixClient,
 			Backend:         app,
 			Balaboba:        balabobaClient,
 			// TODO: move out to file
-			Permissions: permissions.Permissions{
-				"global_admin": []permissions.Claims{{
-					"username": "rprtr258",
-				}},
-				"admin": []permissions.Claims{{
-					"username": "rprtr258",
-					"channel":  "rprtr258",
-				}},
-				"say_response": []permissions.Claims{{
-					// "username": "rprtr258",
-					"channel": "rprtr258",
-				}},
-				"execute_commands": []permissions.Claims{{
-					"channel": "rprtr258",
-				}},
-			},
+			Permissions: permissions,
 		}
 
 		client.OnPrivateMessage(internal.OnPrivateMessage(&services))

@@ -1,9 +1,28 @@
 package permissions
 
-import "github.com/samber/lo"
+import (
+	"encoding/json"
+	"os"
+
+	"github.com/samber/lo"
+)
 
 type Claims = map[string]string
 type Permissions map[string][]Claims
+
+func LoadFromJSONFile(filename string) (Permissions, error) {
+	content, err := os.ReadFile(filename)
+	if err != nil {
+		return nil, err
+	}
+
+	var data Permissions
+	if err := json.Unmarshal(content, &data); err != nil {
+		return nil, err
+	}
+
+	return data, nil
+}
 
 func (perms Permissions) GetPermissions(providedClaims Claims) []string {
 	res := []string{}
