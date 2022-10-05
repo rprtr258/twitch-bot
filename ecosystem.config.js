@@ -1,7 +1,8 @@
 module.exports = {
   apps : [{
     name: "twitch-bot",
-    script: "just run",
+    script: "just",
+    args: "run",
   }],
   deploy : {
     production : {
