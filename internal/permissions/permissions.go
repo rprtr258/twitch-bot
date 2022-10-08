@@ -9,6 +9,7 @@ import (
 
 type Claims = map[string]string
 type Permissions map[string][]Claims
+type PermissionsList map[string]struct{}
 
 func LoadFromJSONFile(filename string) (Permissions, error) {
 	content, err := os.ReadFile(filename)
@@ -24,8 +25,8 @@ func LoadFromJSONFile(filename string) (Permissions, error) {
 	return data, nil
 }
 
-func (perms Permissions) GetPermissions(providedClaims Claims) []string {
-	res := []string{}
+func (perms Permissions) GetPermissions(providedClaims Claims) PermissionsList {
+	res := make(PermissionsList)
 	for permission, requiredClaimsSlice := range perms {
 		if lo.SomeBy(requiredClaimsSlice, func(requiredClaims Claims) bool {
 			for k, v := range requiredClaims {
@@ -35,8 +36,15 @@ func (perms Permissions) GetPermissions(providedClaims Claims) []string {
 			}
 			return true
 		}) {
-			res = append(res, permission)
+			res[permission] = struct{}{}
 		}
 	}
 	return res
+}
+
+func (perms PermissionsList) Has(permissions ...string) bool {
+	return lo.EveryBy(permissions, func(permission string) bool {
+		_, ok := perms[permission]
+		return ok
+	})
 }

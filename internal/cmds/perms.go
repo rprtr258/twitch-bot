@@ -1,11 +1,13 @@
 package cmds
 
 import (
+	"context"
 	"fmt"
 	"strings"
 	"unicode/utf8"
 
 	twitch "github.com/gempir/go-twitch-irc/v3"
+	"github.com/samber/lo"
 
 	"abobus/internal/permissions"
 	"abobus/internal/services"
@@ -21,7 +23,7 @@ func (PermsCmd) Description() string {
 	return "Get permissions"
 }
 
-func (cmd PermsCmd) Run(s *services.Services, perms []string, message twitch.PrivateMessage) (string, error) {
+func (cmd PermsCmd) Run(ctx context.Context, s *services.Services, perms permissions.PermissionsList, message twitch.PrivateMessage) (string, error) {
 	words := strings.Split(message.Message, " ")
 	permissionsToShow := perms
 	if len(words) > 1 {
@@ -36,5 +38,5 @@ func (cmd PermsCmd) Run(s *services.Services, perms []string, message twitch.Pri
 		}
 		permissionsToShow = s.Permissions.GetPermissions(claims)
 	}
-	return strings.Join(permissionsToShow, ","), nil
+	return strings.Join(lo.Keys(permissionsToShow), ","), nil
 }
