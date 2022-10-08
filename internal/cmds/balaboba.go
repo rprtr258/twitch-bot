@@ -1,25 +1,30 @@
 package cmds
 
 import (
-	"abobus/internal/services"
+	"context"
 	"database/sql"
 	"fmt"
 	"path"
 	"strconv"
 	"strings"
+	"time"
 	"unicode/utf8"
 
 	twitch "github.com/gempir/go-twitch-irc/v3"
 	"github.com/karalef/balaboba"
 	"github.com/pocketbase/dbx"
+
+	"abobus/internal/services"
 )
 
 const _blabTable = "blab"
 
 func responseOrLink(text, host, id string) string {
 	if utf8.RuneCountInString(text) > MaxMessageLength {
-		// TODO: print paste start and then link
-		return fmt.Sprintf("Читать продолжение в источнике: %s", path.Join(host, "blab", id))
+		link := path.Join(host, "blab", id)
+		linkLen := len(link) + 1
+		runes := []rune(text)
+		return fmt.Sprintf("%s %s", string(runes[:MaxMessageLength-linkLen]), link)
 	}
 
 	return text
@@ -70,6 +75,10 @@ func (cmd BlabGenCmd) Run(s *services.Services, perms []string, message twitch.P
 		return "", err
 	}
 
+	if response.BadQuery {
+		return "PauseFish", nil
+	}
+
 	id, err := s.Insert(_blabTable, map[string]any{
 		"text":          response.Text,
 		"author_id":     message.User.ID,
@@ -81,6 +90,7 @@ func (cmd BlabGenCmd) Run(s *services.Services, perms []string, message twitch.P
 		return "", err
 	}
 
+	// TODO: either "id text" or "text link"
 	return responseOrLink(
 		fmt.Sprintf("%s: %s", id, response.Text),
 		s.Backend.Settings().Meta.AppUrl,
@@ -130,7 +140,11 @@ func (cmd BlabContinueCmd) Run(s *services.Services, perms []string, message twi
 		return "", err
 	}
 
-	response, err := s.Balaboba.Generate(text, balaboba.Style(styleIdx))
+	// TODO: move to main loop
+	ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
+	defer cancel()
+
+	response, err := s.Balaboba.GenerateContext(ctx, text, balaboba.Style(styleIdx))
 	if err != nil {
 		return "", err
 	}
@@ -144,10 +158,9 @@ func (cmd BlabContinueCmd) Run(s *services.Services, perms []string, message twi
 		return "", err
 	}
 
-	return responseOrLink(
-		response.Text,
-		s.Backend.Settings().Meta.AppUrl,
-		pasteID,
+	return fmt.Sprintf(
+		"Читать продолжение в источнике: %s",
+		path.Join(s.Backend.Settings().Meta.AppUrl, "blab", pasteID),
 	), nil
 }
 
