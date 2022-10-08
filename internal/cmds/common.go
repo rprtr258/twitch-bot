@@ -8,7 +8,7 @@ import (
 	"abobus/internal/services"
 )
 
-const MaxMessageLength = 500
+const MaxMessageLength = 499
 
 type Command interface {
 	// Command - get command name

@@ -117,7 +117,7 @@ func OnPrivateMessage(s *services.Services) func(twitch.PrivateMessage) {
 			if utf8.RuneCountInString(response) > cmds.MaxMessageLength {
 				runes := []rune(response)
 				log.Println(len(runes), utf8.RuneCountInString(response))
-				if message.User.Name == "rprtr258" {
+				if message.User.Name == "rprtr258" { // TODO: change to permission check
 					for i := 0; i < len(runes); i += cmds.MaxMessageLength {
 						resp := string(lo.Subset(runes, i, cmds.MaxMessageLength))
 						log.Println("trying to send msg of len", utf8.RuneCountInString(resp))
