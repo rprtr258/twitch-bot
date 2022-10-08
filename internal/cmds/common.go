@@ -1,9 +1,11 @@
 package cmds
 
 import (
-	"abobus/internal/services"
+	"context"
 
 	twitch "github.com/gempir/go-twitch-irc/v3"
+
+	"abobus/internal/services"
 )
 
 const MaxMessageLength = 500
@@ -14,5 +16,5 @@ type Command interface {
 	// Description - get command description
 	Description() string
 	// Run - execute command
-	Run(*services.Services, []string, twitch.PrivateMessage) (string, error)
+	Run(context.Context, *services.Services, []string, twitch.PrivateMessage) (string, error)
 }

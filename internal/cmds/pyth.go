@@ -44,7 +44,7 @@ func (*PythCmd) Description() string {
 	return "Eval in pyth"
 }
 
-func (cmd *PythCmd) Run(s *services.Services, perms []string, message twitch.PrivateMessage) (string, error) {
+func (cmd *PythCmd) Run(ctx context.Context, s *services.Services, perms []string, message twitch.PrivateMessage) (string, error) {
 	if !strings.ContainsRune(message.Message, ' ') {
 		return "Pyth docs: https://pyth.readthedocs.io/en/latest/getting-started.html", nil
 	}
@@ -60,7 +60,7 @@ func (cmd *PythCmd) Run(s *services.Services, perms []string, message twitch.Pri
 		cmd.running.Add(-1)
 	}()
 
-	ctx, cancel := context.WithTimeout(context.Background(), time.Second*5)
+	ctx, cancel := context.WithTimeout(ctx, time.Second*5)
 	defer cancel()
 
 	proc := exec.CommandContext(ctx, "docker", "run", "--memory=500m", "--cpus=1", "--rm", "pyth", program)

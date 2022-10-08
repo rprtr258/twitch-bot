@@ -4,6 +4,7 @@ import (
 	"abobus/internal/cmds"
 	"abobus/internal/permissions"
 	"abobus/internal/services"
+	"context"
 	"fmt"
 	"log"
 	"strings"
@@ -25,7 +26,7 @@ func (CommandsCmd) Description() string {
 	return "List all commands"
 }
 
-func (CommandsCmd) Run(s *services.Services, perms []string, message twitch.PrivateMessage) (string, error) {
+func (CommandsCmd) Run(ctx context.Context, s *services.Services, perms []string, message twitch.PrivateMessage) (string, error) {
 	parts := lo.Map(allCommands, func(cmd Command, _ int) string {
 		return fmt.Sprintf("%s - %s", cmd.Cmd.Command(), cmd.Cmd.Description())
 	})
@@ -100,7 +101,10 @@ func OnPrivateMessage(s *services.Services) func(twitch.PrivateMessage) {
 
 			whisper := !lo.Contains(userPermissions, "say_response")
 
-			response, err := cmd.Cmd.Run(s, userPermissions, message)
+			ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
+			defer cancel()
+
+			response, err := cmd.Cmd.Run(ctx, s, userPermissions, message)
 			if err != nil {
 				response = fmt.Sprintf("Internal error: %s", err.Error())
 			} else if response == "" {

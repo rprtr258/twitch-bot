@@ -1,6 +1,7 @@
 package cmds
 
 import (
+	"context"
 	"fmt"
 	"strings"
 	"unicode/utf8"
@@ -21,7 +22,7 @@ func (PermsCmd) Description() string {
 	return "Get permissions"
 }
 
-func (cmd PermsCmd) Run(s *services.Services, perms []string, message twitch.PrivateMessage) (string, error) {
+func (cmd PermsCmd) Run(ctx context.Context, s *services.Services, perms []string, message twitch.PrivateMessage) (string, error) {
 	words := strings.Split(message.Message, " ")
 	permissionsToShow := perms
 	if len(words) > 1 {

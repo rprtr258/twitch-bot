@@ -3,6 +3,7 @@ package cmds
 import (
 	"abobus/internal/services"
 	"bufio"
+	"context"
 	"math/rand"
 	"os"
 
@@ -20,7 +21,7 @@ func (PastaSearchCmd) Description() string {
 }
 
 // TODO: cmd to add pastas
-func (cmd PastaSearchCmd) Run(s *services.Services, perms []string, message twitch.PrivateMessage) (string, error) {
+func (cmd PastaSearchCmd) Run(ctx context.Context, s *services.Services, perms []string, message twitch.PrivateMessage) (string, error) {
 	// // TODO: check empty query
 	// query := strings.TrimPrefix(message.Message, cmd.Command()+" ")
 

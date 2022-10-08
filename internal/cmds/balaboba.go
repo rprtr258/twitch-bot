@@ -7,7 +7,6 @@ import (
 	"path"
 	"strconv"
 	"strings"
-	"time"
 	"unicode/utf8"
 
 	twitch "github.com/gempir/go-twitch-irc/v3"
@@ -40,7 +39,7 @@ func (BlabGenCmd) Description() string {
 	return "Balaboba text generation neural network"
 }
 
-func (cmd BlabGenCmd) Run(s *services.Services, perms []string, message twitch.PrivateMessage) (string, error) {
+func (cmd BlabGenCmd) Run(ctx context.Context, s *services.Services, perms []string, message twitch.PrivateMessage) (string, error) {
 	words := strings.Split(message.Message, " ")
 
 	if len(words) == 1 {
@@ -108,7 +107,7 @@ func (BlabContinueCmd) Description() string {
 	return "Continue paste by balaboba"
 }
 
-func (cmd BlabContinueCmd) Run(s *services.Services, perms []string, message twitch.PrivateMessage) (string, error) {
+func (cmd BlabContinueCmd) Run(ctx context.Context, s *services.Services, perms []string, message twitch.PrivateMessage) (string, error) {
 	words := strings.Split(message.Message, " ")
 
 	if len(words) != 2 {
@@ -140,10 +139,6 @@ func (cmd BlabContinueCmd) Run(s *services.Services, perms []string, message twi
 		return "", err
 	}
 
-	// TODO: move to main loop
-	ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
-	defer cancel()
-
 	response, err := s.Balaboba.GenerateContext(ctx, text, balaboba.Style(styleIdx))
 	if err != nil {
 		return "", err
@@ -174,7 +169,7 @@ func (BlabReadCmd) Description() string {
 	return "Read pasta generated, providing it's ID"
 }
 
-func (cmd BlabReadCmd) Run(s *services.Services, perms []string, message twitch.PrivateMessage) (string, error) {
+func (cmd BlabReadCmd) Run(ctx context.Context, s *services.Services, perms []string, message twitch.PrivateMessage) (string, error) {
 	words := strings.Split(message.Message, " ")
 
 	if len(words) != 2 {
