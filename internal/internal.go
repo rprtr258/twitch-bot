@@ -14,8 +14,6 @@ import (
 	"github.com/samber/lo"
 )
 
-const _maxMessageLength = 500
-
 // TODO: list only available commands
 type CommandsCmd struct{}
 
@@ -56,7 +54,13 @@ var allCommands = []Command{{
 	Cmd:                 cmds.FedCmd{},
 }, {
 	PermissionsRequired: []string{"execute_commands"},
-	Cmd:                 cmds.BlabCmd{},
+	Cmd:                 cmds.BlabGenCmd{},
+}, {
+	PermissionsRequired: []string{"execute_commands"},
+	Cmd:                 cmds.BlabContinueCmd{},
+}, {
+	PermissionsRequired: []string{"execute_commands"},
+	Cmd:                 cmds.BlabReadCmd{},
 }, {
 	PermissionsRequired: []string{"execute_commands"},
 	Cmd:                 &cmds.PythCmd{},
@@ -106,12 +110,12 @@ func OnPrivateMessage(s *services.Services) func(twitch.PrivateMessage) {
 			// TODO: move responding to commands
 			// TODO: rewrite
 			// TODO: fix response: Must be less than 500 character(s). somewhere
-			if utf8.RuneCountInString(response) > _maxMessageLength {
+			if utf8.RuneCountInString(response) > cmds.MaxMessageLength {
 				runes := []rune(response)
 				log.Println(len(runes), utf8.RuneCountInString(response))
 				if message.User.Name == "rprtr258" {
-					for i := 0; i < len(runes); i += _maxMessageLength {
-						resp := string(lo.Subset(runes, i, _maxMessageLength))
+					for i := 0; i < len(runes); i += cmds.MaxMessageLength {
+						resp := string(lo.Subset(runes, i, cmds.MaxMessageLength))
 						log.Println("trying to send msg of len", utf8.RuneCountInString(resp))
 						if whisper {
 							s.ChatClient.Whisper(message.User.Name, resp)
@@ -122,7 +126,7 @@ func OnPrivateMessage(s *services.Services) func(twitch.PrivateMessage) {
 						time.Sleep(time.Millisecond * 500)
 					}
 				} else {
-					response = string(runes[:_maxMessageLength])
+					response = string(runes[:cmds.MaxMessageLength])
 
 					log.Println("trying to send msg of len", utf8.RuneCountInString(response))
 					if whisper {

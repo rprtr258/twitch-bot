@@ -1,7 +1,6 @@
 package cmds
 
 import (
-	"abobus/internal/services"
 	"database/sql"
 	"fmt"
 	"log"
@@ -9,6 +8,8 @@ import (
 
 	twitch "github.com/gempir/go-twitch-irc/v3"
 	"github.com/pocketbase/dbx"
+
+	"abobus/internal/services"
 )
 
 type FedCmd struct{}
@@ -32,16 +33,21 @@ func (cmd FedCmd) Run(s *services.Services, perms []string, message twitch.Priva
 	if len(words) == 3 && words[1] == "*" {
 		theWord := words[2]
 		var count int
-		err := db.Select("COUNT(*) AS count").From("messages").Where(dbx.And(
-			dbx.NewExp("channel={:channel}", dbx.Params{"channel": message.Channel}),
-			// TODO: fix theWord = '%%' escaping
-			dbx.Like("message", theWord),
-			dbx.NotLike("message", cmd.Command()).Match(false, true),
-		)).Row(&count)
-		if err != nil && err != sql.ErrNoRows {
-			// TODO: save log
-			log.Println(err.Error())
-			return "", err
+		if err := db.
+			Select("COUNT(*) AS count").
+			From("messages").
+			Where(dbx.And(
+				dbx.NewExp("channel={:channel}", dbx.Params{"channel": message.Channel}),
+				// TODO: fix theWord = '%%' escaping
+				dbx.Like("message", theWord),
+				dbx.NotLike("message", cmd.Command()).Match(false, true),
+			)).
+			Row(&count); err != nil {
+			if err != sql.ErrNoRows {
+				// TODO: save log
+				log.Println(err.Error())
+				return "", err
+			}
 		}
 
 		return fmt.Sprintf("Слово %s было использовано %d раз.", theWord, count), nil

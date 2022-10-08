@@ -6,6 +6,8 @@ import (
 	twitch "github.com/gempir/go-twitch-irc/v3"
 )
 
+const MaxMessageLength = 500
+
 type Command interface {
 	// Command - get command name
 	Command() string

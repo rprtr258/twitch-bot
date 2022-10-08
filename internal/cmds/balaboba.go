@@ -2,28 +2,30 @@ package cmds
 
 import (
 	"abobus/internal/services"
+	"database/sql"
 	"fmt"
 	"strconv"
 	"strings"
+	"unicode/utf8"
 
 	twitch "github.com/gempir/go-twitch-irc/v3"
 	"github.com/karalef/balaboba"
+	"github.com/pocketbase/dbx"
 )
 
-// TODO: continue command
-// TODO: read command
+const _blabTable = "blab"
 
-type BlabCmd struct{}
+type BlabGenCmd struct{}
 
-func (BlabCmd) Command() string {
+func (BlabGenCmd) Command() string {
 	return "?blab"
 }
 
-func (BlabCmd) Description() string {
+func (BlabGenCmd) Description() string {
 	return "Balaboba text generation neural network"
 }
 
-func (cmd BlabCmd) Run(s *services.Services, perms []string, message twitch.PrivateMessage) (string, error) {
+func (cmd BlabGenCmd) Run(s *services.Services, perms []string, message twitch.PrivateMessage) (string, error) {
 	words := strings.Split(message.Message, " ")
 
 	if len(words) == 1 {
@@ -58,18 +60,132 @@ func (cmd BlabCmd) Run(s *services.Services, perms []string, message twitch.Priv
 		return "", err
 	}
 
-	id, err := s.Insert("blab", map[string]any{
+	id, err := s.Insert(_blabTable, map[string]any{
 		"text":          response.Text,
 		"author_id":     message.User.ID,
 		"continuations": 1,
+		"style":         styleIdx,
+		"channel":       message.Channel,
 	})
 	if err != nil {
 		return "", err
 	}
 
 	res := fmt.Sprintf("%s: %s", id, response.Text)
-	// TODO: get back
-	// if utf8.RuneCountInString(res) > _maxMessageLength {
+
+	if utf8.RuneCountInString(res) > MaxMessageLength {
+		// TODO: print paste start and then link
+		return fmt.Sprintf("Читать продолжение в источнике: %s/blab/%s", s.Backend.Settings().Meta.AppUrl, id), nil
+	}
+
+	return res, nil
+}
+
+type BlabContinueCmd struct{}
+
+func (BlabContinueCmd) Command() string {
+	return "?blab!"
+}
+
+func (BlabContinueCmd) Description() string {
+	return "Continue paste by balaboba"
+}
+
+func (cmd BlabContinueCmd) Run(s *services.Services, perms []string, message twitch.PrivateMessage) (string, error) {
+	words := strings.Split(message.Message, " ")
+
+	if len(words) != 2 {
+		return fmt.Sprintf("Usage: %s <paste-id>", cmd.Command()), nil
+	}
+
+	pasteID := words[1]
+
+	db := s.Backend.DB()
+	sqlCondition := dbx.And(
+		dbx.NewExp("id={:id}", dbx.Params{"id": pasteID}),
+		dbx.NewExp("channel={:channel}", dbx.Params{"channel": message.Channel}),
+	)
+
+	var (
+		text          string
+		continuations int
+		styleIdx      int
+	)
+	if err := db.
+		Select("text", "continuations", "style").
+		From(_blabTable).
+		Where(sqlCondition).
+		Row(&text, &continuations, &styleIdx); err != nil {
+		if err == sql.ErrNoRows {
+			return "404: Paste not found", nil
+		}
+
+		return "", err
+	}
+
+	response, err := s.Balaboba.Generate(text, balaboba.Style(styleIdx))
+	if err != nil {
+		return "", err
+	}
+
+	if _, err := db.
+		Update(_blabTable, map[string]any{
+			"text":          response.Text,
+			"continuations": continuations + 1,
+		}, sqlCondition).
+		Execute(); err != nil {
+		return "", err
+	}
+
+	res := response.Text
+
+	// if utf8.RuneCountInString(res) >_maxMessageLength {
+	// 	return fmt.Sprintf("Читать продолжение в источнике: %s/blab/%s", s.Backend.Settings().Meta.AppUrl, id), nil
+	// }
+
+	return res, nil
+}
+
+type BlabReadCmd struct{}
+
+func (BlabReadCmd) Command() string {
+	return "?blab?"
+}
+
+func (BlabReadCmd) Description() string {
+	return "Read pasta generated, providing it's ID"
+}
+
+func (cmd BlabReadCmd) Run(s *services.Services, perms []string, message twitch.PrivateMessage) (string, error) {
+	words := strings.Split(message.Message, " ")
+
+	if len(words) != 2 {
+		return fmt.Sprintf("Usage: %s <paste-id>", cmd.Command()), nil
+	}
+
+	pasteID := words[1]
+
+	db := s.Backend.DB()
+
+	var text string
+	if err := db.
+		Select("text").
+		From(_blabTable).
+		Where(dbx.And(
+			dbx.NewExp("id={:id}", dbx.Params{"id": pasteID}),
+			dbx.NewExp("channel={:channel}", dbx.Params{"channel": message.Channel}),
+		)).
+		Row(&text); err != nil {
+		if err == sql.ErrNoRows {
+			return "404: Paste not found", nil
+		}
+
+		return "", err
+	}
+
+	res := text
+
+	// if utf8.RuneCountInString(res) >_maxMessageLength {
 	// 	return fmt.Sprintf("Читать продолжение в источнике: %s/blab/%s", s.Backend.Settings().Meta.AppUrl, id), nil
 	// }
 
