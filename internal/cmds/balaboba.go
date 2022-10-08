@@ -68,8 +68,10 @@ func (cmd BlabGenCmd) Run(ctx context.Context, s *services.Services, perms permi
 		return "PauseFish", nil
 	}
 
+	responseText := strings.ReplaceAll(response.Text, "\n", " ")
+
 	id, err := s.Insert(_blabTable, map[string]any{
-		"text":          response.Text,
+		"text":          responseText,
 		"author_id":     message.User.ID,
 		"continuations": 1,
 		"style":         styleIdx,
@@ -79,14 +81,14 @@ func (cmd BlabGenCmd) Run(ctx context.Context, s *services.Services, perms permi
 		return "", err
 	}
 
-	shortResponse := fmt.Sprintf("%s %s", id, response.Text)
+	shortResponse := fmt.Sprintf("%s %s", id, responseText)
 	if utf8.RuneCountInString(shortResponse) > MaxMessageLength {
 		link := path.Join(s.Backend.Settings().Meta.AppUrl, "blab", id)
 		linkLen := len(link) + 1
-		runes := []rune(response.Text)
+		runes := []rune(responseText)
 		upperBound := MaxMessageLength
-		if utf8.RuneCountInString(response.Text) < MaxMessageLength {
-			upperBound = utf8.RuneCountInString(response.Text)
+		if utf8.RuneCountInString(responseText) < MaxMessageLength {
+			upperBound = utf8.RuneCountInString(responseText)
 		}
 		return fmt.Sprintf("%s %s", string(runes[:upperBound-linkLen]), link), nil
 	}

@@ -132,6 +132,7 @@ func OnPrivateMessage(s *services.Services) func(twitch.PrivateMessage) {
 				} else {
 					response = string(runes[:cmds.MaxMessageLength])
 
+					// TODO: fix cutting
 					log.Println("trying to send msg of len", utf8.RuneCountInString(response))
 					if whisper {
 						s.ChatClient.Whisper(message.User.Name, response)
@@ -148,6 +149,7 @@ func OnPrivateMessage(s *services.Services) func(twitch.PrivateMessage) {
 				}
 			}
 
+			// TODO: fix not logging blab cmds
 			if _, err := s.Insert("chat_commands", map[string]any{
 				"command":  cmd.Cmd.Command(),
 				"args":     message.Message,
@@ -156,7 +158,8 @@ func OnPrivateMessage(s *services.Services) func(twitch.PrivateMessage) {
 				"user":     userName,
 				"channel":  message.Channel,
 			}); err != nil {
-				// TODO: save log
+				// TODO: save log/sentry
+				// TODO: change logger to zap
 				log.Println(err.Error())
 			}
 
