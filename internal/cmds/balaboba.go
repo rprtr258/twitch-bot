@@ -4,6 +4,7 @@ import (
 	"abobus/internal/services"
 	"database/sql"
 	"fmt"
+	"path"
 	"strconv"
 	"strings"
 	"unicode/utf8"
@@ -14,6 +15,15 @@ import (
 )
 
 const _blabTable = "blab"
+
+func responseOrLink(text, host, id string) string {
+	if utf8.RuneCountInString(text) > MaxMessageLength {
+		// TODO: print paste start and then link
+		return fmt.Sprintf("Читать продолжение в источнике: %s", path.Join(host, "blab", id))
+	}
+
+	return text
+}
 
 type BlabGenCmd struct{}
 
@@ -71,14 +81,11 @@ func (cmd BlabGenCmd) Run(s *services.Services, perms []string, message twitch.P
 		return "", err
 	}
 
-	res := fmt.Sprintf("%s: %s", id, response.Text)
-
-	if utf8.RuneCountInString(res) > MaxMessageLength {
-		// TODO: print paste start and then link
-		return fmt.Sprintf("Читать продолжение в источнике: %s/blab/%s", s.Backend.Settings().Meta.AppUrl, id), nil
-	}
-
-	return res, nil
+	return responseOrLink(
+		fmt.Sprintf("%s: %s", id, response.Text),
+		s.Backend.Settings().Meta.AppUrl,
+		id,
+	), nil
 }
 
 type BlabContinueCmd struct{}
@@ -137,13 +144,11 @@ func (cmd BlabContinueCmd) Run(s *services.Services, perms []string, message twi
 		return "", err
 	}
 
-	res := response.Text
-
-	// if utf8.RuneCountInString(res) >_maxMessageLength {
-	// 	return fmt.Sprintf("Читать продолжение в источнике: %s/blab/%s", s.Backend.Settings().Meta.AppUrl, id), nil
-	// }
-
-	return res, nil
+	return responseOrLink(
+		response.Text,
+		s.Backend.Settings().Meta.AppUrl,
+		pasteID,
+	), nil
 }
 
 type BlabReadCmd struct{}
@@ -183,11 +188,9 @@ func (cmd BlabReadCmd) Run(s *services.Services, perms []string, message twitch.
 		return "", err
 	}
 
-	res := text
-
-	// if utf8.RuneCountInString(res) >_maxMessageLength {
-	// 	return fmt.Sprintf("Читать продолжение в источнике: %s/blab/%s", s.Backend.Settings().Meta.AppUrl, id), nil
-	// }
-
-	return res, nil
+	return responseOrLink(
+		text,
+		s.Backend.Settings().Meta.AppUrl,
+		pasteID,
+	), nil
 }

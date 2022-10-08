@@ -9,8 +9,6 @@ import (
 	twitch "github.com/gempir/go-twitch-irc/v3"
 )
 
-const _distanceLimit = 500
-
 type PastaSearchCmd struct{}
 
 func (PastaSearchCmd) Command() string {
