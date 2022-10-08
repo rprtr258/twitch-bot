@@ -1,6 +1,7 @@
 package cmds
 
 import (
+	"abobus/internal/permissions"
 	"abobus/internal/services"
 	"bytes"
 	"context"
@@ -44,7 +45,7 @@ func (*PythCmd) Description() string {
 	return "Eval in pyth"
 }
 
-func (cmd *PythCmd) Run(ctx context.Context, s *services.Services, perms []string, message twitch.PrivateMessage) (string, error) {
+func (cmd *PythCmd) Run(ctx context.Context, s *services.Services, perms permissions.PermissionsList, message twitch.PrivateMessage) (string, error) {
 	if !strings.ContainsRune(message.Message, ' ') {
 		return "Pyth docs: https://pyth.readthedocs.io/en/latest/getting-started.html", nil
 	}

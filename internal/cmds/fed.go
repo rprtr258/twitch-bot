@@ -10,6 +10,7 @@ import (
 	twitch "github.com/gempir/go-twitch-irc/v3"
 	"github.com/pocketbase/dbx"
 
+	"abobus/internal/permissions"
 	"abobus/internal/services"
 )
 
@@ -23,7 +24,7 @@ func (FedCmd) Description() string {
 	return "Show how many times word has been used"
 }
 
-func (cmd FedCmd) Run(ctx context.Context, s *services.Services, perms []string, message twitch.PrivateMessage) (string, error) {
+func (cmd FedCmd) Run(ctx context.Context, s *services.Services, perms permissions.PermissionsList, message twitch.PrivateMessage) (string, error) {
 	words := strings.Split(message.Message, " ")
 	if len(words) != 2 && len(words) != 3 {
 		return fmt.Sprintf(`Usage: "%[1]s <word>" or "%[1]s <user> <word>" or "%[1]s * <word>"`, cmd.Command()), nil

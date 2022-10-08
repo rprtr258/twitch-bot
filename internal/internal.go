@@ -26,7 +26,7 @@ func (CommandsCmd) Description() string {
 	return "List all commands"
 }
 
-func (CommandsCmd) Run(ctx context.Context, s *services.Services, perms []string, message twitch.PrivateMessage) (string, error) {
+func (CommandsCmd) Run(ctx context.Context, s *services.Services, perms permissions.PermissionsList, message twitch.PrivateMessage) (string, error) {
 	parts := lo.Map(allCommands, func(cmd Command, _ int) string {
 		return fmt.Sprintf("%s - %s", cmd.Cmd.Command(), cmd.Cmd.Description())
 	})
@@ -95,11 +95,11 @@ func OnPrivateMessage(s *services.Services) func(twitch.PrivateMessage) {
 			}
 
 			// TODO: add ban permissions
-			if !lo.Every(userPermissions, cmd.PermissionsRequired) {
+			if !userPermissions.Has(cmd.PermissionsRequired...) {
 				break
 			}
 
-			whisper := !lo.Contains(userPermissions, "say_response")
+			whisper := !userPermissions.Has("say_response")
 
 			ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
 			defer cancel()

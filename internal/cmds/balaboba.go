@@ -13,6 +13,7 @@ import (
 	"github.com/karalef/balaboba"
 	"github.com/pocketbase/dbx"
 
+	"abobus/internal/permissions"
 	"abobus/internal/services"
 )
 
@@ -28,7 +29,7 @@ func (BlabGenCmd) Description() string {
 	return "Balaboba text generation neural network"
 }
 
-func (cmd BlabGenCmd) Run(ctx context.Context, s *services.Services, perms []string, message twitch.PrivateMessage) (string, error) {
+func (cmd BlabGenCmd) Run(ctx context.Context, s *services.Services, perms permissions.PermissionsList, message twitch.PrivateMessage) (string, error) {
 	words := strings.Split(message.Message, " ")
 
 	if len(words) == 1 {
@@ -103,7 +104,7 @@ func (BlabContinueCmd) Description() string {
 	return "Continue paste by balaboba"
 }
 
-func (cmd BlabContinueCmd) Run(ctx context.Context, s *services.Services, perms []string, message twitch.PrivateMessage) (string, error) {
+func (cmd BlabContinueCmd) Run(ctx context.Context, s *services.Services, perms permissions.PermissionsList, message twitch.PrivateMessage) (string, error) {
 	words := strings.Split(message.Message, " ")
 
 	if len(words) != 2 {
@@ -165,7 +166,7 @@ func (BlabReadCmd) Description() string {
 	return "Read pasta generated, providing it's ID"
 }
 
-func (cmd BlabReadCmd) Run(ctx context.Context, s *services.Services, perms []string, message twitch.PrivateMessage) (string, error) {
+func (cmd BlabReadCmd) Run(ctx context.Context, s *services.Services, perms permissions.PermissionsList, message twitch.PrivateMessage) (string, error) {
 	words := strings.Split(message.Message, " ")
 
 	if len(words) != 2 {
