@@ -18,17 +18,6 @@ import (
 
 const _blabTable = "blab"
 
-func responseOrLink(text, host, id string) string {
-	if utf8.RuneCountInString(text) > MaxMessageLength {
-		link := path.Join(host, "blab", id)
-		linkLen := len(link) + 1
-		runes := []rune(text)
-		return fmt.Sprintf("%s %s", string(runes[:MaxMessageLength-linkLen]), link)
-	}
-
-	return text
-}
-
 type BlabGenCmd struct{}
 
 func (BlabGenCmd) Command() string {
@@ -89,12 +78,19 @@ func (cmd BlabGenCmd) Run(ctx context.Context, s *services.Services, perms []str
 		return "", err
 	}
 
-	// TODO: either "id text" or "text link"
-	return responseOrLink(
-		fmt.Sprintf("%s: %s", id, response.Text),
-		s.Backend.Settings().Meta.AppUrl,
-		id,
-	), nil
+	shortResponse := fmt.Sprintf("%s %s", id, response.Text)
+	if utf8.RuneCountInString(shortResponse) > MaxMessageLength {
+		link := path.Join(s.Backend.Settings().Meta.AppUrl, "blab", id)
+		linkLen := len(link) + 1
+		runes := []rune(response.Text)
+		upperBound := MaxMessageLength
+		if utf8.RuneCountInString(response.Text) < MaxMessageLength {
+			upperBound = utf8.RuneCountInString(response.Text)
+		}
+		return fmt.Sprintf("%s %s", string(runes[:upperBound-linkLen]), link), nil
+	}
+
+	return shortResponse, nil
 }
 
 type BlabContinueCmd struct{}
@@ -196,9 +192,12 @@ func (cmd BlabReadCmd) Run(ctx context.Context, s *services.Services, perms []st
 		return "", err
 	}
 
-	return responseOrLink(
-		text,
-		s.Backend.Settings().Meta.AppUrl,
-		pasteID,
-	), nil
+	if utf8.RuneCountInString(text) > MaxMessageLength {
+		link := path.Join(s.Backend.Settings().Meta.AppUrl, "blab", pasteID)
+		linkLen := len(link) + 1
+		runes := []rune(text)
+		return fmt.Sprintf("%s %s", string(runes[:MaxMessageLength-linkLen]), link), nil
+	}
+
+	return text, nil
 }
