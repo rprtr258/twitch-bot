@@ -4,7 +4,6 @@ import (
 	"context"
 	"database/sql"
 	"fmt"
-	"path"
 	"strconv"
 	"strings"
 	"unicode/utf8"
@@ -33,7 +32,7 @@ func (cmd BlabGenCmd) Run(ctx context.Context, s *services.Services, perms permi
 	words := strings.Split(message.Message, " ")
 
 	if len(words) == 1 {
-		return fmt.Sprintf("Available styles: %d-standart, %d-user manual, %d-recipes, %d-short stories, %d-wikipedia simplified, %d-movie synopses, %d-folk wisdom",
+		return fmt.Sprintf("Available styles: %d-standart, %d-user manual, %d-recipes, %d-short stories, %d-wikipedia simplified, %d-movie synopses, %d-folk wisdom. List of all pastes: %s",
 			balaboba.Standart,
 			balaboba.UserManual,
 			balaboba.Recipes,
@@ -41,6 +40,7 @@ func (cmd BlabGenCmd) Run(ctx context.Context, s *services.Services, perms permi
 			balaboba.WikipediaSipmlified,
 			balaboba.MovieSynopses,
 			balaboba.FolkWisdom,
+			fmt.Sprintf("%s/%s/", s.Backend.Settings().Meta.AppUrl, "blab"), // TODO: separate by channels
 		), nil
 	}
 
@@ -83,7 +83,7 @@ func (cmd BlabGenCmd) Run(ctx context.Context, s *services.Services, perms permi
 
 	shortResponse := fmt.Sprintf("%s %s", id, responseText)
 	if utf8.RuneCountInString(shortResponse) > MaxMessageLength {
-		link := path.Join(s.Backend.Settings().Meta.AppUrl, "blab", id)
+		link := fmt.Sprintf("%s/%s/%s", s.Backend.Settings().Meta.AppUrl, "blab", id)
 		linkLen := len(link) + 1
 		runes := []rune(responseText)
 		upperBound := MaxMessageLength
@@ -154,7 +154,7 @@ func (cmd BlabContinueCmd) Run(ctx context.Context, s *services.Services, perms 
 
 	return fmt.Sprintf(
 		"Читать продолжение в источнике: %s",
-		path.Join(s.Backend.Settings().Meta.AppUrl, "blab", pasteID),
+		fmt.Sprintf("%s/%s/%s", s.Backend.Settings().Meta.AppUrl, "blab", pasteID),
 	), nil
 }
 
@@ -196,7 +196,7 @@ func (cmd BlabReadCmd) Run(ctx context.Context, s *services.Services, perms perm
 	}
 
 	if utf8.RuneCountInString(text) > MaxMessageLength {
-		link := path.Join(s.Backend.Settings().Meta.AppUrl, "blab", pasteID)
+		link := fmt.Sprintf("%s/%s/%s", s.Backend.Settings().Meta.AppUrl, "blab", pasteID)
 		linkLen := len(link) + 1
 		runes := []rune(text)
 		return fmt.Sprintf("%s %s", string(runes[:MaxMessageLength-linkLen]), link), nil

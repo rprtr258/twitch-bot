@@ -3,10 +3,12 @@ package main
 import (
 	"database/sql"
 	"fmt"
+	"html/template"
 	"log"
 	"math/rand"
 	"net/http"
 	"os"
+	"strings"
 	"time"
 
 	"github.com/gempir/go-twitch-irc/v3"
@@ -16,12 +18,20 @@ import (
 	"github.com/pocketbase/dbx"
 	"github.com/pocketbase/pocketbase"
 	"github.com/pocketbase/pocketbase/core"
+	"github.com/samber/lo"
 
 	// TODO: rename module, packages
 	"abobus/internal"
 	"abobus/internal/permissions"
 	"abobus/internal/services"
 )
+
+// TODO: show partially content
+var idsPage = template.Must(template.New("blab-list").Parse(`
+{{range .}}
+	<a style="padding: 10% 15%; font-size: 1.8em;" href={{.URL}}>{{.ID}}</a>
+{{end}}
+`))
 
 func twitchAuth(helixClient *helix.Client) {
 	resp, err := helixClient.RequestAppAccessToken([]string{"user:read:email"})
@@ -90,7 +100,46 @@ func run() error {
 	})
 
 	app.OnBeforeServe().Add(func(e *core.ServeEvent) error {
-		e.Router.AddRoute(echo.Route{
+		if _, err := e.Router.AddRoute(echo.Route{
+			Method: http.MethodGet,
+			Path:   "/blab",
+			Handler: func(c echo.Context) error {
+				db := app.DB()
+
+				type row struct {
+					ID string
+				}
+				var ids []row
+				err := db.
+					Select("id").
+					From("blab").
+					All(&ids)
+				if err != nil && err != sql.ErrNoRows {
+					// TODO: save log
+					log.Println("failed extracting ids from db", err.Error())
+					return echo.ErrInternalServerError
+				}
+
+				type pageEntry struct {
+					ID  string
+					URL string
+				}
+				entries := lo.Map(ids, func(row row, _ int) pageEntry {
+					return pageEntry{
+						ID:  row.ID,
+						URL: fmt.Sprintf("%s/%s/%s", app.Settings().Meta.AppUrl, "blab", row.ID),
+					}
+				})
+
+				var page strings.Builder
+				idsPage.Execute(&page, entries)
+				return c.HTML(http.StatusOK, page.String())
+			},
+		}); err != nil {
+			return err
+		}
+
+		if _, err := e.Router.AddRoute(echo.Route{
 			Method: http.MethodGet,
 			Path:   "/blab/:id",
 			Handler: func(c echo.Context) error {
@@ -115,7 +164,9 @@ func run() error {
 					text,
 				))
 			},
-		})
+		}); err != nil {
+			return err
+		}
 
 		return nil
 	})
