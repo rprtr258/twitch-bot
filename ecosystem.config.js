@@ -1,11 +1,11 @@
 module.exports = {
-  apps : [{
+  apps: [{
     name: "twitch-bot",
     script: "just",
     args: "run",
   }],
-  deploy : {
-    production : {
+  deploy: {
+    production: {
       user: "root",
       host: "176.126.113.161",
       key: "/home/rprtr258/.ssh/test_vds",
