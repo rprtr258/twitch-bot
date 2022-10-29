@@ -4,8 +4,7 @@ WORKDIR /app
 
 COPY go.mod go.sum ./
 RUN go mod download
-COPY cmd/ cmd/
-COPY internal/ internal/
+COPY . .
 RUN CGO_ENABLED=0 go build -o twitch-bot cmd/main.go
 
 FROM golang:1.19.2-alpine
