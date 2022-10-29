@@ -1,4 +1,4 @@
-module abobus
+module github.com/rprtr258/twitch-bot
 
 go 1.19
 

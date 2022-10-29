@@ -1,15 +1,16 @@
 package internal
 
 import (
-	"abobus/internal/cmds"
-	"abobus/internal/permissions"
-	"abobus/internal/services"
 	"context"
 	"fmt"
 	"log"
 	"strings"
 	"time"
 	"unicode/utf8"
+
+	"github.com/rprtr258/twitch-bot/internal/cmds"
+	"github.com/rprtr258/twitch-bot/internal/permissions"
+	"github.com/rprtr258/twitch-bot/internal/services"
 
 	twitch "github.com/gempir/go-twitch-irc/v3"
 	"github.com/samber/lo"

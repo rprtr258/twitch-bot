@@ -10,7 +10,7 @@ import (
 	"github.com/pocketbase/pocketbase/forms"
 	"github.com/pocketbase/pocketbase/models"
 
-	"abobus/internal/permissions"
+	"github.com/rprtr258/twitch-bot/internal/permissions"
 )
 
 type Services struct {
