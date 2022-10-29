@@ -28,4 +28,6 @@ jobs:
         with:
           context: .
           push: true
-          tags: twitch-bot:${{ github.sha }}
+          tags: |
+            ghcr.io/rprtr258/twitch-bot:latest
+            ghcr.io/rprtr258/twitch-bot:${{ github.sha }}
