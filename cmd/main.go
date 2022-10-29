@@ -63,7 +63,12 @@ func run() error {
 
 		client := twitch.NewClient(os.Getenv("TWITCH_USERNAME"), os.Getenv("TWITCH_OAUTH_TOKEN"))
 
-		res, err := app.DB().Select("channel").From("joined_channels").Build().Rows()
+		res, err := app.
+			DB().
+			Select("channel").
+			From("joined_channels").
+			Build().
+			Rows()
 		if err != nil {
 			return err
 		}

@@ -4,17 +4,24 @@ WORKDIR /app
 
 COPY go.mod go.sum ./
 RUN go mod download
-COPY permissions.json pastes.txt ./
-COPY cmd/ internal/ ./
-RUN go build -o twitch-bot
+COPY cmd/ cmd/
+COPY internal/ internal/
+RUN CGO_ENABLED=0 go build -o twitch-bot cmd/main.go
 
 FROM golang:1.19.2-alpine
 
-RUN apk add python3
-WORKDIR /
-COPY pyth/ /
-COPY --from=build /twitch-bot /twitch-bot
-EXPOSE 80
-USER nonroot:nonroot
+RUN wget -q -t3 'https://packages.doppler.com/public/cli/rsa.8004D9FF50437357.key' -O /etc/apk/keys/cli@doppler-8004D9FF50437357.rsa.pub && \
+    echo 'https://packages.doppler.com/public/cli/alpine/any-version/main' | tee -a /etc/apk/repositories && \
+    apk add doppler
 
-ENTRYPOINT ["/twitch-bot"]
+RUN apk add python3
+WORKDIR /app
+COPY pyth/ pyth/
+COPY permissions.json pastes.txt ./
+COPY --from=build /app/twitch-bot twitch-bot
+EXPOSE 80
+# RUN addgroup -S nonroot && adduser -S nonroot -G nonroot
+# USER nonroot:nonroot
+
+# ENTRYPOINT ["./twitch-bot", "serve"]
+CMD ["doppler", "run", "--", "./twitch-bot", "serve", "--http=:80"]
