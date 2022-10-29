@@ -4,7 +4,8 @@ on:
   push:
     branches: [ "master" ]
 
-permissions: write-all
+permissions:
+  packages: write
 
 jobs:
   build:
