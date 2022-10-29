@@ -6,7 +6,7 @@ require (
 	github.com/gempir/go-twitch-irc/v3 v3.2.0
 	github.com/karalef/balaboba v0.0.0-20220920173959-7e9a07b058c8
 	github.com/labstack/echo/v5 v5.0.0-20220201181537-ed2888cfa198
-	github.com/nicklaw5/helix v1.25.0
+	github.com/nicklaw5/helix/v2 v2.11.0
 	github.com/pocketbase/dbx v1.6.0
 	github.com/pocketbase/pocketbase v0.7.7
 	github.com/samber/lo v1.28.2
@@ -41,7 +41,6 @@ require (
 	github.com/gabriel-vasile/mimetype v1.4.1 // indirect
 	github.com/ganigeorgiev/fexpr v0.1.1 // indirect
 	github.com/go-ozzo/ozzo-validation/v4 v4.3.0 // indirect
-	github.com/golang-jwt/jwt v3.2.2+incompatible // indirect
 	github.com/golang-jwt/jwt/v4 v4.4.2 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/golang/protobuf v1.5.2 // indirect

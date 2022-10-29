@@ -12,7 +12,7 @@ import (
 	"github.com/rprtr258/twitch-bot/internal/services"
 
 	twitch "github.com/gempir/go-twitch-irc/v3"
-	"github.com/nicklaw5/helix"
+	"github.com/nicklaw5/helix/v2"
 )
 
 func formatDuration(d time.Time) string {

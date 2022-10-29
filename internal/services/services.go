@@ -5,7 +5,7 @@ import (
 
 	twitch "github.com/gempir/go-twitch-irc/v3"
 	"github.com/karalef/balaboba"
-	"github.com/nicklaw5/helix"
+	"github.com/nicklaw5/helix/v2"
 	"github.com/pocketbase/pocketbase"
 	"github.com/pocketbase/pocketbase/forms"
 	"github.com/pocketbase/pocketbase/models"
