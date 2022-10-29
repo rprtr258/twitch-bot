@@ -3,6 +3,8 @@ name: Push docker image to github registry
 on:
   push:
     branches: [ "master" ]
+permissions:
+  packages: write
 
 jobs:
   build:
