@@ -20,10 +20,10 @@ import (
 	"github.com/pocketbase/pocketbase/core"
 	"github.com/samber/lo"
 
-	// TODO: rename module, packages
-	"abobus/internal"
-	"abobus/internal/permissions"
-	"abobus/internal/services"
+	// TODO: rename packages
+	"github.com/rprtr258/twitch-bot/internal"
+	"github.com/rprtr258/twitch-bot/internal/permissions"
+	"github.com/rprtr258/twitch-bot/internal/services"
 )
 
 // TODO: show partially content

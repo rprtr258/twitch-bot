@@ -10,8 +10,8 @@ import (
 	twitch "github.com/gempir/go-twitch-irc/v3"
 	"github.com/pocketbase/dbx"
 
-	"abobus/internal/permissions"
-	"abobus/internal/services"
+	"github.com/rprtr258/twitch-bot/internal/permissions"
+	"github.com/rprtr258/twitch-bot/internal/services"
 )
 
 type FedCmd struct{}

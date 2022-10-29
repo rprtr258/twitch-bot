@@ -1,14 +1,15 @@
 package cmds
 
 import (
-	"abobus/internal/permissions"
-	"abobus/internal/services"
 	"context"
 	"errors"
 	"fmt"
 	"math"
 	"strings"
 	"time"
+
+	"github.com/rprtr258/twitch-bot/internal/permissions"
+	"github.com/rprtr258/twitch-bot/internal/services"
 
 	twitch "github.com/gempir/go-twitch-irc/v3"
 	"github.com/nicklaw5/helix"

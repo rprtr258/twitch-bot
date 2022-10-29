@@ -1,12 +1,13 @@
 package cmds
 
 import (
-	"abobus/internal/permissions"
-	"abobus/internal/services"
 	"bufio"
 	"context"
 	"math/rand"
 	"os"
+
+	"github.com/rprtr258/twitch-bot/internal/permissions"
+	"github.com/rprtr258/twitch-bot/internal/services"
 
 	twitch "github.com/gempir/go-twitch-irc/v3"
 )
