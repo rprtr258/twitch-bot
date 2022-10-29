@@ -1,8 +1,6 @@
 package cmds
 
 import (
-	"abobus/internal/permissions"
-	"abobus/internal/services"
 	"bytes"
 	"context"
 	"io"
@@ -11,6 +9,9 @@ import (
 	"strings"
 	"sync/atomic"
 	"time"
+
+	"github.com/rprtr258/twitch-bot/internal/permissions"
+	"github.com/rprtr258/twitch-bot/internal/services"
 
 	twitch "github.com/gempir/go-twitch-irc/v3"
 )
