@@ -3,7 +3,11 @@
 
 # run server
 run:
-  rwenv -i -e .env go run cmd/main.go serve
+  docker run --rm -it \
+    -v $(pwd)/pb_data:/app/pb_data \
+    -p 8090:80 \
+    -e DOPPLER_TOKEN="$(doppler configs tokens create docker --max-age 1m --plain)" \
+    twitch-bot
 
 # generates: [dataset]
 get_chat_logs:
