@@ -1,23 +1,20 @@
-FROM golang:1.16-buster AS build
+FROM golang:1.19.2 AS build
 
 WORKDIR /app
 
-COPY go.mod ./
-COPY go.sum ./
+COPY go.mod go.sum ./
 RUN go mod download
+COPY permissions.json pastes.txt ./
+COPY cmd/ internal/ ./
+RUN go build -o twitch-bot
 
-COPY *.go ./
+FROM golang:1.19.2-alpine
 
-RUN go build -o /docker-gs-ping
-
-FROM gcr.io/distroless/base-debian10
-
+RUN apk add python3
 WORKDIR /
-
-COPY --from=build /docker-gs-ping /docker-gs-ping
-
-EXPOSE 8080
-
+COPY pyth/ /
+COPY --from=build /twitch-bot /twitch-bot
+EXPOSE 80
 USER nonroot:nonroot
 
-ENTRYPOINT ["/docker-gs-ping"]
+ENTRYPOINT ["/twitch-bot"]
