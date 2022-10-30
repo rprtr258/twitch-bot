@@ -3,6 +3,10 @@
 
 # run server
 run:
+  doppler run -- go run cmd/main.go serve
+
+run-docker:
+  docker build --tag twitch-bot .
   docker run --rm -it \
     -v $(pwd)/pb_data:/app/pb_data \
     -p 8090:80 \
