@@ -35,6 +35,3 @@ jobs:
           tags: |
             ${{ env.DOCKER_IMAGE }}:latest
             ${{ env.DOCKER_IMAGE }}:${{ github.sha }}
-      - name: test
-        run:
-          - docker run -e TWITCH_CLIENT_ID=1 ${{ env.DOCKER_IMAGE }} ./twitch-bot serve
