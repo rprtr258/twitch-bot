@@ -22,9 +22,9 @@ import (
 
 	// TODO: rename packages
 	"github.com/rprtr258/twitch-bot/internal"
-	_ "github.com/rprtr258/twitch-bot/internal/migrations"
 	"github.com/rprtr258/twitch-bot/internal/permissions"
 	"github.com/rprtr258/twitch-bot/internal/services"
+	_ "github.com/rprtr258/twitch-bot/migrations"
 )
 
 // TODO: show partially content
