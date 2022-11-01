@@ -6,12 +6,7 @@ run:
   doppler run -- go run cmd/main.go serve
 
 run-docker:
-  docker build --tag twitch-bot .
-  docker run --rm -it \
-    -v $(pwd)/pb_data:/app/pb_data \
-    -p 8090:80 \
-    -e DOPPLER_TOKEN="$(doppler configs tokens create docker --max-age 1m --plain)" \
-    twitch-bot
+  doppler run --token="$(doppler configs tokens create docker --max-age 1m --plain)" -- docker compose up --build
 
 # generates: [dataset]
 get_chat_logs:
