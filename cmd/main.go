@@ -22,7 +22,6 @@ import (
 
 	// TODO: rename packages
 	"github.com/rprtr258/twitch-bot/internal"
-	"github.com/rprtr258/twitch-bot/internal/permissions"
 	"github.com/rprtr258/twitch-bot/internal/services"
 	_ "github.com/rprtr258/twitch-bot/migrations"
 )
@@ -81,17 +80,17 @@ func run() error {
 
 		balabobaClient := balaboba.New(balaboba.Rus, time.Minute)
 
-		permissions, err := permissions.LoadFromJSONFile("permissions.json")
-		if err != nil {
-			return err
-		}
+		// permissions, err := permissions.LoadFromJSONFile("permissions.json")
+		// if err != nil {
+		// 	return err
+		// }
 
 		services := services.Services{
 			ChatClient:      client,
 			TwitchApiClient: helixClient,
 			Backend:         app,
 			Balaboba:        balabobaClient,
-			Permissions:     permissions,
+			// Permissions:     permissions,
 		}
 
 		client.OnPrivateMessage(internal.OnPrivateMessage(&services))
