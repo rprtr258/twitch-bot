@@ -2,6 +2,5 @@ localhost vm640272.stark-industries.solutions {
     # Compress responses according to Accept-Encoding headers
     encode gzip zstd
 
-    # Send API requests to backend
-    reverse_proxy /* twitch-bot:80
+    reverse_proxy twitch-bot:80
 }
