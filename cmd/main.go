@@ -81,7 +81,7 @@ func run() error {
 
 		balabobaClient := balaboba.New(balaboba.Rus, time.Minute)
 
-		permissions, err := permissions.LoadFromJSONFile("permissions.json")
+		permissions, err := permissions.LoadFromJSONFile("permssions.json")
 		if err != nil {
 			return err
 		}
