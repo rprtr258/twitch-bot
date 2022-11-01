@@ -1,6 +1,7 @@
 services:
   twitch-bot:
     container_name: twitch-bot
+    image: ghcr.io/rprtr258/twitch-bot
     build:
       context: .
       dockerfile: Dockerfile
