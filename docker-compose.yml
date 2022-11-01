@@ -1,0 +1,14 @@
+services:
+  twitch-bot:
+    container_name: twitch-bot
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8089:80
+    environment:
+      - TWITCH_CLIENT_ID=${TWITCH_CLIENT_ID}
+      - TWITCH_CLIENT_SECRET=${TWITCH_CLIENT_SECRET}
+      - TWITCH_OAUTH_TOKEN=${TWITCH_OAUTH_TOKEN}
+      - TWITCH_REDIRECT_URI=${TWITCH_REDIRECT_URI}
+      - TWITCH_USERNAME=${TWITCH_USERNAME}
