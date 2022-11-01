@@ -95,11 +95,11 @@ func run() error {
 
 		client.OnPrivateMessage(internal.OnPrivateMessage(&services))
 
-		go func() {
-			if err := client.Connect(); err != nil {
-				log.Fatal(err.Error())
-			}
-		}()
+		// go func() {
+		// 	if err := client.Connect(); err != nil {
+		// 		log.Fatal(err.Error())
+		// 	}
+		// }()
 
 		return nil
 	})
