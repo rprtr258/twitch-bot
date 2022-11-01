@@ -16,5 +16,7 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag ${{ env.DOCKER_IMAGE }}
+    - name: zalupa
+      run: grep '^.*$' *
     - name: test
       run: docker run -e TWITCH_CLIENT_ID=1 ${{ env.DOCKER_IMAGE }} ./twitch-bot serve

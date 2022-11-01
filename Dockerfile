@@ -16,7 +16,7 @@ RUN wget -q -t3 'https://packages.doppler.com/public/cli/rsa.8004D9FF50437357.ke
 RUN apk add python3
 WORKDIR /app
 COPY --from=build /app/twitch-bot twitch-bot
-COPY permissions.json permissions.json
+COPY permssions.json permssions.json
 RUN cat permssions.json
 EXPOSE 80
 # RUN addgroup -S nonroot && adduser -S nonroot -G nonroot
