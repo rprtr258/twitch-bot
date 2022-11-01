@@ -7,7 +7,7 @@ run:
 
 # run locally in docker
 run-docker:
-  doppler run --token="$(doppler configs tokens create docker --max-age 1m --plain)" -- docker compose up --build
+  doppler run --token="$(doppler configs tokens create docker --max-age 1m --plain)" -- docker compose up --build --remove-orphans
 
 # bump dependencies
 @bump:
@@ -27,7 +27,4 @@ run-docker:
 
 # stupid deploy automation
 deploy:
-  scp -i ~/.ssh/test_vds twitch-bot root@176.126.113.161:/root/go
-  scp -i ~/.ssh/test_vds twitch-bot.service root@176.126.113.161:/etc/systemd/system/
-  ssh vps-root 'systemctl daemon-reload'
-  scp -r -i ~/.ssh/test_vds permissions.json root@176.126.113.161:/root/go/
+  ssh vps 'cd twitch-bot-deploy && docker compose pull && doppler run -- docker compose up'

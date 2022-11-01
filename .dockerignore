@@ -1,7 +1,9 @@
-justfile
-.dockerignore
-.git*
-Dockerfile
-docker-compose.yml
-ecosystem.config.js
-pb_data/
+*
+!cmd/
+!internal/
+!migrations/
+!pyth/
+!permissions.json
+!pastes.txt
+!go.mod
+!go.sum

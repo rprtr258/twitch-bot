@@ -1,3 +1,5 @@
+version: "3.8"
+
 services:
   twitch-bot:
     container_name: twitch-bot
@@ -5,13 +7,33 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    restart: unless-stopped
+    hostname: twitch-bot
     volumes:
       - ./pb_data/:/app/pb_data/
-    ports:
-      - 8090:80
     environment:
       - TWITCH_CLIENT_ID=${TWITCH_CLIENT_ID}
       - TWITCH_CLIENT_SECRET=${TWITCH_CLIENT_SECRET}
       - TWITCH_OAUTH_TOKEN=${TWITCH_OAUTH_TOKEN}
       - TWITCH_REDIRECT_URI=${TWITCH_REDIRECT_URI}
       - TWITCH_USERNAME=${TWITCH_USERNAME}
+
+  caddy:
+    container_name: twitch-bot.caddy
+    image: caddy:2.6
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    links:
+      - "twitch-bot:twitch-bot"
+    restart: unless-stopped
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+
+volumes:
+  caddy_data:
+    external: true
+  caddy_config:
