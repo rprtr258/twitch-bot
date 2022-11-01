@@ -14,11 +14,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+    - name: zalupa 1
+      run: cat permssions.json
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag ${{ env.DOCKER_IMAGE }}
-    - name: zalupa
-      run: grep '^.*$' *.json || true
     - name: zalupa 2
-      run: ls -lA
+      run: cat permssions.json
     - name: test
-      run: docker run -e TWITCH_CLIENT_ID=1 ${{ env.DOCKER_IMAGE }} ./twitch-bot serve
+      run: docker run -e TWITCH_CLIENT_ID=1 ${{ env.DOCKER_IMAGE }} cat /app/permssions.json
