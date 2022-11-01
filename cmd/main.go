@@ -7,17 +7,23 @@ import (
 	"log"
 	"math/rand"
 	"net/http"
+	"os"
 	"strings"
 	"time"
 
+	"github.com/gempir/go-twitch-irc/v3"
+	"github.com/karalef/balaboba"
 	"github.com/labstack/echo/v5"
+	"github.com/nicklaw5/helix/v2"
 	"github.com/pocketbase/dbx"
 	"github.com/pocketbase/pocketbase"
 	"github.com/pocketbase/pocketbase/core"
 	"github.com/samber/lo"
 
 	// TODO: rename packages
-
+	"github.com/rprtr258/twitch-bot/internal"
+	"github.com/rprtr258/twitch-bot/internal/permissions"
+	"github.com/rprtr258/twitch-bot/internal/services"
 	_ "github.com/rprtr258/twitch-bot/migrations"
 )
 
@@ -28,16 +34,16 @@ var idsPage = template.Must(template.New("blab-list").Parse(`
 {{end}}
 `))
 
-// func twitchAuth(helixClient *helix.Client) {
-// 	resp, err := helixClient.RequestAppAccessToken([]string{"user:read:email"})
-// 	if err != nil {
-// 		log.Println(err.Error())
-// 		return
-// 	}
+func twitchAuth(helixClient *helix.Client) {
+	resp, err := helixClient.RequestAppAccessToken([]string{"user:read:email"})
+	if err != nil {
+		log.Println(err.Error())
+		return
+	}
 
-// 	// TODO: somehow refresh after ExpiresIn seconds
-// 	helixClient.SetAppAccessToken(resp.Data.AccessToken)
-// }
+	// TODO: somehow refresh after ExpiresIn seconds
+	helixClient.SetAppAccessToken(resp.Data.AccessToken)
+}
 
 func run() error {
 	rand.Seed(time.Now().Unix())
@@ -45,56 +51,56 @@ func run() error {
 	app := pocketbase.New()
 
 	app.OnBeforeServe().Add(func(data *core.ServeEvent) error {
-		// helixClient, err := helix.NewClient(&helix.Options{
-		// 	ClientID:     os.Getenv("TWITCH_CLIENT_ID"),
-		// 	ClientSecret: os.Getenv("TWITCH_CLIENT_SECRET"),
-		// 	RedirectURI:  os.Getenv("TWITCH_REDIRECT_URI"),
-		// })
-		// if err != nil {
-		// 	return err
-		// }
+		helixClient, err := helix.NewClient(&helix.Options{
+			ClientID:     os.Getenv("TWITCH_CLIENT_ID"),
+			ClientSecret: os.Getenv("TWITCH_CLIENT_SECRET"),
+			RedirectURI:  os.Getenv("TWITCH_REDIRECT_URI"),
+		})
+		if err != nil {
+			return err
+		}
 
-		// twitchAuth(helixClient)
+		twitchAuth(helixClient)
 
-		// client := twitch.NewClient(os.Getenv("TWITCH_USERNAME"), os.Getenv("TWITCH_OAUTH_TOKEN"))
+		client := twitch.NewClient(os.Getenv("TWITCH_USERNAME"), os.Getenv("TWITCH_OAUTH_TOKEN"))
 
-		// res, err := app.
-		// 	DB().
-		// 	Select("channel").
-		// 	From("joined_channels").
-		// 	Build().
-		// 	Rows()
-		// if err != nil {
-		// 	return err
-		// }
-		// var channel string
-		// for res.Next() {
-		// 	res.Scan(&channel)
-		// 	client.Join(channel)
-		// }
+		res, err := app.
+			DB().
+			Select("channel").
+			From("joined_channels").
+			Build().
+			Rows()
+		if err != nil {
+			return err
+		}
+		var channel string
+		for res.Next() {
+			res.Scan(&channel)
+			client.Join(channel)
+		}
 
-		// balabobaClient := balaboba.New(balaboba.Rus, time.Minute)
+		balabobaClient := balaboba.New(balaboba.Rus, time.Minute)
 
-		// permissions, err := permissions.LoadFromJSONFile("permissions.json")
-		// if err != nil {
-		// 	return err
-		// }
+		permissions, err := permissions.LoadFromJSONFile("permissions.json")
+		if err != nil {
+			return err
+		}
 
-		// services := services.Services{
-		// 	ChatClient:      client,
-		// 	TwitchApiClient: helixClient,
-		// 	Backend:         app,
-		// 	Balaboba:        balabobaClient,
-		// 	Permissions:     permissions,
-		// }
+		services := services.Services{
+			ChatClient:      client,
+			TwitchApiClient: helixClient,
+			Backend:         app,
+			Balaboba:        balabobaClient,
+			Permissions:     permissions,
+		}
 
-		// client.OnPrivateMessage(internal.OnPrivateMessage(&services))
+		client.OnPrivateMessage(internal.OnPrivateMessage(&services))
 
-		// go func() {
-		// 	if err := client.Connect(); err != nil {
-		// 		log.Fatal(err.Error())
-		// 	}
-		// }()
+		go func() {
+			if err := client.Connect(); err != nil {
+				log.Fatal(err.Error())
+			}
+		}()
 
 		return nil
 	})
