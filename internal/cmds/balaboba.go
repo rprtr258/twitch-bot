@@ -143,6 +143,10 @@ func (cmd BlabContinueCmd) Run(ctx context.Context, s *services.Services, perms 
 		return "", err
 	}
 
+	if response.BadQuery {
+		return "PauseFish", nil
+	}
+
 	if _, err := db.
 		Update(_blabTable, map[string]any{
 			"text":          response.Text,
