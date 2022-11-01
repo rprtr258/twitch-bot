@@ -29,9 +29,28 @@ import (
 
 // TODO: show partially content
 var idsPage = template.Must(template.New("blab-list").Parse(`
-{{range .}}
-	<a style="padding: 10% 15%; font-size: 1.8em;" href={{.URL}}>{{.ID}}</a>
-{{end}}
+<head>
+  <style>
+    table {
+      margin: 0 auto;
+	  text-align: center;
+    }
+	a {
+	  font-size: 1.8em;
+	}
+  </style>
+</head>
+<body>
+  <table>
+  {{range .}}
+    <tr>
+	  {{range .}}
+        <td><a href={{.URL}}>{{.ID}}</a></td>
+	  {{end}}
+    </tr>
+  {{end}}
+  </table>
+</body>
 `))
 
 func twitchAuth(helixClient *helix.Client) {
@@ -136,9 +155,10 @@ func run() error {
 						URL: fmt.Sprintf("/%s/%s", "blab", row.ID),
 					}
 				})
+				entriesChunks := lo.Chunk(entries, 4)
 
 				var page strings.Builder
-				idsPage.Execute(&page, entries)
+				idsPage.Execute(&page, entriesChunks)
 				return c.HTML(http.StatusOK, page.String())
 			},
 		}); err != nil {
