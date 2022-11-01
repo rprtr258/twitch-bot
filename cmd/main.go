@@ -133,7 +133,7 @@ func run() error {
 				entries := lo.Map(ids, func(row row, _ int) pageEntry {
 					return pageEntry{
 						ID:  row.ID,
-						URL: fmt.Sprintf("%s/%s/%s", app.Settings().Meta.AppUrl, "blab", row.ID),
+						URL: fmt.Sprintf("/%s/%s", "blab", row.ID),
 					}
 				})
 
