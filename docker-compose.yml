@@ -9,6 +9,8 @@ services:
       dockerfile: Dockerfile
     restart: unless-stopped
     hostname: twitch-bot
+    ports:
+      - 8090:80
     volumes:
       - ./pb_data/:/app/pb_data/
     environment:
@@ -22,9 +24,9 @@ services:
     container_name: twitch-bot.caddy
     image: caddy:2.6
     ports:
-      - "80:80"
-      - "443:443"
-      - "443:443/udp"
+      - 80:80
+      - 443:443
+      - 443:443/udp
     links:
       - "twitch-bot:twitch-bot"
     restart: unless-stopped
