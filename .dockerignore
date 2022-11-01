@@ -2,5 +2,6 @@ justfile
 .dockerignore
 .git*
 Dockerfile
+docker-compose.yml
 ecosystem.config.js
 pb_data/

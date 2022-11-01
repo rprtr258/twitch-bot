@@ -22,8 +22,8 @@ run-docker:
 
 # sources: [dataset]
 # generates: [model.json]
-train: get_chat_logs
-  python quotes_generator/main.py train --dataset dataset --model model.json
+# train: get_chat_logs
+#   python quotes_generator/main.py train --dataset dataset --model model.json
 
 # stupid deploy automation
 deploy:
