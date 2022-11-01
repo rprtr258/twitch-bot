@@ -1,3 +1,4 @@
 pb_data/
 .env
 twitch-bot
+vendor/
