@@ -17,6 +17,7 @@ RUN apk add python3
 WORKDIR /app
 COPY --from=build /app/twitch-bot twitch-bot
 COPY permissions.json permissions.json
+RUN cat permissions.json
 EXPOSE 80
 # RUN addgroup -S nonroot && adduser -S nonroot -G nonroot
 # USER nonroot:nonroot
