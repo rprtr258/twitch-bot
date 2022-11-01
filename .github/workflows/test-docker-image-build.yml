@@ -17,4 +17,4 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag ${{ env.DOCKER_IMAGE }}
     - name: test
-      run: docker run -e TWITCH_CLIENT_ID=1 ${{ env.DOCKER_IMAGE }} ./twitch-bot serve
+      run: docker run -e TWITCH_CLIENT_ID=1 ${{ env.DOCKER_IMAGE }}
