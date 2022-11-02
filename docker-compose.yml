@@ -9,8 +9,6 @@ services:
       dockerfile: Dockerfile
     restart: unless-stopped
     hostname: twitch-bot
-    ports:
-      - 8090:80
     volumes:
       - ./pb_data/:/app/pb_data/
     environment:
