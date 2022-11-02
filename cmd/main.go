@@ -20,25 +20,35 @@ import (
 	"github.com/pocketbase/pocketbase/core"
 	"github.com/samber/lo"
 
-	// TODO: rename packages
 	"github.com/rprtr258/twitch-bot/internal"
 	"github.com/rprtr258/twitch-bot/internal/permissions"
 	"github.com/rprtr258/twitch-bot/internal/services"
 	_ "github.com/rprtr258/twitch-bot/migrations"
 )
 
+var style = `body {
+  background-color: #09090b;
+  color: #fff;
+}
+a {
+  color: #ececec;
+  text-decoration: underline;
+  font-size: 1.8em;
+}
+a:visited {
+  color: #333;
+}
+table {
+  margin: 0 auto;
+  text-align: center;
+}`
+
 // TODO: show partially content
-var idsPage = template.Must(template.New("blab-list").Parse(`
+var (
+	idsPage = template.Must(template.New("blab-list").Parse(`
 <head>
-  <style>
-    table {
-      margin: 0 auto;
-	  text-align: center;
-    }
-	a {
-	  font-size: 1.8em;
-	}
-  </style>
+  <style>` + style + // TODO: external css file
+		`</style>
 </head>
 <body>
   <table>
@@ -52,6 +62,16 @@ var idsPage = template.Must(template.New("blab-list").Parse(`
   </table>
 </body>
 `))
+	blabPage = template.Must(template.New("blab-list").Parse(`
+<head>
+  <style>` + style + // TODO: external css file
+		`</style>
+</head>
+<body>
+  <p style="padding: 10% 15%; font-size: 1.8em;">{{.}}</p>
+</body>
+`))
+)
 
 func twitchAuth(helixClient *helix.Client) {
 	resp, err := helixClient.RequestAppAccessToken([]string{"user:read:email"})
@@ -185,10 +205,9 @@ func run() error {
 				}
 
 				// TODO: use html template with text safeguarding
-				return c.HTML(http.StatusOK, fmt.Sprintf(
-					`<p style="padding: 10%% 15%%; font-size: 1.8em;">%s</p>`,
-					text,
-				))
+				var page strings.Builder
+				blabPage.Execute(&page, text)
+				return c.HTML(http.StatusOK, page.String())
 			},
 		}); err != nil {
 			return err
