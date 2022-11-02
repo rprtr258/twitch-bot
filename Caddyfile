@@ -1,5 +1,5 @@
 # TODO: change to actual dns
-localhost vm640272.stark-industries.solutions {
+localhost rprtr.site {
     encode gzip zstd
     reverse_proxy twitch-bot:80
 }
