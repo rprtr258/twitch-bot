@@ -134,6 +134,7 @@ func run() error {
 		}
 
 		client.OnPrivateMessage(internal.OnPrivateMessage(&services))
+		client.OnWhisperMessage(internal.OnWhisperMessage(&services))
 
 		go func() {
 			if err := client.Connect(); err != nil {

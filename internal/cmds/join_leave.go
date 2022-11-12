@@ -6,10 +6,10 @@ import (
 	"log"
 	"strings"
 
+	"github.com/rprtr258/twitch-bot/internal/message"
 	"github.com/rprtr258/twitch-bot/internal/permissions"
 	"github.com/rprtr258/twitch-bot/internal/services"
 
-	twitch "github.com/gempir/go-twitch-irc/v3"
 	"github.com/pocketbase/dbx"
 )
 
@@ -23,8 +23,8 @@ func (JoinCmd) Description() string {
 	return "Join channel"
 }
 
-func (cmd JoinCmd) Run(ctx context.Context, s *services.Services, perms permissions.PermissionsList, message twitch.PrivateMessage) (string, error) {
-	words := strings.Split(message.Message, " ")
+func (cmd JoinCmd) Run(ctx context.Context, s *services.Services, perms permissions.PermissionsList, msg message.TwitchMessage) (string, error) {
+	words := strings.Split(msg.Text, " ")
 	if len(words) != 2 {
 		return fmt.Sprintf("Usage: %s <channel>", cmd.Command()), nil
 	}
@@ -53,8 +53,8 @@ func (LeaveCmd) Description() string {
 	return "Leave channel"
 }
 
-func (cmd LeaveCmd) Run(ctx context.Context, s *services.Services, perms permissions.PermissionsList, message twitch.PrivateMessage) (string, error) {
-	words := strings.Split(message.Message, " ")
+func (cmd LeaveCmd) Run(ctx context.Context, s *services.Services, perms permissions.PermissionsList, msg message.TwitchMessage) (string, error) {
+	words := strings.Split(msg.Text, " ")
 	if len(words) != 2 {
 		return fmt.Sprintf("Usage: %s <channel>", cmd.Command()), nil
 	}

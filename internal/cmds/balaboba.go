@@ -8,10 +8,10 @@ import (
 	"strings"
 	"unicode/utf8"
 
-	twitch "github.com/gempir/go-twitch-irc/v3"
 	"github.com/karalef/balaboba"
 	"github.com/pocketbase/dbx"
 
+	"github.com/rprtr258/twitch-bot/internal/message"
 	"github.com/rprtr258/twitch-bot/internal/permissions"
 	"github.com/rprtr258/twitch-bot/internal/services"
 )
@@ -28,11 +28,20 @@ func (BlabGenCmd) Description() string {
 	return "Balaboba text generation neural network"
 }
 
-func (cmd BlabGenCmd) Run(ctx context.Context, s *services.Services, perms permissions.PermissionsList, message twitch.PrivateMessage) (string, error) {
-	words := strings.Split(message.Message, " ")
+func (cmd BlabGenCmd) Run(ctx context.Context, s *services.Services, perms permissions.PermissionsList, msg message.TwitchMessage) (string, error) {
+	words := strings.Split(msg.Text, " ")
 
 	if len(words) == 1 {
-		return fmt.Sprintf("Available styles: %d-standart, %d-user manual, %d-recipes, %d-short stories, %d-wikipedia simplified, %d-movie synopses, %d-folk wisdom. List of all pastes: %s",
+		// TODO: use fmt lib
+		return fmt.Sprintf("Available styles: "+
+			"%d-standart, "+
+			"%d-user manual, "+
+			"%d-recipes, "+
+			"%d-short stories, "+
+			"%d-wikipedia simplified, "+
+			"%d-movie synopses, "+
+			"%d-folk wisdom. "+
+			"List of all pastes: %s",
 			balaboba.Standart,
 			balaboba.UserManual,
 			balaboba.Recipes,
@@ -72,22 +81,22 @@ func (cmd BlabGenCmd) Run(ctx context.Context, s *services.Services, perms permi
 
 	id, err := s.Insert(_blabTable, map[string]any{
 		"text":          responseText,
-		"author_id":     message.User.ID,
+		"author_id":     msg.User.ID,
 		"continuations": 1,
 		"style":         styleIdx,
-		"channel":       message.Channel,
+		"channel":       msg.Channel,
 	})
 	if err != nil {
 		return "", err
 	}
 
 	shortResponse := fmt.Sprintf("%s %s", id, responseText)
-	if utf8.RuneCountInString(shortResponse) > MaxMessageLength {
+	if utf8.RuneCountInString(shortResponse) > message.MaxMessageLength {
 		link := fmt.Sprintf("%s/%s/%s", s.Backend.Settings().Meta.AppUrl, "blab", id)
 		linkLen := len(link) + 1
 		runes := []rune(responseText)
-		upperBound := MaxMessageLength
-		if utf8.RuneCountInString(responseText) < MaxMessageLength {
+		upperBound := message.MaxMessageLength
+		if utf8.RuneCountInString(responseText) < message.MaxMessageLength {
 			upperBound = utf8.RuneCountInString(responseText)
 		}
 		return fmt.Sprintf("%s %s", string(runes[:upperBound-linkLen]), link), nil
@@ -106,8 +115,8 @@ func (BlabContinueCmd) Description() string {
 	return "Continue paste by balaboba"
 }
 
-func (cmd BlabContinueCmd) Run(ctx context.Context, s *services.Services, perms permissions.PermissionsList, message twitch.PrivateMessage) (string, error) {
-	words := strings.Split(message.Message, " ")
+func (cmd BlabContinueCmd) Run(ctx context.Context, s *services.Services, perms permissions.PermissionsList, msg message.TwitchMessage) (string, error) {
+	words := strings.Split(msg.Text, " ")
 
 	if len(words) != 2 {
 		return fmt.Sprintf("Usage: %s <paste-id>", cmd.Command()), nil
@@ -118,7 +127,7 @@ func (cmd BlabContinueCmd) Run(ctx context.Context, s *services.Services, perms 
 	db := s.Backend.DB()
 	sqlCondition := dbx.And(
 		dbx.NewExp("id={:id}", dbx.Params{"id": pasteID}),
-		dbx.NewExp("channel={:channel}", dbx.Params{"channel": message.Channel}),
+		dbx.NewExp("channel={:channel}", dbx.Params{"channel": msg.Channel}),
 	)
 
 	var (
@@ -172,8 +181,8 @@ func (BlabReadCmd) Description() string {
 	return "Read pasta generated, providing it's ID"
 }
 
-func (cmd BlabReadCmd) Run(ctx context.Context, s *services.Services, perms permissions.PermissionsList, message twitch.PrivateMessage) (string, error) {
-	words := strings.Split(message.Message, " ")
+func (cmd BlabReadCmd) Run(ctx context.Context, s *services.Services, perms permissions.PermissionsList, msg message.TwitchMessage) (string, error) {
+	words := strings.Split(msg.Text, " ")
 
 	if len(words) != 2 {
 		return fmt.Sprintf("Usage: %s <paste-id>", cmd.Command()), nil
@@ -189,7 +198,7 @@ func (cmd BlabReadCmd) Run(ctx context.Context, s *services.Services, perms perm
 		From(_blabTable).
 		Where(dbx.And(
 			dbx.NewExp("id={:id}", dbx.Params{"id": pasteID}),
-			dbx.NewExp("channel={:channel}", dbx.Params{"channel": message.Channel}),
+			dbx.NewExp("channel={:channel}", dbx.Params{"channel": msg.Channel}),
 		)).
 		Row(&text); err != nil {
 		if err == sql.ErrNoRows {
@@ -199,11 +208,11 @@ func (cmd BlabReadCmd) Run(ctx context.Context, s *services.Services, perms perm
 		return "", err
 	}
 
-	if utf8.RuneCountInString(text) > MaxMessageLength {
+	if utf8.RuneCountInString(text) > message.MaxMessageLength {
 		link := fmt.Sprintf("%s/%s/%s", s.Backend.Settings().Meta.AppUrl, "blab", pasteID)
 		linkLen := len(link) + 1
 		runes := []rune(text)
-		return fmt.Sprintf("%s %s", string(runes[:MaxMessageLength-linkLen]), link), nil
+		return fmt.Sprintf("%s %s", string(runes[:message.MaxMessageLength-linkLen]), link), nil
 	}
 
 	return text, nil

@@ -1,15 +1,12 @@
-package cmds
+package internal
 
 import (
 	"context"
 
-	twitch "github.com/gempir/go-twitch-irc/v3"
-
+	"github.com/rprtr258/twitch-bot/internal/message"
 	"github.com/rprtr258/twitch-bot/internal/permissions"
 	"github.com/rprtr258/twitch-bot/internal/services"
 )
-
-const MaxMessageLength = 499
 
 type Command interface {
 	// Command - get command name
@@ -17,5 +14,5 @@ type Command interface {
 	// Description - get command description
 	Description() string
 	// Run - execute command
-	Run(context.Context, *services.Services, permissions.PermissionsList, twitch.PrivateMessage) (string, error)
+	Run(context.Context, *services.Services, permissions.PermissionsList, message.TwitchMessage) (string, error)
 }
