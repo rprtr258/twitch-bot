@@ -19,7 +19,7 @@ jobs:
         run: |
           echo "DOCKER_IMAGE=$DOCKER_REGISTRY/rprtr258/twitch-bot" >> $GITHUB_ENV
       - name: Checkout
-        uses: actions/checkout@v2.5.0
+        uses: actions/checkout@v3
         with:
           lfs: true
 
