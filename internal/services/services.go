@@ -10,6 +10,7 @@ import (
 	"github.com/pocketbase/pocketbase/forms"
 	"github.com/pocketbase/pocketbase/models"
 
+	"github.com/rprtr258/twitch-bot/internal/message"
 	"github.com/rprtr258/twitch-bot/internal/permissions"
 )
 
@@ -45,14 +46,14 @@ func (s *Services) Insert(collectionName string, data map[string]any) (string, e
 	return record.Id, nil
 }
 
-func (s *Services) LogMessage(message twitch.PrivateMessage) {
+func (s *Services) LogMessage(msg message.TwitchMessage) {
 	_, err := s.Insert("messages", map[string]any{
-		"user_id":           message.User.ID,
-		"message":           message.Message,
-		"at":                message.Time,
-		"channel":           message.Channel,
-		"user_name":         message.User.Name,
-		"user_display_name": message.User.DisplayName,
+		"user_id":           msg.User.ID,
+		"message":           msg.Text,
+		"at":                msg.At,
+		"channel":           msg.Channel,
+		"user_name":         msg.User.Name,
+		"user_display_name": msg.User.DisplayName,
 	})
 	// TODO: users table
 	if err != nil {

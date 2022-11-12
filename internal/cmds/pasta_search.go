@@ -6,10 +6,9 @@ import (
 	"math/rand"
 	"os"
 
+	"github.com/rprtr258/twitch-bot/internal/message"
 	"github.com/rprtr258/twitch-bot/internal/permissions"
 	"github.com/rprtr258/twitch-bot/internal/services"
-
-	twitch "github.com/gempir/go-twitch-irc/v3"
 )
 
 type PastaSearchCmd struct{}
@@ -23,9 +22,9 @@ func (PastaSearchCmd) Description() string {
 }
 
 // TODO: cmd to add pastas
-func (cmd PastaSearchCmd) Run(ctx context.Context, s *services.Services, perms permissions.PermissionsList, message twitch.PrivateMessage) (string, error) {
+func (cmd PastaSearchCmd) Run(ctx context.Context, s *services.Services, perms permissions.PermissionsList, msg message.TwitchMessage) (string, error) {
 	// // TODO: check empty query
-	// query := strings.TrimPrefix(message.Message, cmd.Command()+" ")
+	// query := strings.TrimPrefix(msg.Message, cmd.Command()+" ")
 
 	// TODO: move pastes to database
 	file, err := os.Open("pastes.txt")

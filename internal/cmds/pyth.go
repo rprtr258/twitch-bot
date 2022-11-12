@@ -10,10 +10,9 @@ import (
 	"sync/atomic"
 	"time"
 
+	"github.com/rprtr258/twitch-bot/internal/message"
 	"github.com/rprtr258/twitch-bot/internal/permissions"
 	"github.com/rprtr258/twitch-bot/internal/services"
-
-	twitch "github.com/gempir/go-twitch-irc/v3"
 )
 
 // @app.route("/p")
@@ -46,12 +45,12 @@ func (*PythCmd) Description() string {
 	return "Eval in pyth"
 }
 
-func (cmd *PythCmd) Run(ctx context.Context, s *services.Services, perms permissions.PermissionsList, message twitch.PrivateMessage) (string, error) {
-	if !strings.ContainsRune(message.Message, ' ') {
+func (cmd *PythCmd) Run(ctx context.Context, s *services.Services, perms permissions.PermissionsList, msg message.TwitchMessage) (string, error) {
+	if !strings.ContainsRune(msg.Text, ' ') {
 		return "Pyth docs: https://pyth.readthedocs.io/en/latest/getting-started.html", nil
 	}
 
-	program := strings.TrimPrefix(message.Message, cmd.Command()+" ")
+	program := strings.TrimPrefix(msg.Text, cmd.Command()+" ")
 
 	if cmd.running.Load() > 2 {
 		return "Сервер загружен, попробуйте позже", nil
@@ -65,7 +64,9 @@ func (cmd *PythCmd) Run(ctx context.Context, s *services.Services, perms permiss
 	ctx, cancel := context.WithTimeout(ctx, time.Second*5)
 	defer cancel()
 
-	proc := exec.CommandContext(ctx, "docker", "run", "--memory=500m", "--cpus=1", "--rm", "pyth", program)
+	// TODO: secure
+	// proc := exec.CommandContext(ctx, "docker", "run", "--memory=500m", "--cpus=1", "--rm", "pyth", program)
+	proc := exec.CommandContext(ctx, "python3", "pyth/pyth.py", "-c", program)
 	var stderr bytes.Buffer
 	proc.Stderr = &stderr
 	stdout, err := proc.Output()

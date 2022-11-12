@@ -7,9 +7,9 @@ import (
 	"log"
 	"strings"
 
-	twitch "github.com/gempir/go-twitch-irc/v3"
 	"github.com/pocketbase/dbx"
 
+	"github.com/rprtr258/twitch-bot/internal/message"
 	"github.com/rprtr258/twitch-bot/internal/permissions"
 	"github.com/rprtr258/twitch-bot/internal/services"
 )
@@ -24,8 +24,8 @@ func (FedCmd) Description() string {
 	return "Show how many times word has been used"
 }
 
-func (cmd FedCmd) Run(ctx context.Context, s *services.Services, perms permissions.PermissionsList, message twitch.PrivateMessage) (string, error) {
-	words := strings.Split(message.Message, " ")
+func (cmd FedCmd) Run(ctx context.Context, s *services.Services, perms permissions.PermissionsList, msg message.TwitchMessage) (string, error) {
+	words := strings.Split(msg.Text, " ")
 	if len(words) != 2 && len(words) != 3 {
 		return fmt.Sprintf(`Usage: "%[1]s <word>" or "%[1]s <user> <word>" or "%[1]s * <word>"`, cmd.Command()), nil
 	}
@@ -39,7 +39,7 @@ func (cmd FedCmd) Run(ctx context.Context, s *services.Services, perms permissio
 			Select("COUNT(*) AS count").
 			From("messages").
 			Where(dbx.And(
-				dbx.NewExp("channel={:channel}", dbx.Params{"channel": message.Channel}),
+				dbx.NewExp("channel={:channel}", dbx.Params{"channel": msg.Channel}),
 				// TODO: fix theWord = '%%' escaping
 				dbx.Like("message", theWord),
 				dbx.NotLike("message", cmd.Command()).Match(false, true),
@@ -61,7 +61,7 @@ func (cmd FedCmd) Run(ctx context.Context, s *services.Services, perms permissio
 		mention string
 	)
 	if len(words) == 2 {
-		user = message.User.Name
+		user = msg.User.Name
 		theWord = words[1]
 		mention = "Ты"
 	} else {
@@ -72,7 +72,7 @@ func (cmd FedCmd) Run(ctx context.Context, s *services.Services, perms permissio
 
 	var count int
 	err := db.Select("COUNT(*) AS count").From("messages").Where(dbx.And(
-		dbx.NewExp("channel={:channel}", dbx.Params{"channel": message.Channel}),
+		dbx.NewExp("channel={:channel}", dbx.Params{"channel": msg.Channel}),
 		// TODO: fix theWord = '%%' escaping
 		dbx.Like("message", theWord),
 		dbx.NotLike("message", cmd.Command()).Match(false, true),

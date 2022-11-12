@@ -8,10 +8,10 @@ import (
 	"strings"
 	"time"
 
+	"github.com/rprtr258/twitch-bot/internal/message"
 	"github.com/rprtr258/twitch-bot/internal/permissions"
 	"github.com/rprtr258/twitch-bot/internal/services"
 
-	twitch "github.com/gempir/go-twitch-irc/v3"
 	"github.com/nicklaw5/helix/v2"
 )
 
@@ -72,8 +72,8 @@ func (IntelCmd) Description() string {
 	return "Gather intel on user"
 }
 
-func (IntelCmd) Run(ctx context.Context, s *services.Services, perms permissions.PermissionsList, message twitch.PrivateMessage) (string, error) {
-	words := strings.Split(message.Message, " ")
+func (IntelCmd) Run(ctx context.Context, s *services.Services, perms permissions.PermissionsList, msg message.TwitchMessage) (string, error) {
+	words := strings.Split(msg.Text, " ")
 	if len(words) < 2 {
 		return "No username provided", nil
 	}

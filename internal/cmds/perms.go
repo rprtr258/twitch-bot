@@ -6,9 +6,9 @@ import (
 	"strings"
 	"unicode/utf8"
 
-	twitch "github.com/gempir/go-twitch-irc/v3"
 	"github.com/samber/lo"
 
+	"github.com/rprtr258/twitch-bot/internal/message"
 	"github.com/rprtr258/twitch-bot/internal/permissions"
 	"github.com/rprtr258/twitch-bot/internal/services"
 )
@@ -23,8 +23,8 @@ func (PermsCmd) Description() string {
 	return "Get permissions"
 }
 
-func (cmd PermsCmd) Run(ctx context.Context, s *services.Services, perms permissions.PermissionsList, message twitch.PrivateMessage) (string, error) {
-	words := strings.Split(message.Message, " ")
+func (cmd PermsCmd) Run(_ context.Context, s *services.Services, perms permissions.PermissionsList, msg message.TwitchMessage) (string, error) {
+	words := strings.Split(msg.Text, " ")
 	permissionsToShow := perms
 	if len(words) > 1 {
 		claims := permissions.Claims{}
