@@ -12,6 +12,8 @@ require (
 	github.com/samber/lo v1.33.0
 )
 
+replace github.com/karalef/balaboba v0.0.0-20220920173959-7e9a07b058c8 => ./internal/balaboba/
+
 require (
 	github.com/AlecAivazis/survey/v2 v2.3.6 // indirect
 	github.com/asaskevich/govalidator v0.0.0-20210307081110-f21760c49a8d // indirect

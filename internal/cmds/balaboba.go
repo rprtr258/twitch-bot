@@ -74,7 +74,7 @@ func (cmd BlabGenCmd) Run(ctx context.Context, s *services.Services, perms permi
 	}
 
 	if response.BadQuery {
-		return "PauseFish", nil
+		return "😡", nil
 	}
 
 	responseText := strings.ReplaceAll(response.Text, "\n", " ")
