@@ -33,13 +33,5 @@ jobs:
       - name: Build image and push to registry
         run: |
           docker build . --file Dockerfile --tag ${{ env.DOCKER_IMAGE }}:${{ github.sha }}
-          docker push ${{ env.DOCKER_IMAGE }}:${{ github.sha }}
-      # - name: Build image and push to registry
-      #   uses: docker/build-push-action@v3.2.0
-      #   with:
-      #     file: Dockerfile
-      #     context: .
-      #     push: true
-      #     tags: |
-      #       ${{ env.DOCKER_IMAGE }}:latest
-      #       ${{ env.DOCKER_IMAGE }}:${{ github.sha }}
+          docker tag ${{ env.DOCKER_IMAGE }}:${{ github.sha }} ${{ env.DOCKER_IMAGE }}:latest
+          docker push ${{ env.DOCKER_IMAGE }}
