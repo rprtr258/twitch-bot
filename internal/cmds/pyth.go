@@ -65,7 +65,9 @@ func (cmd *PythCmd) Run(ctx context.Context, s *services.Services, perms permiss
 	ctx, cancel := context.WithTimeout(ctx, time.Second*5)
 	defer cancel()
 
-	proc := exec.CommandContext(ctx, "docker", "run", "--memory=500m", "--cpus=1", "--rm", "pyth", program)
+	// TODO: secure
+	// proc := exec.CommandContext(ctx, "docker", "run", "--memory=500m", "--cpus=1", "--rm", "pyth", program)
+	proc := exec.CommandContext(ctx, "python3", "pyth/pyth.py", "-c", program)
 	var stderr bytes.Buffer
 	proc.Stderr = &stderr
 	stdout, err := proc.Output()
