@@ -49,7 +49,7 @@ jobs:
           file: Dockerfile
           context: .
           push: false
-          tags: ${{ env.DOCKER_IMAGE }}:$(date +%s)
+#           tags: ${{ env.DOCKER_IMAGE }}:$(date +%s)
           builder: ${{ steps.buildx.outputs.name }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new
