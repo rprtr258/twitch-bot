@@ -30,18 +30,16 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - uses: satackey/action-docker-layer-caching@v0.0.11
         continue-on-error: true
-        with:
-          key: docker-layer-cache-${{ github.sha }}
-          restore-keys: |
-            docker-layer-cache-
-            layer-docker-layer-cache-
       - name: Build image and push to registry
-        uses: docker/build-push-action@v3.2.0
-        with:
-          file: Dockerfile
-          context: .
-          push: true
-          tags: |
-            ${{ env.DOCKER_IMAGE }}:latest
-            ${{ env.DOCKER_IMAGE }}:${{ github.sha }}
-
+        run: |
+          docker build . --file Dockerfile --tag ${{ env.DOCKER_IMAGE }}:${{ github.sha }}
+          docker push ${{ env.DOCKER_IMAGE }}:${{ github.sha }}
+      # - name: Build image and push to registry
+      #   uses: docker/build-push-action@v3.2.0
+      #   with:
+      #     file: Dockerfile
+      #     context: .
+      #     push: true
+      #     tags: |
+      #       ${{ env.DOCKER_IMAGE }}:latest
+      #       ${{ env.DOCKER_IMAGE }}:${{ github.sha }}
