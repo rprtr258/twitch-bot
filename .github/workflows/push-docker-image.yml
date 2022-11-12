@@ -30,6 +30,11 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - uses: satackey/action-docker-layer-caching@v0.0.11
         continue-on-error: true
+        with:
+          key: docker-layer-cache-${{ github.sha }}
+          restore-keys: |
+            docker-layer-cache-
+            layer-docker-layer-cache-
       - name: Build image and push to registry
         uses: docker/build-push-action@v3.2.0
         with:
