@@ -118,7 +118,8 @@ func run() error {
 			client.Join(channel)
 		}
 
-		balabobaClient := balaboba.New(balaboba.Rus, time.Minute)
+		// balabobaClient := balaboba.New(balaboba.Rus, time.Minute)
+		balabobaClient := balaboba.ClientRus
 
 		permissions, err := permissions.LoadFromJSONFile("permissions.json")
 		if err != nil {
