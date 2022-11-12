@@ -3,6 +3,7 @@ FROM golang:1.19.2 AS build
 WORKDIR /app
 
 COPY go.mod go.sum ./
+COPY ./internal/balaboba internal/balaboba/
 RUN go mod download
 COPY . .
 RUN CGO_ENABLED=0 go build -o twitch-bot cmd/main.go
