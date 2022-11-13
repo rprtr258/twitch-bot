@@ -160,7 +160,6 @@ func OnPrivateMessage(s *services.Services) func(twitch.PrivateMessage) {
 			if _, err := s.Insert("chat_commands", map[string]any{
 				"command":  cmd.Cmd.Command(),
 				"args":     msg.Message,
-				"at":       msg.Time,
 				"response": response,
 				"user":     userName,
 				"channel":  msg.Channel,
@@ -242,7 +241,6 @@ func OnWhisperMessage(s *services.Services) func(twitch.WhisperMessage) {
 			if _, err := s.Insert("chat_commands", map[string]any{
 				"command":  cmd.Cmd.Command(),
 				"args":     msg.Message,
-				"at":       time.Now(),
 				"response": response,
 				"user":     userName,
 				"channel":  msgMy.Channel,

@@ -50,7 +50,6 @@ func (s *Services) LogMessage(msg message.TwitchMessage) {
 	_, err := s.Insert("messages", map[string]any{
 		"user_id":           msg.User.ID,
 		"message":           msg.Text,
-		"at":                msg.At,
 		"channel":           msg.Channel,
 		"user_name":         msg.User.Name,
 		"user_display_name": msg.User.DisplayName,
