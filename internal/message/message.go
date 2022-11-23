@@ -6,7 +6,7 @@ import (
 	"github.com/gempir/go-twitch-irc/v3"
 )
 
-const MaxMessageLength = 499
+const MaxMessageLength = 490
 
 type TwitchMessage struct {
 	Text    string

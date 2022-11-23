@@ -102,7 +102,6 @@ func OnPrivateMessage(s *services.Services) func(twitch.PrivateMessage) {
 			// TODO: fix response: Must be less than 500 character(s). somewhere
 			// TODO: change to permission check, to send message by parts
 			croppedResponse := cropMessage(response)
-			log.Println("trying to send msg of len(2)", utf8.RuneCountInString(croppedResponse))
 			if whisper {
 				s.ChatClient.Whisper(msg.User.Name, croppedResponse)
 			} else {
@@ -170,7 +169,6 @@ func OnWhisperMessage(s *services.Services) func(twitch.WhisperMessage) {
 			// TODO: fix response: Must be less than 500 character(s). somewhere
 			// TODO: change to permission check, to send message by parts
 			croppedResponse := cropMessage(response)
-			log.Println("trying to whisper msg of len(3)", utf8.RuneCountInString(croppedResponse))
 			s.ChatClient.Whisper(msg.User.Name, croppedResponse)
 
 			// TODO: fix not logging blab cmds

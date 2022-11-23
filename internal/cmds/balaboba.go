@@ -95,18 +95,18 @@ func (cmd BlabGenCmd) Run(ctx context.Context, s *services.Services, perms permi
 	}
 
 	shortResponse := fmt.Sprintf("%s %s", id, responseText)
-	if utf8.RuneCountInString(shortResponse) > message.MaxMessageLength {
-		link := fmt.Sprintf("%s/%s/%s", s.Backend.Settings().Meta.AppUrl, "blab", id)
-		linkLen := len(link) + 1
-		runes := []rune(responseText)
-		upperBound := message.MaxMessageLength
-		if utf8.RuneCountInString(responseText) < message.MaxMessageLength {
-			upperBound = utf8.RuneCountInString(responseText)
-		}
-		return fmt.Sprintf("%s %s", string(runes[:upperBound-linkLen]), link), nil
+	if utf8.RuneCountInString(shortResponse) <= message.MaxMessageLength {
+		return shortResponse, nil
 	}
 
-	return shortResponse, nil
+	link := fmt.Sprintf("%s/%s/%s", s.Backend.Settings().Meta.AppUrl, "blab", id)
+	linkLen := len(link) + 1
+	runes := []rune(responseText)
+	upperBound := message.MaxMessageLength
+	if utf8.RuneCountInString(responseText) < message.MaxMessageLength {
+		upperBound = utf8.RuneCountInString(responseText)
+	}
+	return fmt.Sprintf("%s %s", string(runes[:upperBound-linkLen]), link), nil
 }
 
 type BlabContinueCmd struct{}

@@ -37,7 +37,7 @@ func New(lang Lang, timeout ...time.Duration) *Client {
 	}
 
 	// TODO: provide proxy in env
-	proxyURL, err := url.Parse("http://213.59.156.119:3128")
+	proxyURL, err := url.Parse("http://username:password@185.105.91.75:3128")
 	if err != nil {
 		panic(err)
 	}
