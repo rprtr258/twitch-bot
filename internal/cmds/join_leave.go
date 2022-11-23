@@ -15,6 +15,10 @@ import (
 
 type JoinCmd struct{}
 
+func (JoinCmd) RequiredPermissions() []string {
+	return []string{"global_admin"}
+}
+
 func (JoinCmd) Command() string {
 	return "?join"
 }
@@ -44,6 +48,10 @@ func (cmd JoinCmd) Run(ctx context.Context, s *services.Services, perms permissi
 }
 
 type LeaveCmd struct{}
+
+func (LeaveCmd) RequiredPermissions() []string {
+	return []string{"global_admin"}
+}
 
 func (LeaveCmd) Command() string {
 	return "?leave"

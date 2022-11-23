@@ -15,6 +15,10 @@ import (
 
 type PermsCmd struct{}
 
+func (PermsCmd) RequiredPermissions() []string {
+	return []string{}
+}
+
 func (PermsCmd) Command() string {
 	return "?perms"
 }

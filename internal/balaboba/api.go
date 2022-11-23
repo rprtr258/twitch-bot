@@ -6,7 +6,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"net"
 	"net/http"
 	"time"
 )
@@ -16,34 +15,15 @@ const apiurl = "https://yandex.ru/lab/api/yalm/"
 // MinTimeout is a minimum time limit for api requests.
 const MinTimeout = 20 * time.Second
 
-// ClientRus var.
-var ClientRus = New(Rus)
-
-// ClientEng var.
-var ClientEng = New(Eng)
-
 // New makes new balaboba api client.
 //
 // If the timeout is not specified or it is less than MinTimeout
 // it will be equal to MinTimeout.
 // Anyway the request can be canceled via the context.
-func New(lang Lang, timeout ...time.Duration) *Client {
-	d := net.Dialer{
-		Timeout: MinTimeout,
-	}
-	if len(timeout) > 0 && timeout[0] > MinTimeout {
-		d.Timeout = timeout[0]
-	}
+func New(lang Lang, httpClient http.Client, timeout ...time.Duration) *Client {
 	return &Client{
-		lang: lang,
-		httpClient: http.Client{
-			Timeout: d.Timeout,
-			Transport: &http.Transport{
-				// DialContext:         d.DialContext,
-				DialTLSContext:      d.DialContext,
-				TLSHandshakeTimeout: d.Timeout,
-			},
-		},
+		lang:       lang,
+		httpClient: httpClient,
 	}
 }
 

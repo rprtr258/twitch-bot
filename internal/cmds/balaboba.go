@@ -20,6 +20,10 @@ const _blabTable = "blab"
 
 type BlabGenCmd struct{}
 
+func (BlabGenCmd) RequiredPermissions() []string {
+	return []string{}
+}
+
 func (BlabGenCmd) Command() string {
 	return "?blab"
 }
@@ -91,21 +95,25 @@ func (cmd BlabGenCmd) Run(ctx context.Context, s *services.Services, perms permi
 	}
 
 	shortResponse := fmt.Sprintf("%s %s", id, responseText)
-	if utf8.RuneCountInString(shortResponse) > message.MaxMessageLength {
-		link := fmt.Sprintf("%s/%s/%s", s.Backend.Settings().Meta.AppUrl, "blab", id)
-		linkLen := len(link) + 1
-		runes := []rune(responseText)
-		upperBound := message.MaxMessageLength
-		if utf8.RuneCountInString(responseText) < message.MaxMessageLength {
-			upperBound = utf8.RuneCountInString(responseText)
-		}
-		return fmt.Sprintf("%s %s", string(runes[:upperBound-linkLen]), link), nil
+	if utf8.RuneCountInString(shortResponse) <= message.MaxMessageLength {
+		return shortResponse, nil
 	}
 
-	return shortResponse, nil
+	link := fmt.Sprintf("%s/%s/%s", s.Backend.Settings().Meta.AppUrl, "blab", id)
+	linkLen := len(link) + 1
+	runes := []rune(responseText)
+	upperBound := message.MaxMessageLength
+	if utf8.RuneCountInString(responseText) < message.MaxMessageLength {
+		upperBound = utf8.RuneCountInString(responseText)
+	}
+	return fmt.Sprintf("%s %s", string(runes[:upperBound-linkLen]), link), nil
 }
 
 type BlabContinueCmd struct{}
+
+func (BlabContinueCmd) RequiredPermissions() []string {
+	return []string{"execute_commands"}
+}
 
 func (BlabContinueCmd) Command() string {
 	return "?blab!"
@@ -172,6 +180,10 @@ func (cmd BlabContinueCmd) Run(ctx context.Context, s *services.Services, perms 
 }
 
 type BlabReadCmd struct{}
+
+func (BlabReadCmd) RequiredPermissions() []string {
+	return []string{"execute_commands"}
+}
 
 func (BlabReadCmd) Command() string {
 	return "?blab?"

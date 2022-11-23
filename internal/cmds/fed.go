@@ -16,6 +16,10 @@ import (
 
 type FedCmd struct{}
 
+func (FedCmd) RequiredPermissions() []string {
+	return []string{"execute_commands"}
+}
+
 func (FedCmd) Command() string {
 	return "?fed"
 }

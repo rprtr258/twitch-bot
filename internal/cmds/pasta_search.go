@@ -13,6 +13,10 @@ import (
 
 type PastaSearchCmd struct{}
 
+func (PastaSearchCmd) RequiredPermissions() []string {
+	return []string{}
+}
+
 func (PastaSearchCmd) Command() string {
 	return "?pasta"
 }
