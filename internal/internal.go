@@ -96,49 +96,24 @@ func OnPrivateMessage(s *services.Services) func(twitch.PrivateMessage) {
 				response = "Empty response"
 			}
 			response = strings.ReplaceAll(response, "\n", " ")
+
 			// TODO: move responding to commands
 			// TODO: rewrite
 			// TODO: fix response: Must be less than 500 character(s). somewhere
-			if utf8.RuneCountInString(response) > message.MaxMessageLength {
-				runes := []rune(response)
-				log.Println(len(runes), utf8.RuneCountInString(response))
-				if msg.User.Name == "rprtr258" { // TODO: change to permission check
-					for i := 0; i < len(runes); i += message.MaxMessageLength {
-						resp := string(lo.Subset(runes, i, message.MaxMessageLength))
-						log.Println("trying to send msg of len(1)", utf8.RuneCountInString(resp))
-						if whisper {
-							s.ChatClient.Whisper(msg.User.Name, resp)
-						} else {
-							s.ChatClient.Say(msg.Channel, resp)
-						}
-						// TODO: check spam limit
-						time.Sleep(time.Millisecond * 500)
-					}
-				} else {
-					response = string(runes[:message.MaxMessageLength])
-
-					// TODO: fix cutting
-					log.Println("trying to send msg of len(2)", utf8.RuneCountInString(response))
-					if whisper {
-						s.ChatClient.Whisper(msg.User.Name, response)
-					} else {
-						s.ChatClient.Reply(msg.Channel, msg.ID, response)
-					}
-				}
+			// TODO: change to permission check, to send message by parts
+			croppedResponse := cropMessage(response)
+			log.Println("trying to send msg of len(2)", utf8.RuneCountInString(croppedResponse))
+			if whisper {
+				s.ChatClient.Whisper(msg.User.Name, croppedResponse)
 			} else {
-				log.Println("trying to send msg of len(3)", utf8.RuneCountInString(response))
-				if whisper {
-					s.ChatClient.Whisper(msg.User.Name, response)
-				} else {
-					s.ChatClient.Reply(msg.Channel, msg.ID, response)
-				}
+				s.ChatClient.Reply(msg.Channel, msg.ID, croppedResponse)
 			}
 
 			// TODO: fix not logging blab cmds
 			if _, err := s.Insert("chat_commands", map[string]any{
 				"command":  cmd.Command(),
 				"args":     msg.Message,
-				"response": response,
+				"response": croppedResponse,
 				"user":     userName,
 				"channel":  msg.Channel,
 			}); err != nil {
@@ -189,31 +164,14 @@ func OnWhisperMessage(s *services.Services) func(twitch.WhisperMessage) {
 				response = "Empty response"
 			}
 			response = strings.ReplaceAll(response, "\n", " ")
+
 			// TODO: move responding to commands
 			// TODO: rewrite
 			// TODO: fix response: Must be less than 500 character(s). somewhere
-			if utf8.RuneCountInString(response) > message.MaxMessageLength {
-				runes := []rune(response)
-				log.Println(len(runes), utf8.RuneCountInString(response))
-				if msg.User.Name == "rprtr258" { // TODO: change to permission check
-					for i := 0; i < len(runes); i += message.MaxMessageLength {
-						resp := string(lo.Subset(runes, i, message.MaxMessageLength))
-						log.Println("trying to send msg of len(1)", utf8.RuneCountInString(resp))
-						s.ChatClient.Whisper(msg.User.Name, resp)
-						// TODO: check spam limit
-						time.Sleep(time.Millisecond * 500)
-					}
-				} else {
-					response = string(runes[:message.MaxMessageLength])
-
-					// TODO: fix cutting
-					log.Println("trying to send msg of len(2)", utf8.RuneCountInString(response))
-					s.ChatClient.Whisper(msg.User.Name, response)
-				}
-			} else {
-				log.Println("trying to send msg of len(3)", utf8.RuneCountInString(response))
-				s.ChatClient.Whisper(msg.User.Name, response)
-			}
+			// TODO: change to permission check, to send message by parts
+			croppedResponse := cropMessage(response)
+			log.Println("trying to whisper msg of len(3)", utf8.RuneCountInString(croppedResponse))
+			s.ChatClient.Whisper(msg.User.Name, croppedResponse)
 
 			// TODO: fix not logging blab cmds
 			if _, err := s.Insert("chat_commands", map[string]any{
@@ -231,4 +189,14 @@ func OnWhisperMessage(s *services.Services) func(twitch.WhisperMessage) {
 			break
 		}
 	}
+}
+
+// TODO: fix cutting
+func cropMessage(response string) string {
+	if utf8.RuneCountInString(response) <= message.MaxMessageLength {
+		return response
+	}
+
+	runes := []rune(response)
+	return string(runes[:message.MaxMessageLength])
 }
