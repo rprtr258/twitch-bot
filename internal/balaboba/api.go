@@ -8,6 +8,7 @@ import (
 	"io"
 	"net"
 	"net/http"
+	"net/url"
 	"time"
 )
 
@@ -34,14 +35,21 @@ func New(lang Lang, timeout ...time.Duration) *Client {
 	if len(timeout) > 0 && timeout[0] > MinTimeout {
 		d.Timeout = timeout[0]
 	}
+
+	// TODO: provide proxy in env
+	proxyURL, err := url.Parse("http://213.59.156.119:3128")
+	if err != nil {
+		panic(err)
+	}
+
 	return &Client{
 		lang: lang,
 		httpClient: http.Client{
 			Timeout: d.Timeout,
 			Transport: &http.Transport{
-				// DialContext:         d.DialContext,
 				DialTLSContext:      d.DialContext,
 				TLSHandshakeTimeout: d.Timeout,
+				Proxy:               http.ProxyURL(proxyURL),
 			},
 		},
 	}
