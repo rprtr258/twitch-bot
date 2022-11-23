@@ -20,6 +20,10 @@ const _blabTable = "blab"
 
 type BlabGenCmd struct{}
 
+func (BlabGenCmd) RequiredPermissions() []string {
+	return []string{}
+}
+
 func (BlabGenCmd) Command() string {
 	return "?blab"
 }
@@ -107,6 +111,10 @@ func (cmd BlabGenCmd) Run(ctx context.Context, s *services.Services, perms permi
 
 type BlabContinueCmd struct{}
 
+func (BlabContinueCmd) RequiredPermissions() []string {
+	return []string{"execute_commands"}
+}
+
 func (BlabContinueCmd) Command() string {
 	return "?blab!"
 }
@@ -172,6 +180,10 @@ func (cmd BlabContinueCmd) Run(ctx context.Context, s *services.Services, perms 
 }
 
 type BlabReadCmd struct{}
+
+func (BlabReadCmd) RequiredPermissions() []string {
+	return []string{"execute_commands"}
+}
 
 func (BlabReadCmd) Command() string {
 	return "?blab?"

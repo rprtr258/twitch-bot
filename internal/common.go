@@ -9,6 +9,8 @@ import (
 )
 
 type Command interface {
+	// RequiredPermissions - minimal permissions required to use the command
+	RequiredPermissions() []string
 	// Command - get command name
 	Command() string
 	// Description - get command description

@@ -37,6 +37,10 @@ type PythCmd struct {
 	running atomic.Int64
 }
 
+func (*PythCmd) RequiredPermissions() []string {
+	return []string{"execute_commands"}
+}
+
 func (*PythCmd) Command() string {
 	return "?pyth"
 }

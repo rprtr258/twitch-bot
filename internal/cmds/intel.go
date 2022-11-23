@@ -64,6 +64,10 @@ func formatDuration(d time.Time) string {
 
 type IntelCmd struct{}
 
+func (IntelCmd) RequiredPermissions() []string {
+	return []string{}
+}
+
 func (IntelCmd) Command() string {
 	return "?intel"
 }

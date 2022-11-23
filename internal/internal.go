@@ -20,6 +20,10 @@ import (
 // TODO: list only available commands
 type CommandsCmd struct{}
 
+func (CommandsCmd) RequiredPermissions() []string {
+	return []string{"execute_commands"}
+}
+
 func (CommandsCmd) Command() string {
 	return "?commands"
 }
@@ -29,54 +33,28 @@ func (CommandsCmd) Description() string {
 }
 
 func (cmd CommandsCmd) Run(context.Context, *services.Services, permissions.PermissionsList, message.TwitchMessage) (string, error) {
-	parts := lo.Map(allCommands, func(cmd Command2, _ int) string {
-		return fmt.Sprintf("%s - %s", cmd.Cmd.Command(), cmd.Cmd.Description())
+	parts := lo.Map(allCommands, func(cmd Command, _ int) string {
+		return fmt.Sprintf("%s - %s", cmd.Command(), cmd.Description())
 	})
 
 	return strings.Join(parts, ", "), nil
 }
 
-type Command2 struct {
-	PermissionsRequired []string
-	Cmd                 Command
-}
-
 // TODO: permissions constants/store in db to dinamically update
 // TODO: change to map
-var allCommands = []Command2{{
-	PermissionsRequired: []string{},
-	Cmd:                 cmds.IntelCmd{},
-}, {
-	PermissionsRequired: []string{"global_admin"},
-	Cmd:                 cmds.JoinCmd{},
-}, {
-	PermissionsRequired: []string{"global_admin"},
-	Cmd:                 cmds.LeaveCmd{},
-}, {
-	PermissionsRequired: []string{"execute_commands"},
-	Cmd:                 cmds.FedCmd{},
-}, {
-	PermissionsRequired: []string{},
-	Cmd:                 cmds.BlabGenCmd{},
-}, {
-	PermissionsRequired: []string{"execute_commands"},
-	Cmd:                 cmds.BlabContinueCmd{},
-}, {
-	PermissionsRequired: []string{"execute_commands"},
-	Cmd:                 cmds.BlabReadCmd{},
-}, {
-	PermissionsRequired: []string{"execute_commands"},
-	Cmd:                 &cmds.PythCmd{},
-}, {
-	PermissionsRequired: []string{"execute_commands"},
-	Cmd:                 CommandsCmd{},
-}, {
-	PermissionsRequired: []string{},
-	Cmd:                 cmds.PermsCmd{},
-}, {
-	PermissionsRequired: []string{},
-	Cmd:                 cmds.PastaSearchCmd{},
-}}
+var allCommands = []Command{
+	cmds.IntelCmd{},
+	cmds.JoinCmd{},
+	cmds.LeaveCmd{},
+	cmds.FedCmd{},
+	cmds.BlabGenCmd{},
+	cmds.BlabContinueCmd{},
+	cmds.BlabReadCmd{},
+	&cmds.PythCmd{},
+	CommandsCmd{},
+	cmds.PermsCmd{},
+	cmds.PastaSearchCmd{},
+}
 
 func OnPrivateMessage(s *services.Services) func(twitch.PrivateMessage) {
 	return func(msg twitch.PrivateMessage) {
@@ -97,12 +75,12 @@ func OnPrivateMessage(s *services.Services) func(twitch.PrivateMessage) {
 		userName := msg.User.Name
 
 		for _, cmd := range allCommands {
-			if cmd.Cmd.Command() != firstWord {
+			if cmd.Command() != firstWord {
 				continue
 			}
 
 			// TODO: add ban permissions
-			if !userPermissions.Has(cmd.PermissionsRequired...) {
+			if !userPermissions.Has(cmd.RequiredPermissions()...) {
 				break
 			}
 
@@ -111,7 +89,7 @@ func OnPrivateMessage(s *services.Services) func(twitch.PrivateMessage) {
 			ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
 			defer cancel()
 
-			response, err := cmd.Cmd.Run(ctx, s, userPermissions, msgMy)
+			response, err := cmd.Run(ctx, s, userPermissions, msgMy)
 			if err != nil {
 				response = fmt.Sprintf("Internal error: %s", err.Error())
 			} else if response == "" {
@@ -158,7 +136,7 @@ func OnPrivateMessage(s *services.Services) func(twitch.PrivateMessage) {
 
 			// TODO: fix not logging blab cmds
 			if _, err := s.Insert("chat_commands", map[string]any{
-				"command":  cmd.Cmd.Command(),
+				"command":  cmd.Command(),
 				"args":     msg.Message,
 				"response": response,
 				"user":     userName,
@@ -192,19 +170,19 @@ func OnWhisperMessage(s *services.Services) func(twitch.WhisperMessage) {
 		userName := msg.User.Name
 
 		for _, cmd := range allCommands {
-			if cmd.Cmd.Command() != firstWord {
+			if cmd.Command() != firstWord {
 				continue
 			}
 
 			// TODO: add ban permissions
-			if !userPermissions.Has(cmd.PermissionsRequired...) {
+			if !userPermissions.Has(cmd.RequiredPermissions()...) {
 				break
 			}
 
 			ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
 			defer cancel()
 
-			response, err := cmd.Cmd.Run(ctx, s, userPermissions, msgMy)
+			response, err := cmd.Run(ctx, s, userPermissions, msgMy)
 			if err != nil {
 				response = fmt.Sprintf("Internal error: %s", err.Error())
 			} else if response == "" {
@@ -239,7 +217,7 @@ func OnWhisperMessage(s *services.Services) func(twitch.WhisperMessage) {
 
 			// TODO: fix not logging blab cmds
 			if _, err := s.Insert("chat_commands", map[string]any{
-				"command":  cmd.Cmd.Command(),
+				"command":  cmd.Command(),
 				"args":     msg.Message,
 				"response": response,
 				"user":     userName,
