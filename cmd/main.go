@@ -6,7 +6,9 @@ import (
 	"html/template"
 	"log"
 	"math/rand"
+	"net"
 	"net/http"
+	"net/url"
 	"os"
 	"strings"
 	"time"
@@ -118,7 +120,26 @@ func run() error {
 			client.Join(channel)
 		}
 
-		balabobaClient := balaboba.New(balaboba.Rus, time.Minute)
+		// TODO: provide proxy in env
+		proxyURL, err := url.Parse(os.Getenv("BALABOBA_PROXY"))
+		if err != nil {
+			panic(err)
+		}
+
+		d := net.Dialer{
+			Timeout: time.Minute,
+		}
+		balabobaClient := balaboba.New(
+			balaboba.Rus,
+			http.Client{
+				Timeout: d.Timeout,
+				Transport: &http.Transport{
+					DialTLSContext:      d.DialContext,
+					TLSHandshakeTimeout: d.Timeout,
+					Proxy:               http.ProxyURL(proxyURL),
+				},
+			},
+		)
 
 		permissions, err := permissions.LoadFromJSONFile("permissions.json")
 		if err != nil {
