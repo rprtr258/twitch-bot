@@ -1,0 +1,34 @@
+servers:
+  localhost:
+    desc: localhost
+    host: 127.0.0.1
+    local: true
+  vps:
+    desc: Main host machine
+    host: vps
+    # work_dir: ~/twitch-bot-deploy/
+  rus:
+    desc: Host for proxy in Russia
+    host: rus
+
+tasks:
+  ping:
+    desc: Ping servers
+    target:
+      all: true
+    cmd: echo "pong"
+
+  deploy:
+    desc: Deploy twitch bot to vps
+    target: {servers: [vps]}
+    spec:
+      any_errors_fatal: true
+    tasks:
+      - cmd: scp -r docker-compose.yml vps:twitch-bot-deploy/
+        local: true
+      - cmd: scp -r Caddyfile vps:twitch-bot-deploy/
+        local: true
+      - cmd: |
+          cd twitch-bot-deploy &&
+          docker compose pull &&
+          doppler run -- docker compose up twitch-bot -d --remove-orphans
