@@ -9,9 +9,7 @@ RUN CGO_ENABLED=0 go build -o twitch-bot cmd/main.go
 
 FROM alpine:3.16.2
 
-RUN apk add python3
 WORKDIR /app
-COPY pyth/ pyth/
 COPY permissions.json pastes.txt ./
 COPY --from=build /app/twitch-bot twitch-bot
 EXPOSE 80
