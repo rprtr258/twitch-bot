@@ -14,12 +14,12 @@ import (
 	"time"
 
 	"github.com/gempir/go-twitch-irc/v3"
-	"github.com/karalef/balaboba"
 	"github.com/labstack/echo/v5"
 	"github.com/nicklaw5/helix/v2"
 	"github.com/pocketbase/dbx"
 	"github.com/pocketbase/pocketbase"
 	"github.com/pocketbase/pocketbase/core"
+	"github.com/rprtr258/balaboba"
 	"github.com/samber/lo"
 
 	"github.com/rprtr258/twitch-bot/internal"
@@ -129,9 +129,9 @@ func run() error {
 		d := net.Dialer{
 			Timeout: time.Minute,
 		}
-		balabobaClient := balaboba.New(
-			balaboba.Rus,
-			http.Client{
+		balabobaClient := balaboba.New(balaboba.ClientConfig{
+			Lang: balaboba.Rus,
+			HTTP: &http.Client{
 				Timeout: d.Timeout,
 				Transport: &http.Transport{
 					DialTLSContext:      d.DialContext,
@@ -139,7 +139,7 @@ func run() error {
 					Proxy:               http.ProxyURL(proxyURL),
 				},
 			},
-		)
+		})
 
 		permissions, err := permissions.LoadFromJSONFile("permissions.json")
 		if err != nil {

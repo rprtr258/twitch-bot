@@ -4,11 +4,11 @@ import (
 	"log"
 
 	twitch "github.com/gempir/go-twitch-irc/v3"
-	"github.com/karalef/balaboba"
 	"github.com/nicklaw5/helix/v2"
 	"github.com/pocketbase/pocketbase"
 	"github.com/pocketbase/pocketbase/forms"
 	"github.com/pocketbase/pocketbase/models"
+	"github.com/rprtr258/balaboba"
 
 	"github.com/rprtr258/twitch-bot/internal/message"
 	"github.com/rprtr258/twitch-bot/internal/permissions"

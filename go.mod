@@ -4,15 +4,12 @@ go 1.19
 
 require (
 	github.com/gempir/go-twitch-irc/v3 v3.2.0
-	github.com/karalef/balaboba v0.0.0-20220920173959-7e9a07b058c8
 	github.com/labstack/echo/v5 v5.0.0-20220201181537-ed2888cfa198
 	github.com/nicklaw5/helix/v2 v2.11.0
 	github.com/pocketbase/dbx v1.7.0
 	github.com/pocketbase/pocketbase v0.7.10
 	github.com/samber/lo v1.34.0
 )
-
-replace github.com/karalef/balaboba v0.0.0-20220920173959-7e9a07b058c8 => ./internal/balaboba/
 
 require (
 	github.com/AlecAivazis/survey/v2 v2.3.6 // indirect
@@ -57,12 +54,15 @@ require (
 	github.com/mattn/go-sqlite3 v1.14.16 // indirect
 	github.com/mgutz/ansi v0.0.0-20200706080929-d51e80ef957d // indirect
 	github.com/remyoudompheng/bigfft v0.0.0-20220927061507-ef77025ab5aa // indirect
+	github.com/rprtr258/balaboba v0.0.3 // indirect
 	github.com/spf13/cast v1.5.0 // indirect
 	github.com/spf13/cobra v1.6.1 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasttemplate v1.2.2 // indirect
 	go.opencensus.io v0.24.0 // indirect
+	go.uber.org/atomic v1.9.0 // indirect
+	go.uber.org/multierr v1.8.0 // indirect
 	gocloud.dev v0.27.0 // indirect
 	golang.org/x/crypto v0.2.0 // indirect
 	golang.org/x/exp v0.0.0-20221111204811-129d8d6c17ab // indirect
