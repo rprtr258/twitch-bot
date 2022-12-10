@@ -50,7 +50,6 @@ var allCommands = []Command{
 	cmds.BlabGenCmd{},
 	cmds.BlabContinueCmd{},
 	cmds.BlabReadCmd{},
-	&cmds.PythCmd{},
 	CommandsCmd{},
 	cmds.PermsCmd{},
 	cmds.PastaSearchCmd{},
