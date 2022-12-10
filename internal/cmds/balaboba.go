@@ -8,8 +8,8 @@ import (
 	"strings"
 	"unicode/utf8"
 
-	"github.com/karalef/balaboba"
 	"github.com/pocketbase/dbx"
+	"github.com/rprtr258/balaboba"
 
 	"github.com/rprtr258/twitch-bot/internal/message"
 	"github.com/rprtr258/twitch-bot/internal/permissions"
@@ -60,19 +60,21 @@ func (cmd BlabGenCmd) Run(ctx context.Context, s *services.Services, perms permi
 	// remove command
 	words = words[1:]
 
-	styleIdx, err := strconv.Atoi(words[0])
+	var style balaboba.Style
+	styleID, err := strconv.Atoi(words[0])
 	if err != nil {
-		styleIdx = int(balaboba.Standart)
+		style = balaboba.Standart
 	} else {
-		if styleIdx < 0 || styleIdx > int(balaboba.FolkWisdom) {
+		if styleID < 0 {
 			return fmt.Sprintf("Invalid style, see %s for list of available styles", cmd.Command()), nil
 		}
+		style = balaboba.StylesByID[styleID]
 		// remove style
 		words = words[1:]
 	}
 
 	text := strings.Join(words, " ")
-	response, err := s.Balaboba.Generate(text, balaboba.Style(styleIdx))
+	response, err := s.Balaboba.Generate(ctx, text, style)
 	if err != nil {
 		return "", err
 	}
@@ -87,7 +89,7 @@ func (cmd BlabGenCmd) Run(ctx context.Context, s *services.Services, perms permi
 		"text":          responseText,
 		"author_id":     msg.User.ID,
 		"continuations": 1,
-		"style":         styleIdx,
+		"style":         styleID,
 		"channel":       msg.Channel,
 	})
 	if err != nil {
@@ -141,13 +143,13 @@ func (cmd BlabContinueCmd) Run(ctx context.Context, s *services.Services, perms 
 	var (
 		text          string
 		continuations int
-		styleIdx      int
+		styleID       int
 	)
 	if err := db.
 		Select("text", "continuations", "style").
 		From(_blabTable).
 		Where(sqlCondition).
-		Row(&text, &continuations, &styleIdx); err != nil {
+		Row(&text, &continuations, &styleID); err != nil {
 		if err == sql.ErrNoRows {
 			return "404: Paste not found", nil
 		}
@@ -155,7 +157,7 @@ func (cmd BlabContinueCmd) Run(ctx context.Context, s *services.Services, perms 
 		return "", err
 	}
 
-	response, err := s.Balaboba.GenerateContext(ctx, text, balaboba.Style(styleIdx))
+	response, err := s.Balaboba.Generate(ctx, text, balaboba.StylesByID[styleID])
 	if err != nil {
 		return "", err
 	}
