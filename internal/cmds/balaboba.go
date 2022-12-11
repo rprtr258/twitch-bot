@@ -37,6 +37,7 @@ func (cmd BlabGenCmd) Run(ctx context.Context, s *services.Services, perms permi
 
 	if len(words) == 1 {
 		// TODO: use fmt lib
+		// TODO: fix formatting (styles are not %d)
 		return fmt.Sprintf("Available styles: "+
 			"%d-standart, "+
 			"%d-user manual, "+
