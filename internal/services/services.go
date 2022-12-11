@@ -30,7 +30,7 @@ func (s *Services) Insert(collectionName string, data map[string]any) (string, e
 
 	record := models.NewRecord(collection)
 	for k, v := range data {
-		record.SetDataValue(k, v)
+		record.Set(k, v)
 	}
 
 	form := forms.NewRecordUpsert(s.Backend.App, record)
