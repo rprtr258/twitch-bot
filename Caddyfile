@@ -1,5 +1,0 @@
-localhost rprtr.site {
-    encode gzip zstd
-    reverse_proxy twitch-bot:80
-    redir / https://rprtr258.github.io/
-}

@@ -7,7 +7,7 @@ run:
 
 # run locally in docker
 run-docker:
-  doppler run --token="$(doppler configs tokens create docker --max-age 1m --plain)" -- docker compose up --build --remove-orphans
+  rwenv -ie .env docker compose up --build --remove-orphans
 
 # bump dependencies
 @bump:
@@ -18,15 +18,7 @@ run-docker:
 @todo:
   rg 'TODO' --glob '**/*.go' || echo 'All done!'
 
-# TODO: update rules
-
 # sources: [dataset]
 # generates: [model.json]
 # train: get_chat_logs
 #   python quotes_generator/main.py train --dataset dataset --model model.json
-
-# TODO: backup
-
-# stupid deploy automation
-deploy:
-  ssh vps 'cd twitch-bot-deploy && docker compose pull && doppler run -- docker compose up'
