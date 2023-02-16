@@ -90,6 +90,9 @@ func run() error {
 	rand.Seed(time.Now().Unix())
 
 	app := pocketbase.New()
+	if err := app.Bootstrap(); err != nil {
+		return err
+	}
 
 	app.OnBeforeServe().Add(func(data *core.ServeEvent) error {
 		helixClient, err := helix.NewClient(&helix.Options{
@@ -245,4 +248,5 @@ func main() {
 	if err := run(); err != nil {
 		log.Fatal(err.Error())
 	}
+	log.Fatal("service stopped unexpectedly")
 }
