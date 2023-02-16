@@ -3,7 +3,7 @@
 
 # run locally
 run:
-  doppler run -- go run cmd/main.go serve
+  rwenv -ie .env -- go run cmd/main.go serve
 
 # run locally in docker
 run-docker:
