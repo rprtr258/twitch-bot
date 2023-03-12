@@ -7,7 +7,7 @@ require (
 	github.com/labstack/echo/v5 v5.0.0-20220201181537-ed2888cfa198
 	github.com/nicklaw5/helix/v2 v2.21.0
 	github.com/pocketbase/dbx v1.10.0
-	github.com/pocketbase/pocketbase v0.13.2
+	github.com/pocketbase/pocketbase v0.13.3
 	github.com/rprtr258/balaboba v0.0.6
 	github.com/samber/lo v1.37.0
 )
@@ -38,7 +38,7 @@ require (
 	github.com/disintegration/imaging v1.6.2 // indirect
 	github.com/domodwyer/mailyak/v3 v3.4.0 // indirect
 	github.com/dustin/go-humanize v1.0.1 // indirect
-	github.com/fatih/color v1.14.1 // indirect
+	github.com/fatih/color v1.15.0 // indirect
 	github.com/gabriel-vasile/mimetype v1.4.2 // indirect
 	github.com/ganigeorgiev/fexpr v0.3.0 // indirect
 	github.com/go-ozzo/ozzo-validation/v4 v4.3.0 // indirect
