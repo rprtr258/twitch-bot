@@ -13,4 +13,4 @@ EXPOSE 80
 # RUN addgroup -S nonroot && adduser -S nonroot -G nonroot
 # USER nonroot:nonroot
 
-CMD ["./twitch-bot", "serve", "--http=:80"]
+CMD ["./twitch-bot", "serve", "--http=0.0.0.0:80"]
