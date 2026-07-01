@@ -1,3 +1,4 @@
+node_modules/
 pb_data/
 .env
 twitch-bot
