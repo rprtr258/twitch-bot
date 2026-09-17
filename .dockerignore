@@ -1,9 +1,4 @@
-*
-!cmd/
-!internal/
-!migrations/
-!pyth/
-!permissions.json
-!pastes.txt
-!go.mod
-!go.sum
+.git
+.jj
+pb_data
+twitch-bot
