@@ -39,13 +39,13 @@ func (cmd BlabGenCmd) Run(ctx context.Context, s *services.Services, perms permi
 		// TODO: use fmt lib
 		// TODO: fix formatting (styles are not %d)
 		return fmt.Sprintf("Available styles: "+
-			"%d-standart, "+
-			"%d-user manual, "+
-			"%d-recipes, "+
-			"%d-short stories, "+
-			"%d-wikipedia simplified, "+
-			"%d-movie synopses, "+
-			"%d-folk wisdom. "+
+			"%s-standart, "+
+			"%s-user manual, "+
+			"%s-recipes, "+
+			"%s-short stories, "+
+			"%s-wikipedia simplified, "+
+			"%s-movie synopses, "+
+			"%s-folk wisdom. "+
 			"List of all pastes: %s",
 			balaboba.Standart,
 			balaboba.UserManual,
