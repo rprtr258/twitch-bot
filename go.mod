@@ -6,7 +6,7 @@ replace github.com/rprtr258/balaboba => ./internal/balaboba
 
 require (
 	github.com/gempir/go-twitch-irc/v3 v3.3.0
-	github.com/labstack/echo/v5 v5.0.0-20220201181537-ed2888cfa198
+	github.com/labstack/echo/v5 v5.2.0
 	github.com/nicklaw5/helix/v2 v2.21.0
 	github.com/pocketbase/dbx v1.10.0
 	github.com/pocketbase/pocketbase v0.13.3
@@ -61,8 +61,6 @@ require (
 	github.com/spf13/cast v1.5.0 // indirect
 	github.com/spf13/cobra v1.6.1 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
-	github.com/valyala/bytebufferpool v1.0.0 // indirect
-	github.com/valyala/fasttemplate v1.2.2 // indirect
 	go.opencensus.io v0.24.0 // indirect
 	gocloud.dev v0.29.0 // indirect
 	golang.org/x/crypto v0.54.0 // indirect
