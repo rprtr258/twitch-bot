@@ -1,0 +1,14 @@
+{
+  "name": "twitch-bot",
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/tmi.js": "^1.8.6"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "private": true,
+  "dependencies": {
+    "tmi.js": "^1.8.5"
+  }
+}
