@@ -54,7 +54,7 @@ func (cmd BlabGenCmd) Run(ctx context.Context, s *services.Services, perms permi
 			balaboba.WikipediaSipmlified,
 			balaboba.MovieSynopses,
 			balaboba.FolkWisdom,
-			fmt.Sprintf("%s/%s/", s.Backend.Settings().Meta.AppUrl, "blab"), // TODO: separate by channels
+			fmt.Sprintf("%s/%s/", s.Backend.Settings().Meta.AppURL, "blab"), // TODO: separate by channels
 		), nil
 	}
 
@@ -102,7 +102,7 @@ func (cmd BlabGenCmd) Run(ctx context.Context, s *services.Services, perms permi
 		return shortResponse, nil
 	}
 
-	link := fmt.Sprintf("%s/%s/%s", s.Backend.Settings().Meta.AppUrl, "blab", id)
+	link := fmt.Sprintf("%s/%s/%s", s.Backend.Settings().Meta.AppURL, "blab", id)
 	linkLen := len(link) + 1
 	runes := []rune(responseText)
 	upperBound := message.MaxMessageLength
@@ -178,7 +178,7 @@ func (cmd BlabContinueCmd) Run(ctx context.Context, s *services.Services, perms 
 
 	return fmt.Sprintf(
 		"Читать продолжение в источнике: %s",
-		fmt.Sprintf("%s/%s/%s", s.Backend.Settings().Meta.AppUrl, "blab", pasteID),
+		fmt.Sprintf("%s/%s/%s", s.Backend.Settings().Meta.AppURL, "blab", pasteID),
 	), nil
 }
 
@@ -224,7 +224,7 @@ func (cmd BlabReadCmd) Run(ctx context.Context, s *services.Services, perms perm
 	}
 
 	if utf8.RuneCountInString(text) > message.MaxMessageLength {
-		link := fmt.Sprintf("%s/%s/%s", s.Backend.Settings().Meta.AppUrl, "blab", pasteID)
+		link := fmt.Sprintf("%s/%s/%s", s.Backend.Settings().Meta.AppURL, "blab", pasteID)
 		linkLen := len(link) + 1
 		runes := []rune(text)
 		return fmt.Sprintf("%s %s", string(runes[:message.MaxMessageLength-linkLen]), link), nil

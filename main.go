@@ -14,11 +14,11 @@ import (
 	"time"
 
 	"github.com/gempir/go-twitch-irc/v3"
-	"github.com/labstack/echo/v5"
 	"github.com/nicklaw5/helix/v2"
 	"github.com/pocketbase/dbx"
 	"github.com/pocketbase/pocketbase"
 	"github.com/pocketbase/pocketbase/core"
+	"github.com/pocketbase/pocketbase/tools/router"
 	"github.com/rprtr258/balaboba"
 	"github.com/samber/lo"
 
@@ -94,7 +94,7 @@ func run() error {
 		return err
 	}
 
-	app.OnBeforeServe().Add(func(data *core.ServeEvent) error {
+	app.OnServe().BindFunc(func(data *core.ServeEvent) error {
 		helixClient, err := helix.NewClient(&helix.Options{
 			ClientID:     os.Getenv("TWITCH_CLIENT_ID"),
 			ClientSecret: os.Getenv("TWITCH_CLIENT_SECRET"),
@@ -166,79 +166,67 @@ func run() error {
 			}
 		}()
 
-		return nil
+		return data.Next()
 	})
 
-	app.OnBeforeServe().Add(func(e *core.ServeEvent) error {
-		if _, err := e.Router.AddRoute(echo.Route{
-			Method: http.MethodGet,
-			Path:   "/blab",
-			Handler: func(c echo.Context) error {
-				db := app.DB()
+	app.OnServe().BindFunc(func(e *core.ServeEvent) error {
+		e.Router.GET("/blab", func(c *core.RequestEvent) error {
+			db := app.DB()
 
-				type row struct {
-					ID string
+			type row struct {
+				ID string
+			}
+			var ids []row
+			err := db.
+				Select("id").
+				From("blab").
+				All(&ids)
+			if err != nil && err != sql.ErrNoRows {
+				// TODO: save log
+				log.Println("failed extracting ids from db", err.Error())
+				return router.NewInternalServerError("", err)
+			}
+
+			type pageEntry struct {
+				ID  string
+				URL string
+			}
+			entries := lo.Map(ids, func(row row, _ int) pageEntry {
+				return pageEntry{
+					ID:  row.ID,
+					URL: fmt.Sprintf("/%s/%s", "blab", row.ID),
 				}
-				var ids []row
-				err := db.
-					Select("id").
-					From("blab").
-					All(&ids)
-				if err != nil && err != sql.ErrNoRows {
-					// TODO: save log
-					log.Println("failed extracting ids from db", err.Error())
-					return echo.ErrInternalServerError
-				}
+			})
+			entriesChunks := lo.Chunk(entries, 4)
 
-				type pageEntry struct {
-					ID  string
-					URL string
-				}
-				entries := lo.Map(ids, func(row row, _ int) pageEntry {
-					return pageEntry{
-						ID:  row.ID,
-						URL: fmt.Sprintf("/%s/%s", "blab", row.ID),
-					}
-				})
-				entriesChunks := lo.Chunk(entries, 4)
+			var page strings.Builder
+			idsPage.Execute(&page, entriesChunks)
+			return c.HTML(http.StatusOK, page.String())
+		})
 
-				var page strings.Builder
-				idsPage.Execute(&page, entriesChunks)
-				return c.HTML(http.StatusOK, page.String())
-			},
-		}); err != nil {
-			return err
-		}
+		e.Router.GET("/blab/{id}", func(c *core.RequestEvent) error {
+			blabID := c.Request.PathValue("id")
+			db := app.DB()
 
-		if _, err := e.Router.AddRoute(echo.Route{
-			Method: http.MethodGet,
-			Path:   "/blab/:id",
-			Handler: func(c echo.Context) error {
-				blabID := c.PathParam("id")
-				db := app.DB()
+			var text string
+			err := db.Select("text").From("blab").Where(dbx.NewExp(
+				"id={:id}", dbx.Params{"id": blabID},
+			)).Row(&text)
+			if err != nil && err != sql.ErrNoRows {
+				// TODO: save log
+				log.Println(err.Error())
+				return router.NewInternalServerError("", err)
+			} else if err == sql.ErrNoRows {
+				return router.NewNotFoundError("", err)
+			}
 
-				var text string
-				err := db.Select("text").From("blab").Where(dbx.NewExp(
-					"id={:id}", dbx.Params{"id": blabID},
-				)).Row(&text)
-				if err != nil && err != sql.ErrNoRows {
-					// TODO: save log
-					log.Println(err.Error())
-					return echo.ErrInternalServerError
-				} else if err == sql.ErrNoRows {
-					return echo.ErrNotFound
-				}
+			// TODO: use html template with text safeguarding
+			var page strings.Builder
+			blabPage.Execute(&page, text)
+			return c.HTML(http.StatusOK, page.String())
+		})
 
-				// TODO: use html template with text safeguarding
-				var page strings.Builder
-				blabPage.Execute(&page, text)
-				return c.HTML(http.StatusOK, page.String())
-			},
-		}); err != nil {
-			return err
-		}
-
-		return nil
+		return e.Next()
 	})
 
 	return app.Start()

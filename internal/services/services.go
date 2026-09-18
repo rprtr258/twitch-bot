@@ -6,8 +6,7 @@ import (
 	twitch "github.com/gempir/go-twitch-irc/v3"
 	"github.com/nicklaw5/helix/v2"
 	"github.com/pocketbase/pocketbase"
-	"github.com/pocketbase/pocketbase/forms"
-	"github.com/pocketbase/pocketbase/models"
+	"github.com/pocketbase/pocketbase/core"
 	"github.com/rprtr258/balaboba"
 
 	"github.com/rprtr258/twitch-bot/internal/message"
@@ -23,23 +22,19 @@ type Services struct {
 }
 
 func (s *Services) Insert(collectionName string, data map[string]any) (string, error) {
-	collection, err := s.Backend.Dao().FindCollectionByNameOrId(collectionName)
+	collection, err := s.Backend.FindCollectionByNameOrId(collectionName)
 	if err != nil {
 		return "", err
 	}
 
-	record := models.NewRecord(collection)
+	record := core.NewRecord(collection)
 	for k, v := range data {
 		record.Set(k, v)
 	}
 
-	form := forms.NewRecordUpsert(s.Backend.App, record)
-
-	if err := form.Validate(); err != nil {
-		return "", err
-	}
-
-	if err := form.Submit(); err != nil {
+	// Save validates the record against the collection schema, like the
+	// removed forms.RecordUpsert Validate+Submit pair did before v0.23.
+	if err := s.Backend.Save(record); err != nil {
 		return "", err
 	}
 
